@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
     <style>
+
+        main {
+            max-width: 970px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         h1 {
             color: darkred;
             font-style: inherit;
@@ -20,12 +27,10 @@
             font-family: "Open Sans", Helvetica, Arial, sans-serif;
             font-size: 24px;
             text-align: center;
-            padding-left: 200px;
-            padding-right: 200px;
         }
 
         img {
-            padding-left: 400px;
+            width: 100%;
         }
 
         nav {
@@ -40,6 +45,12 @@
             font-size: 20px;
         }
 
+        @media (max-width: 620px) {
+            .toer {
+                grid-template-columns: 1fr;
+            }
+        }
+
 
     </style>
 </head>
@@ -49,22 +60,19 @@
     <a href="nettside_egen.html">Hjemside</a>
 </nav>
 
-<img src="Skjermbilde%202017-12-30%20kl.%2000.57.22.png">
+<main>
+        <img src="Skjermbilde%202017-12-30%20kl.%2000.57.22.png">
 
-<h1> Om meg </h1>
+        <div class="toer">
 
-<p>Mitt navn er Havra, ja det er et merkelig navn, og det minner alle om havregrøt eller havregryn eller havre eller havrepannekaker eller alt med havre. Jeg er 17 år gammel, og kommer fra Chechenya. Jeg bor i Asker sammen med min yngre bror og mine foreldre. Jeg har også en storebror og en storesøster men de bor ikke hjemme.
-</p>
+        <h1> Om meg </h1>
 
-<p>Jeg går på videregående skole, og må innrømme at jeg likte ungdomsskolen mye bedre. Jeg er en helt vanlig jente, jeg liker å tilbringe tid med familien min og venner, og jeg liker å gå ut og gjøre randome ting som å spille volleyball og gå på kino. Jeg ELSKER å skrive! Det er jo grunnen til at jeg starta denne bloggen, i tillegg til at jeg liker å ta bilder og sminke. Det er ikke noe uvanlig eller spesielt med meg heller. Svært kjedelig, i know.
-</p>
+        <p>Mitt navn er Havra, ja det er et merkelig navn, og det minner alle om havregrøt eller havregryn eller havre eller havrepannekaker eller alt med havre. <br> Jeg er 17 år gammel, og kommer fra Chechenya. Jeg bor i Asker sammen med min yngre bror og mine foreldre. Jeg har også en storebror og en storesøster men de bor ikke hjemme.<br>
+        Jeg går på videregående skole, og må innrømme at jeg likte ungdomsskolen mye bedre. <br> Jeg er en helt vanlig jente, jeg liker å tilbringe tid med familien min og venner, og jeg liker å gå ut og gjøre randome ting som å spille volleyball og gå på kino. <br> Jeg ELSKER å skrive! Det er jo grunnen til at jeg starta denne bloggen, i tillegg til at jeg liker å lage mat, ta bilder og generelt sminke. Det er ikke noe uvanlig eller spesielt med meg heller. Svært kjedelig, i know. <br> Min familie og vennene mine betyr alt for meg. Jeg elsker dem, og kan ikke forestille meg hvordan livet mitt ville være uten dem. <br> Hvis dere vil vite noe mer så bare spør, så svarer jeg så bra jeg kan. </p>
 
-<p>Min familie og vennene mine betyr alt for meg. Jeg elsker dem, og kan ikke forestille meg hvordan livet mitt ville være uten dem.
-</p>
+        </div>
 
-<p>Hvis dere vil vite noe mer så bare spør, så svarer jeg så bra jeg kan!
-</p>
-
+</main>
 
 </body>
 </html>

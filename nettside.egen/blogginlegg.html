@@ -6,6 +6,12 @@
     <title>Dagen irritasjon</title>
     <style>
 
+        main {
+            max-width: 970px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         h1 {
             color: black;
             font-style: italic;
@@ -25,8 +31,8 @@
         }
 
         p {
-            font-family: "Open Sans", Helvetica, Arial, sans-serif;
-            font-size: 15px;
+            font-family: "Times New Roman", sans-serif;
+            font-size: 17px;
             text-align: center;
         }
 
@@ -54,13 +60,14 @@
             font-family: "Open Sans", Helvetica, Arial, sans-serif;
             font-size: 20px;
             color: rosybrown;
-
+            text-align: center;
         }
 
         h6 {
             font-family: "Open Sans", Helvetica, Arial, sans-serif;
             font-size: 20px;
             color: rosybrown;
+            text-align: center;
 
         }
 
@@ -80,8 +87,28 @@
             line-height: 250%;
         }
 
+        .toer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
         img {
-            padding-left: 325px;
+            width: 100%;
+        }
+
+        @media (max-width: 620px) {
+            .toer {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        li {
+            text-align: center;
+            list-style: none;
+        }
+
+        li::before {
+            content: "• ";
         }
 
     </style>
@@ -92,8 +119,10 @@
     <a href="nettside_egen.html">Hjemside</a>
 </nav>
 
+<main>
         <h1> veldig forsen.... </h1>
         <h2>23.12.2017 kl. 23:37</h2>
+
 
     <ul class="big">
         <p>
@@ -104,43 +133,58 @@
         <h3>MAT</h3>
         <h4>13.12.2017 kl. 12:07</h4>
 
-    <ul class="big">
-        <h5>DETTE TRENGER DU FOR Å LAGE PANNEKAKER:</h5>
+    <h5><b>DETTE TRENGER DU FOR Å LAGE PANNEKAKER:</b></h5>
+
+    <div class="toer">
+
+        <ul class="big">
         <li>6 store egg </li>
         <li>230g mel</li>
             <li>2 teskjeer bakepulver</li>
                 <li>280ml melk</li>
                     <li>2 klyper salt</li>
-        <p>Separer eggehvitene fra eggeplommer og legg i separate skåler. Pisk eggehvitene med salt til det har dannet stive topper. I den andre bollen, tilsett siktet mel til eggeplommer, etterfulgt av bakepulver og melk. Pisk til det er blandet godt sammen. Brett eggehvite blandingen inn i bollen med melk og eggeplommer. Ved hjelp av en skje, hell blandingen i en stekepanne med varmen på medium til lav varme. Etter et par minutter er det på tide å vende pannekaken. Jeg plasserer dem vanligvis i en stabel på en tallerken før jeg blir kreativ med fyllingen!</p>
     </ul>
 
 
+        <img src="pannekaker..jpg" height="500" width="200">
+        </div>
+
+    <p>Separer eggehvitene fra eggeplommer og legg i separate skåler. Pisk eggehvitene med salt til det har dannet stive topper. I den andre bollen, tilsett siktet mel til eggeplommer, etterfulgt av bakepulver og melk. Pisk til det er blandet godt sammen. Brett eggehvite blandingen inn i bollen med melk og eggeplommer. Ved hjelp av en skje, hell blandingen i en stekepanne med varmen på medium til lav varme. Etter et par minutter er det på tide å vende pannekaken. Jeg plasserer dem vanligvis i en stabel på en tallerken før jeg blir kreativ med fyllingen!</p>
 
 
 
 
 
 
-<ul class="big">
-<h6>DETTE TRENGER DU FOR Å LAGE OREO COOKIES:</h6>
-    <li>65g mel</li>
-    <li>½ ts bakepulver</li>
-    <li>100g kakaopulver</li>
-    <li>Klype salt</li>
-    <li>250g sukker</li>
-    <li>1 ts vanilje ekstrakt</li>
-    <li>150g smør</li>
-    <li>2 egg</li>
-    <li>1 bar melkesjokolade</li>
-    <li>1 bar hvit sjokolade</li>
-    <p>Varm ovnen til 180 celsius grader.
-        Smelt smøret i en mikrobølgeovn. Bland inn sukkeret i smøret. Deretter rører man inn vanilje og kakaopulver, og når røren er fullstendig blandet, rører man inn ett egg om gangen. Deretter smelter man forsiktig melkesjokolade. Du kan enten gjøre dette i en bolle over vann, eller i mikrobølgeovn, men sørg for å røre den uansett hvilken metode du velger, slik at den ikke brenner. Når alt er blandet, hell de tørre ingrediensene (mel, bakepulver, salt) inn. Det siste trinnet er å brekke opp den hvite sjokoladen i biter, og rør bitene inn i blandingen. Overfør blandingen til en smurt form. Putt den i ovnen og la den bake i 15 minutter eller til toppen er skinnende.
 
-        Til slutt strør du litt melis på toppen, og nyter!</p>
-</ul>
+    <h6><b>DETTE TRENGER DU FOR Å LAGE OREO COOKIES:</b></h6>
+<div class="toer">
 
-<img src="Skjermbilde%202018-01-04%20kl.%2017.15.42.png" height="400" width="800">
+    <ul class="big">
+        <li>65g mel</li>
+        <li>½ ts bakepulver</li>
+        <li>100g kakaopulver</li>
+        <li>Klype salt</li>
+        <li>250g sukker</li>
+        <li>1 ts vanilje ekstrakt</li>
+        <li>150g smør</li>
+        <li>2 egg</li>
+        <li>1 bar melkesjokolade</li>
+        <li>1 bar hvit sjokolade</li>
 
+    </ul>
+
+    <img src="brownies..jpg" height="400">
+
+</div>
+
+<p>Varm ovnen til 180 celsius grader.
+    Smelt smøret i en mikrobølgeovn. Bland inn sukkeret i smøret. Deretter rører man inn vanilje og kakaopulver, og når røren er fullstendig blandet, rører man inn ett egg om gangen. Deretter smelter man forsiktig melkesjokolade. Du kan enten gjøre dette i en bolle over vann, eller i mikrobølgeovn, men sørg for å røre den uansett hvilken metode du velger, slik at den ikke brenner. Når alt er blandet, hell de tørre ingrediensene (mel, bakepulver, salt) inn. Det siste trinnet er å brekke opp den hvite sjokoladen i biter, og rør bitene inn i blandingen. Overfør blandingen til en smurt form. Putt den i ovnen og la den bake i 15 minutter eller til toppen er skinnende.
+
+    Til slutt strør du litt melis på toppen, og nyter!</p>
+
+
+</main>
 </body>
 </html>
 
