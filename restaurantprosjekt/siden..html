@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Anmeldelser</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* body */
+
+        body {
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            background-color: #eee;
+            font-family: sans-serif;
+        }
+
+        body > header > nav {
+            display: grid;
+            grid-template-columns: 1fr;
+            text-align: right;
+            font-size: 25px;
+            text-decoration: none;
+            padding: 5px 20px 10px 1px;
+            font-family: "Times New Roman", Helvetica, Thonburi,sans-serif;
+        }
+
+        h1 {
+            font-size: 35px;
+            color: white;
+            text-align: left;
+            filter: drop-shadow(0 3px 2px);
+            padding: 25px 10px 5px 20px;
+        }
+
+        /* main delt i to */
+        main {
+            display: grid;
+            background-color: white;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+
+
+        main > section {
+            background-color: transparent;
+        }
+
+        #layout > img {
+            height: 790px;
+            width: 713px;
+            
+        }
+
+        #anmeldelser {
+            padding-bottom: 10px;
+            position: inherit;
+            padding: 10px;
+        }
+
+        #taAnmeldelse {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+
+
+
+        #inpBilde {
+            display: none;
+        }
+
+        label {
+            padding: 10px;
+            background-color: gray;
+            display: table-cell;
+            color: white;
+        }
+
+
+        /* meny */
+        header {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 10px;
+            background-color: burlywood;
+            border: double;
+            display: grid;
+            grid-template-columns: 1fr auto auto auto auto;
+            align-items: center;
+
+        }
+
+        header > img {
+            display: inline-block;
+            padding-left: 25px;
+            padding-bottom: 12px;
+        }
+
+        header > a {
+            float: right;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+
+        }
+
+        header > .active {
+            background-color: grey;
+            color: white;
+        }
+
+        header > input {
+            float: right;
+            padding: 6px;
+            border: none;
+            margin-top: 8px;
+            margin-right: 8px;
+            font-size: 17px;
+        }
+
+
+        #skjema {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+
+        }
+
+        footer {
+            background-color: burlywood;
+        }
+
+        //* Stjernerangering*//
+
+        .rate{
+            color: black;
+            cursor: pointer;
+        }
+
+        .rate:hover{
+            color: yellow;
+        }
+        .rate-item{
+            float: left;
+            cursor: pointer;
+            margin: 0px 5px 0px 5px;
+        }
+
+        .rate-item:hover ~ .rate-item {
+            color: black;
+        }
+
+        @media (max-width: 1000px) {
+            main {
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-auto-rows: 220px;
+            }
+        }
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+
+    <header>
+
+        <div>
+            <img src="wik.png">
+        </div>
+
+            <input type="text" placeholder="Søk..">
+            <a href="kategorier.html">Kategorier</a>
+            <a class="active" href="#leggtil">Bli med</a>
+            <a href="restauranter.html">Våre restauranter</a>
+    </header>
+
+    <main>
+        <section id="layout">
+            <img src="design.png">
+        </section>
+
+        <section id="anmeldelser">
+            <div>Skriv anmeldelse:</div>
+            <textarea id="taAnmeldelse" placeholder="Max 300 ord..."></textarea>
+                <span></span>
+
+            <form id="skjema">
+                <div>
+                    <label for="inpBilde">Last opp bilde</label>
+                    <input type="file" id="inpBilde">
+                </div>
+
+                <div class="rate">
+                    <div class="rate-item">☆</div>
+                    <div class="rate-item">☆</div>
+                    <div class="rate-item">☆</div>
+                    <div class="rate-item">☆</div>
+                    <div class="rate-item">☆</div>
+                </div>
+
+                <button type="submit">Lagre anmeldelse</button>
+
+            </form>
+
+
+        </section>
+    </main>
+
+
+    <footer>
+        <div>Kontakt oss</div>
+    </footer>
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBk6RywVg5N3lFf9Tbo_zz8hKJkBKzx8mk",
+        authDomain: "prosjekt2018.firebaseapp.com",
+        databaseURL: "https://prosjekt2018.firebaseio.com",
+        projectId: "prosjekt2018",
+        storageBucket: "prosjekt2018.appspot.com",
+        messagingSenderId: "756843613828"
+    };
+    firebase.initializeApp(config);
+</script>
+
+    <script>
+        const storage = firebase.storage();
+        const db = firebase.database();
+        const urler = db.ref("urler");
+
+        const inpBilde = document.getElementById("inpBilde");
+        const mittBilde = document.getElementById("mittBilde");
+        const main = document.querySelector("main");
+
+
+
+        function lagreURL(bildeinfo) {
+            urler.push(bildeinfo.downloadURL);
+        }
+
+        function lastOppBilde() {
+
+        const bilde = inpBilde.files[0];
+        const lagringsplass = storage.ref("minebilder/" + bilde.name);
+
+        lagringsplass.put(bilde)
+        .then(lagreURL);
+        }
+
+        function visBilde(snap) {
+        const url = snap.val();
+        main.innerHTML = `<div style="background-image: url('${url}')"></div>` + main.innerHTML;
+        }
+
+        inpBilde.onchange = lastOppBilde;
+        urler.on("child_added", visBilde);
+    </script>
+
+
+</body>
+</html>
