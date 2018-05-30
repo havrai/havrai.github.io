@@ -3,8 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
+    <title>Restauranter</title>
+    <style>
+
+        header {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 10px;
+            background-color: rosybrown;
+            border: dashed;
+            text-align: center;
+            font-size: 20px;
+
+        }
+
+        body {
+            margin: 40px;
+        }
+
+        .wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 10px;
+            background-color: #fff;
+            color: #444;
+        }
+
+        .box {
+            background-color: #444;
+            color: white;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 200%;
+            height: 100px;
+        }
+
+
+        a > header {
+            color: #ffffff;
+        }
+
+        a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+
+        a:hover
+        {
+            color: cornsilk;
+            text-decoration:none;
+            cursor: pointer;
+        }
+
+        div {
+            padding-top: 20px;
+            text-align: center;
+        }
+
+    </style>
 </head>
+
 <body>
+
+<header>
+    <a href="siden.html">Hjem</a>
+    <a href="kategorier.html">Mat kategorier</a>
+
+</header>
+
+<div class="wrapper">
+    <div class="box a"><a href="#">I Asker</a></div>
+    <div class="box b"><a href="#">I Bergen</a></div>
+    <div class="box c"><a href="#">I Bodø</a></div>
+    <div class="box d"><a href="#">I Drøbak</a></div>
+    <div class="box e"><a href="#">I Flåm</a></div>
+    <div class="box f"><a href="#">I Hønefoss</a></div>
+    <div class="box g"><a href="#">I Kristiansand </a></div>
+    <div class="box h"><a href="#">I Oslo</a></div>
+    <div class="box i"><a href="#">I Stavanger</a></div>
+    <div class="box j"><a href="#">I Sandvika</a></div>
+    <div class="box k"><a href="#">I Tromsø</a></div>
+    <div class="box l"><a href="#">I Tønsberg</a></div>
+</div>
+
+
 </body>
 </html>

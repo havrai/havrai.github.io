@@ -4,7 +4,248 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
+    <style>
+
+        body {font-family: Arial, Helvetica, sans-serif;}
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+            color: black;
+            font-family: "Times New Roman", Helvetica, Thonburi;
+            size: 25px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
+
+
+<h3>Innmeldings skjema</h3>
+<p><a href="siden.html">Hjem</a></p>
+
+<div class="container">
+    <form id="skjema">
+        <label for="rname">Restaurant</label>
+        <input type="text" id="rname" name="Restaurant" placeholder="Navn på restaurant..">
+
+        <label for="name">Navn</label>
+        <input type="text" id="name" name="name" placeholder="Navn daglig leder..">
+
+        <label for="adress">Adresse</label>
+        <input type="text" id="adress" name="name" placeholder="Adresse..">
+
+        <label for="postnr">Postnr/sted</label>
+        <input type="text" id="postnr" name="name" placeholder="Postnr/sted..">
+
+        <label for="tlf">Telefon</label>
+        <input type="text" id="tlf" name="name" placeholder="Telefon..">
+
+        <label for="postnr">Email</label>
+        <input type="text" id="Email" name="name" placeholder="Email..">
+
+
+        <label for="state">By</label>
+        <select id="state" name="state">
+            <option value="Alta">Alta</option>
+            <option value="Arendal">Arendal</option>
+            <option value="Askim">Askim</option>
+            <option value="Asker">Asker</option>
+            <option value="Bergen">Bergen</option>
+            <option value="Bodø">Bodø</option>
+            <option value="Brekstad">Brekstad</option>
+            <option value="Brevik">Brevik</option>
+            <option value="Brumunddal">Brumunddal</option>
+            <option value="Bryne">Bryne</option>
+            <option value="Brønnøysund">Brønnøysund</option>
+            <option value="Drammen">Drammen</option>
+            <option value="Drøbak">Drøbak</option>
+            <option value="Egersund">Egersund</option>
+            <option value="Elverum">Elverum</option>
+            <option value="Fagernes">Fagernes</option>
+            <option value="Farsund">Farsund</option>
+            <option value="Fauske">Fauske</option>
+            <option value="Finnsnes">Finnsnes</option>
+            <option value="Flekkefjord">Flekkefjord</option>
+            <option value="Florø">Florø</option>
+            <option value="Fosnavåg">Fosnavåg</option>
+            <option value="Fredrikstad">Fredrikstad</option>
+            <option value="Førde">Førde</option>
+            <option value="Gjøvik">Gjøvik</option>
+            <option value="Grimstad">Grimstad</option>
+            <option value="Halden">Halden</option>
+            <option value="Hamar">Hamar</option>
+            <option value="Hammerfest">Hammerfest</option>
+            <option value="Harstad">Harstad</option>
+            <option value="Haugesund">Haugesund</option>
+            <option value="Hokksund">Hokksund</option>
+            <option value="Holmestrand">Holmestrand</option>
+            <option value="Honningsvåg">Honningsvåg</option>
+            <option value="Horten">Horten</option>
+            <option value="Hønefoss">Hønefoss</option>
+            <option value="Jessheim">Jessheim</option>
+            <option value="Jørpeland">Jørpeland</option>
+            <option value="Kirkenes">Kirkenes</option>
+            <option value="Kolvereid">Kolvereid</option>
+            <option value="Kongsberg">Kongsberg</option>
+            <option value="Kopervik">Kopervik</option>
+            <option value="Kragerø">Kragerø</option>
+            <option value="Kristiansand">Kristiansand</option>
+            <option value="Kristiansund">Kristiansund</option>
+            <option value="Langesund">Langesund</option>
+            <option value="Larvik">Larvik</option>
+            <option value="Leknes">Leknes</option>
+            <option value="Levanger">Levanger</option>
+            <option value="Lillehammer">Lillehammer</option>
+            <option value="Lillesand">Lillesand</option>
+            <option value="Lillestrøm">Lillestrøm</option>
+            <option value="Lyngdal">Lyngdal</option>
+            <option value="Mandal">Mandal</option>
+            <option value="Mo i Rana">Mo i Rana</option>
+            <option value="Moelv">Moelv</option>
+            <option value="Molde">Molde</option>
+            <option value="Mosjøen">Mosjøen</option>
+            <option value="Moss">Moss</option>
+            <option value="Mysen">Mysen</option>
+            <option value="Maløy">Maløy</option>
+            <option value="Namsos">Namsos</option>
+            <option value="Narvik">Narvik</option>
+            <option value="Notodden">Notodden</option>
+            <option value="Odda">Odda</option>
+            <option value="Orkanger">Orkanger</option>
+            <option value="Oslo">Oslo</option>
+            <option value="Otta">Otta</option>
+            <option value="Porsgrunn">Porsgrunn</option>
+            <option value="Risør">Risør</option>
+            <option value="Rjukan">Rjukan</option>
+            <option value="Røros">Røros</option>
+            <option value="Sandefjord">Sandefjord</option>
+            <option value="Sandnes">Sandnes</option>
+            <option value="Sandnessjøen">Sandnessjøen</option>
+            <option value="Sandvika">Sandvika</option>
+            <option value="Sarpsborg">Sarpsborg</option>
+            <option value="Ski">Ski</option>
+            <option value="Skien">Skien</option>
+            <option value="Skudeneshavn">Skudeneshavn</option>
+            <option value="Sortland">Sortland</option>
+            <option value="Stathelle">Stathelle</option>
+            <option value="Stavanger">Stavanger</option>
+            <option value="Stavern">Stavern</option>
+            <option value="Steinkjer">Steinkjer</option>
+            <option value="Stokmarknes">Stokmarknes</option>
+            <option value="Stord">Stord</option>
+            <option value="Svelvik">Svelvik</option>
+            <option value="Svolvær">Svolvær</option>
+            <option value="Tromsø">Tromsø</option>
+            <option value="Trondheim">Trondheim</option>
+            <option value="Tvedestrand">Tvedestrand</option>
+            <option value="Tønsberg">Tønsberg</option>
+            <option value="Ulsteinvik">Ulsteinvik</option>
+            <option value="Vadsø">Vadsø</option>
+            <option value="Verdalsøra">Verdalsøra</option>
+            <option value="Vinstra">Vinstra</option>
+            <option value="Åkrehamn">Åkrehamn</option>
+            <option value="Ålesund">Ålesund</option>
+            <option value="Åndalsnes">Åndalsnes</option>
+            <option value="Åsgårstrand">Åsgårstrand</option>
+        </select>
+
+
+        <label for="taInnmelding">Om dere</label>
+        <textarea id="taInnmelding" name="subject" placeholder="Skriv noe om restauranten deres.." style="height:200px"></textarea>
+
+        <label for="inpBilde">Last opp bilde</label>
+        <input type="file" id="inpBilde">
+
+        <input type="submit" value="Submit" onSubmit="alert('Du får straks en e-mail fra oss. Takk for innmeldingen.');">
+    </form>
+</div>
+
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        const config = {
+            apiKey: "AIzaSyBk6RywVg5N3lFf9Tbo_zz8hKJkBKzx8mk",
+            authDomain: "prosjekt2018.firebaseapp.com",
+            databaseURL: "https://prosjekt2018.firebaseio.com",
+            projectId: "prosjekt2018",
+            storageBucket: "prosjekt2018.appspot.com",
+            messagingSenderId: "756843613828"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <script>
+        const db = firebase.database();
+        const innmelding = db.ref("innmelding");
+
+        const skjema = document.getElementById("skjema");
+        const rname = document.getElementById("rname")
+        const name = document.getElementById("name")
+        const adress = document.getElementById("adress")
+        const postnr = document.getElementById("postnr");
+        const tlf = document.getElementById("tlf");
+        const state = document.getElementById("state");
+        const inpBilde = document.getElementById("inpBilde");
+        const taInnmelding = document.getElementById("taInnmelding");
+
+
+        function lagreInnmelding(evt) {
+            evt.preventDefault();
+
+            innmelding.push({
+                navn: name.value,
+                restaurant: rname.value,
+                adresse: adress.value,
+                postnr: postnr.value,
+                telefon: tlf.value,
+                by: state.value,
+                bilde: inpBilde.value,
+                innmelding: taInnmelding.value
+            });
+            skjema.reset();
+        }
+
+        skjema.onsubmit = lagreInnmelding;
+
+    </script>
+
 </body>
 </html>
