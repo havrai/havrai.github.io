@@ -53,6 +53,22 @@
             text-decoration: none;
         }
 
+        #bekreftelse {
+            position: absolute;
+            width: 400px;
+            height: 300px;
+            left: calc(100vw/2 - 200px);
+            top: calc(100vh/2 - 150px);
+            background-color: white;
+
+            display: none;
+        }
+
+        #bekreftelse > h1 {
+            text-align: center;
+            color: red;
+        }
+
     </style>
 </head>
 <body>
@@ -61,7 +77,7 @@
 <h3>Innmeldings skjema</h3>
 <p><a href="siden.html">Hjem</a></p>
 
-<div class="container">
+<div class="container" id="container">
     <form id="skjema">
         <label for="rname">Restaurant</label>
         <input type="text" id="rname" name="Restaurant" placeholder="Navn på restaurant..">
@@ -194,9 +210,17 @@
         <label for="inpBilde">Last opp bilde</label>
         <input type="file" id="inpBilde">
 
-        <input type="submit" value="Submit" onSubmit="alert('Du får straks en e-mail fra oss. Takk for innmeldingen.');">
+        <input type="submit" value="Submit">
     </form>
 </div>
+
+<article id="bekreftelse">
+    <h1>Takk for at du meldte deg inn!</h1>
+    <p>Du har nå blitt medlem og vil straks få en epost med flere detaljer.</p>
+    <p>
+        <a href="siden.html">Gå til forsiden</a>
+    </p>
+</article>
 
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script>
@@ -216,6 +240,8 @@
         const db = firebase.database();
         const innmelding = db.ref("innmelding");
 
+        const container = document.getElementById("container");
+        const bekreftelse = document.getElementById("bekreftelse");
         const skjema = document.getElementById("skjema");
         const rname = document.getElementById("rname")
         const name = document.getElementById("name")
@@ -241,7 +267,12 @@
                 innmelding: taInnmelding.value
             });
             skjema.reset();
+
+            bekreftelse.style.display = "block";
+            container.style.opacity = "0.3";
         }
+
+
 
         skjema.onsubmit = lagreInnmelding;
 

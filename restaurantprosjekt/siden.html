@@ -17,7 +17,6 @@
         }
 
         /* body */
-
         body {
             min-height: 100vh;
             display: grid;
@@ -294,6 +293,7 @@
         </section>
     </main>
 
+
     <section id="contact">
         <div class="container">
             <div class="well well-sm">
@@ -321,8 +321,7 @@
                             <textarea class="form-control" name="" rows="3" placeholder="Melding"></textarea>
                         </div>
                         <button class="btn btn-default" type="submit" name="button">
-                            <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Send
-                        </button>
+                            <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Send</button>
                     </form>
                 </div>
             </div>
@@ -349,12 +348,14 @@
         const db = firebase.database();
         const anmeldelser = db.ref("anmeldelser");
 
+
         const skjema = document.getElementById("skjema");
         const taAnmeldelse = document.getElementById("taAnmeldelse");
         const inpBilde = document.getElementById("inpBilde");
         const inpNavn = document.getElementById("inpNavn");
         const inpRestaurant = document.getElementById("inpRestaurant");
         const inpStar = document.getElementById("inpStar");
+
 
 
         function settRating() {
@@ -379,8 +380,6 @@
             });
             skjema.reset();
         }
-
-
 
         skjema.onsubmit = lagreAnmeldelse;
     </script>
