@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Velkommen</title>
+    <style>
+
+        nav {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 22px 12px 22px 12px;
+            text-decoration: none;
+            font-size: 20px;
+            background-color: darkred;
+        }
+
+        nav a {
+            display: inline-block;
+            color: #b4b3bd;
+            font-family: "Open Sans", Helvetica, Arial, sans-serif;
+            padding: 22px 12px 22px 12px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            color: black;
+            transition: 0.5s;
+        }
+
+        body{
+            background-color: white;
+            font-family: "Times New Roman", Helvetica, Thonburi, sans-serif;
+            margin: 0;
+        }
+
+        #bil{
+            width: 300px;
+            display: block;
+            margin: auto;
+        }
+
+        p{
+            color: black;
+            text-align: center;
+            font-size: 16px;
+        }
+        script{
+            position: fixed;
+        }
+
+    </style>
+
+
+
+</head>
+<body>
+
+
+    <nav>
+        <a class="active" href="1.0.html">Oppgave 1</a>
+        <a href="2.0.html">Oppgave 2</a>
+        <a href="3.0.html">Oppgave 3</a>
+    </nav>
+
+    <p>Se på dette!</p>
+
+    <img id="bil" src="ok2.jpg" align="middle" alt="bilen">
+
+
+    <script>
+        document.write("<p>Nå skal du se noe magisk!</p>");
+        document.write("<p>Dette ble laget med javascript!</p>");
+
+
+        document.getElementById("bil").src = "ok.jpg";
+        //document.getElementById("bil").style.width = 150px;
+
+        document.body.style.backgroundColor = "red";
+        document.body.style.fontFamily = "Helvetica";
+
+
+
+
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kalkulator</title>
+    <style>
+        body > h1 {
+            text-align: center;
+            font-size: 30px;
+            color: darkred;
+        }
+
+        script{
+            text-align: center;
+            font-size: 20px;
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>Termometer-kalkulator</h1>
+
+<script>
+    var fahrenheit = prompt("Fahrenheit"); //popup for å skrive inn grader
+    var celsius = (fahrenheit - 32) / 1.8; //regner om til celsius
+
+    console.log(celsius);``
+    document.write(`${fahrenheit} grader Fahrenheit er ${celsius.toFixed(2)} grader Celsius`);
+</script>
+
+
+
+
+</body>
+</html>
