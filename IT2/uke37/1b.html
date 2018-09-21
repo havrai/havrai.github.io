@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style>
+
+        #firkant{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<img id="firkant" src="Fotball.jpg">
+
+<script>
+
+    var firkant  = document.getElementById("firkant");
+
+
+    document.onmousemove = function () {
+        var x = event.clientX - 100; // oppretter en variabel X, som er x-koordinaten til musens posisjon på nettsiden
+        var y = event.clientY - 100; // oppretter en variabel Y, som er y-koordinaten til musens posisjon på nettsiden
+        console.log("x=" + x); // skriver ut x-koordinaten
+        console.log("y=" + y); // skriver ut y-koordinaten
+
+        firkant.style.marginLeft = x + "px";
+        firkant.style.marginTop = y + "px";
+
+        if (x < 300) {
+            document.getElementById('firkant').src="Basketball-10.png";
+        } else {
+            document.getElementById('firkant').src="Fotball.jpg";
+        }
+    }
+
+
+</script>
+
+
+
+</body>
+</html>

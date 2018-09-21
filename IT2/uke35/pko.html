@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+    <meta charset="UTF-8">
+    <title>Tegning med JS</title>
+</head>
+<body>
+<canvas id="myCanvas" width="400" height="300"></canvas>
+
+<script>
+    var myCanvas = document.getElementById("myCanvas"); // Oppretter en variabel som referer til myCanvas-elementet
+    var ctx = myCanvas.getContext("2d"); //oppretter en ny variabel som referer til 2d-innholdet på myCanvas
+
+    ctx.fillRect(30,60,70,50); //Tegner en firkant på myCanvas som er 30px fra venstre siden og 60px fra toppen, og er 70x50 stor
+    ctx.fillRect(100,150,200,100); //Tegner en ny firkant på myCanvas
+    ctx.fillStyle = "red"; // Endrer farge til rød
+    //ctx.fillRect(30,50,200,400); // Tegner en ny rød firkant
+
+    ctx.strokeStyle = "blue"; //Setter fargen på pennen til blå
+    ctx.moveTo(15,15); //Flytter "pennen" til 15,15
+    ctx.lineTo(200,200); // Lager en linje til 200,200
+    ctx.stroke() //Tegner linjen
+
+    ctx.moveTo(15,15);
+    ctx.lineTo(200,200);
+    ctx.stroke();
+
+    // JavaScript for drawing on canvas
+    // applying colors + three triangles
+
+    function draw() {
+        // canvas with id="myCanvas"
+        var canvas = document.getElementById('myCanvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            ctx.beginPath(); // note usage below
+
+            // triangle 1, at left
+            ctx.fillStyle = "#F9A520";
+            ctx.moveTo(0, 0); // start at top left corner of canvas
+            ctx.lineTo(100, 0); // go 200px to right (x), straight line from 0 to 0
+            ctx.lineTo(50, 100); // go to horizontal 100 (x) and vertical 200 (y)
+            ctx.fill(); // connect and fill
+
+            // triangle 2, top center
+            ctx.moveTo(200, 0); // pick up "pen," reposition at 300 (horiz), 0 (vert)
+            ctx.lineTo(200, 100); // draw straight down (from 300,0) to 200px
+            ctx.lineTo(400, 50); // draw up toward right (100 half of 200)
+            ctx.fill(); // connect and fill
+
+            // triangle 3, bottom center
+            ctx.beginPath(); // note: w/o this, color does not work as expected
+            ctx.fillStyle = "#F00";
+            ctx.moveTo(200, 100); // pick up "pen," reposition at 300 (horiz), 200 (vert)
+            ctx.lineTo(200, 300); // draw straight down by 200px (200 + 200)
+            ctx.lineTo(50, 200); // draw up toward left (100 less than 300, so left)
+            ctx.fill(); // connect and fill
+        }
+    }
+
+    draw();
+
+
+</script>
+
+
+</body>
+</html>

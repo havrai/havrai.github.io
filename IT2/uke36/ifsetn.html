@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>if setninger</title>
+    <style>
+        p {
+            color: red;
+            font-size: large;
+            font-family: 'Josefin Sans', sans-serif
+        }
+
+        #btnSvar{
+            color: yellow;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <p>Hva er tallet for PI?</p>
+    <input type="text" id="inpSvar" placeholder="Skriv inn svaret her">
+    <button id="btnSvar">Send inn</button>
+    <div id="divSvar"></div>
+    <img id="inpBilde"></img>
+
+    <script>
+
+    var inpSvar = document.getElementById("inpSvar");
+    var divSvar = document.getElementById("divSvar");
+    var btnSvar = document.getElementById("btnSvar");
+    var inpBilde = document.getElementById("inpBilde");
+
+    var svar = prompt("Hva er tallet for PI?");
+
+    btnSvar.onclick = function () {
+        if (inpSvar.value === "3.14"){
+                divSvar.innerHTML = "Gratulerer, det er riktig!";
+        }
+        else {
+            divSvar.innerHTML = "Dette er feil. Prøv igjen.";
+        }
+    };
+
+
+</script>
+
+</body>
+</html>

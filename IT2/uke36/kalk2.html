@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Avansert kalkulator</title>
+    <style>
+        p{
+            color: darkred;
+            font-family: 'Roboto', sans-serif;
+            font-size: larger;
+        }
+        #spnResultat{
+            color: orangered;
+        }
+    </style>
+</head>
+<body>
+
+<p>Regn ut regnestykkene dine.</p>
+
+<input id="tall1" type="number">
+<input id="tall2" type="number">
+<input id="tegn" type="text">
+
+<button id="knapp">Regn ut</button>
+
+<div id="Resultat"></div>
+
+<script>
+    // ---- referanser
+
+    var tall1 = document.getElementById("tall1");
+    var tall2 = document.getElementById("tall2");
+    var tegn = document.getElementById("tegn");
+    var knapp = document.getElementById("knapp");
+    var resultat = document.getElementById("resultat");
+
+    // ----
+
+
+    knapp.onclick = function(){
+
+        if(tegn.input === "+"){
+            resultat.innerHTML = Number(tall1.value) + Number(tall2.value);
+        }
+    };
+
+        else if(tegn.input === "-"){
+            resultat.innerHTML = Number(tall1.value) - Number(tall2.value);
+        }
+    };
+
+        else if(tegn.input === "*"){
+            resultat.innerHTML = Number(tall1.value) * Number(tall2.value);
+        }
+    };
+
+        else if(tegn.input === "/"){
+            resultat.innerHTML = Number(tall1.value) / Number(tall2.value);
+        }
+    };
+
+    // ----
+
+</script>
+
+</body>
+</html>

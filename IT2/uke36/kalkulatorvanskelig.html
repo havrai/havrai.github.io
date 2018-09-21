@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Avansert kalkulator</title>
+    <style>
+        p{
+            color: darkred;
+            font-family: 'Roboto', sans-serif;
+            font-size: larger;
+        }
+        #spnResultat{
+            color: orangered;
+        }
+    </style>
+</head>
+<body>
+
+    <p>Regn ut regnestykkene dine.</p>
+
+    <input type="number" id="inpTall"> <input type="number" id="inpTall2">
+    <button id="multi">*</button>
+    <button id="divider">/</button>
+    <button id="plus">+</button>
+    <button id="minus">-</button>
+
+    <span id="spnResultat"></span>
+
+    <script>
+        var inpTall = document.getElementById("inpTall");
+        var inpTall2 = document.getElementById("inpTall2");
+        var spnResultat = document.getElementById("spnResultat");
+        var multi = document.getElementById("multi");
+        var divider = document.getElementById("divider");
+        var plus = document.getElementById("plus");
+        var minus = document.getElementById("minus");
+
+
+        multi.onclick = function(){
+            spnResultat.innerHTML = Number(inpTall2.value) * Number(inpTall.value);
+        };
+
+        divider.onclick = function(){
+            spnResultat.innerHTML = Number(inpTall2.value) / Number(inpTall.value);
+        };
+        plus.onclick = function(){
+            spnResultat.innerHTML = Number(inpTall2.value) + Number(inpTall.value);
+        };
+        minus.onclick = function(){
+            spnResultat.innerHTML = Number(inpTall2.value) - Number(inpTall.value);
+        };
+
+    </script>
+
+</body>
+</html>

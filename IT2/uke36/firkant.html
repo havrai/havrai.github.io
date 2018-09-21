@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>En firkant</title>
+    <style>
+        #minFirkant {
+            background-color: peachpuff;
+            width: 200px;
+            height: 200px;
+            transition: 1s;
+        }
+    </style>
+
+</head>
+<body>
+
+    <input type="range" id="inpStorellse" min="0" max="1024">
+    <br>
+    <input type="text" id="inpFarge">
+    <br>
+    <input type="range" id="inpBredde" min="0" max="102">
+
+
+    <div id="minFirkant"></div>
+    <div id="minFirkants"></div>
+
+
+    <script>
+        var inpStorellse = document.getElementById("inpStorellse");
+        var inpBredde = document.getElementById("inpBredde");
+        var minFirkant = document.getElementById("minFirkant");
+        var minFirkants = document.getElementById("minFirkants");
+        var inpFarge = document.getElementById("inpFarge");
+
+
+
+        inpStorellse.onmousemove = function () {
+            minFirkant.style.width = inpStorellse.value + ("px");
+        };
+
+        inpBredde.onmousemove = function () {
+            minFirkants.style.height = inpBredde.value + ("px");
+        };
+
+        inpFarge.onkeyup = function () {
+            document.body.style.backgroundColor = inpFarge.value;
+        };
+
+    </script>
+
+</body>
+</html>

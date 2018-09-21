@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mobilabbonoment</title>
+</head>
+<body>
+
+    <script>
+
+        var antallSMS = prompt("Hvor mange SMS-er sender du i løpet av en måned?");
+        var antallSamtaler = prompt("Hvor mange samtaler har  du i løpet av en måned?");
+        var ringetid = prompt("Hvor lenge varer samtalene dine? (oppgi minutter)") ;
+        var antallMMS = prompt("Hvor mange MMS-er sender du i løpet av en måned?");
+        var datamengde = prompt("Hvor mye 4G GB trenger du for en måned?");
+
+        var pris = (antallMMS*1.99) + (datamengde*10) + (antallSamtaler*0.89) + (antallSMS*0.69) + (ringetid*0.39);
+
+        document.write(`Ditt abonnoment vil koste ${pris.toFixed(2)}kr.`);
+
+    </script>
+
+
+</body>
+</html>
