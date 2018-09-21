@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 2</title>
+</head>
+<body>
+
+<canvas id="minCanvas" width="100vw" height="100vh"></canvas>
+
+<script>
+
+    var canvas = document.getElementById("minCanvas");
+    var ctx = canvas.getContext("2d");
+    var xPosisjon = window.innerWidth;
+    var yPosisjon = 0;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    while(yPosisjon < window.innerHeight) {
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 1;
+        ctx.moveTo(0, yPosisjon);
+        ctx.lineTo(xPosisjon, yPosisjon);
+        ctx.stroke();
+
+        yPosisjon = yPosisjon + 5;
+    }
+
+
+</script>
+
+
+
+</body>
+</html>
