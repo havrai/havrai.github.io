@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 1</title>
+    <style>
+
+        div {
+            display: inline-grid;
+            grid-template-columns: repeat(17fr, 1fr);
+            border: 1px solid;
+            padding: 5px;
+            text-align: center;
+            align-content: center;
+        }
+
+        h1 {
+            font-size: 40px;
+            text-align: center;
+        }
+
+        nav {
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body>
+<nav><a href="samletoppg..html">Tilbake</a></nav>
+
+    <h1>Dette er en while løkke.</h1>
+
+<script>
+
+    var i = 0;
+
+    while( i <= 100) {
+        document.write(`<div>${i}</div>`);
+        i++;
+    }
+
+</script>
+
+
+
+</body>
+</html>

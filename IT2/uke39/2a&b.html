@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prøv selv</title>
+    <style>
+
+        div {
+            display: inline-grid;
+            grid-template-columns: repeat(17fr, 1fr);
+            border: 1px solid;
+            padding: 5px;
+            text-align: center;
+            align-content: center;
+        }
+
+        h1 {
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+
+<h1>Dette er prøv selv oppgave 2 fra side 94.</h1>
+
+
+<script>
+    document.write("2    ");
+
+    var tallA = 0;
+    var tallB = 1;
+    var tallF = tallA + tallB;
+    document.write(`<div>${tallA + tallB}</div>`);
+    document.write(`<div>${tallF}</div>`);
+
+
+    for(var i=1; i<=8; i++){
+        tallA = tallB;
+        tallB = tallF;
+        tallF = tallA + tallB;
+        document.write(`<div>${tallF}</div>`);
+    }
+
+    document.write("<br><br>2B");
+
+    document.write("<canvas width='400' height='200' id='mittcanvas' class='mittcanvas'></canvas>");
+
+    var mittcanvas = document.getElementById("mittcanvas");
+    var ctx = mittcanvas.getContext("2d");
+    var x = 0;
+
+    for (var linje = 0; linje<=10; linje++){
+        for(var y = 0; y<=160; y+=16) {
+            ctx.moveTo(x, y);
+            ctx.lineTo(500, y);
+            ctx.stroke();
+        }
+    }
+
+    document.write("<br><br>2C ");
+
+    document.write("<canvas width='400' height='400' id='canvas2'>");
+
+    var canvas2 = document.getElementById("canvas2");
+    var ctx2 = canvas2.getContext("2d");
+
+    var x = 110;
+    var y = 180;
+    var side = 100;
+
+    for (var kvadrat = 1; kvadrat <= 10; kvadrat++) {
+        x = x - 10;
+        y = y - 10;
+        side = side + 20;
+        ctx2.strokeRect(x, y, side, side);
+    }
+</script>
+
+</body>
+</html>
