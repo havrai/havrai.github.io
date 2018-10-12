@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        canvas{
+            border-style: solid;
+        }
+    </style>
+</head>
+<body>
+
+
+<canvas id="canvas" height="600" width="600"></canvas>
+
+</body>
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.height= window.innerHeight;
+    canvas.width = window.innerWidth;
+    ctx.beginPath();
+    ctx.arc(50, 50, 25,0,Math.PI*2);
+    ctx.fill();
+    for (var i = 0; i < 99; i++){
+        var x = Math.random()*600;
+        var y = Math.random()*600;
+        ctx.fillStyle= getRandomcColor();
+        ctx.beginPath();
+        ctx.arc(x,y, 35,0,Math.PI*2);
+        ctx.fill();
+    }
+    function getRandomcColor() {
+        let letters = "0123456789ABXDEF";
+        let color = "#";
+        for (let i = 0; i<6,i++){
+            color += letters[Math.floor(Math.random()*letters.length)];
+        }
+        return color;
+    }
+</script>
+</html>
