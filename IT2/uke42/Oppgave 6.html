@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style>
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+
+    var hemmeligTall = Math.floor(Math.random()*100)+1;
+
+    var gjett;
+
+    while (gjett !== hemmeligTall){
+
+        gjett = Number(prompt("gjett et tall mellom 1 og 100."));
+
+        if (gjett === hemmeligTall){
+            alert("Riktig! Du vant!");
+            document.write("Riktig! Du vant.")
+        }
+
+        else if (gjett < hemmeligTall){
+            gjett = Number(prompt("Du gjettet for lavt, prøv igjen."));
+            document.write("Du gjettet for lavt")
+        }
+
+        else {
+            document.write("Du gjettet for høyt.")
+        }
+
+    }
+
+
+</script>
+
+
+
+</body>
+</html>
