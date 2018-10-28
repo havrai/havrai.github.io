@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Biler</title>
+</head>
+<body>
+
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyABTuT4s_enQiVszfrQCvmHz78XCcAHPAs",
+        authDomain: "chavra-chevro.firebaseapp.com",
+        databaseURL: "https://chavra-chevro.firebaseio.com",
+        projectId: "chavra-chevro",
+        storageBucket: "chavra-chevro.appspot.com",
+        messagingSenderId: "297697924416"
+    };
+    firebase.initializeApp(config);
+</script>
+
+    <script>
+        const db = firebase.databse();
+        const personer = db.ref("bilregister/personer");
+        const biler = db.ref("bilregister/biler");
+
+    // CREATE
+    // Personnummer blir nå primærnøkkel til Petter Bratli
+    const petter = personer.child("1502200132145");
+    petter.set({
+        fornavn: "Petter",
+        etternavn: "Bratli"
+    });
+
+    // Update
+    // Skal endre Petter til Henning
+    petter.update({
+        fornavn: "Henning"
+    });
+
+    // DELETE heter REMOVE i firebase
+    petter.remove();
+</body>
+</html>
