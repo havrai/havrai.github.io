@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gjett hvilket instrument</title>
+    <link rel="stylesheet" href="css/foundation-float.css">
+    <style>
+        main {
+            max-width: 700px;
+            margin: auto;
+            padding: 10px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 22px;
+        }
+        #instr {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        #instr > article {
+            width: 120px;
+            cursor: pointer;
+        }
+        #instr > article:hover {
+            border-color: #0c4d78;
+        }
+    </style>
+</head>
+<body>
+
+<audio id="lydFeil" src="lyder/Donald%20Trump%20-%20Wrong%20Sound%20Effect.mp3"></audio>
+<audio id="lydRiktig" src="lyder/correct%20sound%20effect.mp3"></audio>
+<main>
+
+    <h1>Hvilket instrument lager lyden?</h1>
+    <button class="button" onclick="spillTilfeldigLyd()">Spill av lyden</button>
+    <h2>Klikk på det instrumentet du tror lager lyden!</h2>
+    <section id="instr">
+
+    </section>
+
+    <section id="res">
+        <div>Antall gjetninger: <span id="spanAntallGjetninger">0</span></div>
+    </section>
+
+</main>
+
+<script>
+    const instr = document.getElementById("instr");
+    const spanAntallGjetninger = document.getElementById("spanAntallGjetninger");
+    const lydFeil = document.getElementById("lydFeil");
+    const lydRiktig = document.getElementById("lydRiktig");
+
+    // Bruker et array med keys som vi finner igjen i mapen med instrumentene
+    // Primært for å kunne spille en tilfeldig lyd på en grei måte
+    let keys = ["saxofon", "klarinett", "floyte"];
+    // Hvis det legges til flere instrumenter, økes antallinstrumenter
+    let antallinstrumenter = keys.length;
+    let lyd = new Audio();
+    let riktiginstrument;
+    let instrument;
+    let antallgjetninger = 0;
+    let skalfinnenylyd = true; // Hvis det er gjettet riktig og første gang
+    let instrumenter = new Map();
+
+    instrumenter.set("klarinett", {
+        navn: "Klarinett",
+        lyd: "Clarinet.mp3",
+        bilde: "blos1.png",
+        key: "klarinett"
+    });
+    instrumenter.set("floyte", {
+        navn: "Fløyte",
+        lyd: "Flute.mp3",
+        bilde: "blos2.png",
+        key: "floyte"
+    });
+    instrumenter.set("saxophone", {
+        navn: "Saxofon",
+        lyd: "Saxofon.mp3",
+        bilde: "blos3.png",
+        key: "saxofon"
+    });
+    function spillTilfeldigLyd() {
+        if(skalfinnenylyd) {
+            //Finn tilfeldig lyd
+            let random = Math.floor(Math.random() * 3);
+            let key = keys[random];
+            instrument = instrumenter.get(key);
+            riktiginstrument = instrument;
+            skalfinnenylyd = false;
+        } else {
+            console.log("Har ikke gjettet");
+        }
+        lyd.src = "lyder/" + instrument.lyd;
+        lyd.play();
+        console.log(instrument.navn);
+    }
+    function restart() {
+        document.location.href = "index.html";
+    }
+
+    function gjett(key) {
+        antallgjetninger++;
+        // Du har gjettet riktig
+        if(key === instrument.key) {
+
+            // Sletter instrumentet
+            instrumenter.delete(key);
+
+            // Slette key i arrayet
+            let indeks = keys.indexOf(key);
+            keys.splice(indeks, 1);
+
+            // Slette elementet fra DOM
+            let elem = document.getElementById(`${key}`);
+            instr.removeChild(elem);
+            lydRiktig.play();
+
+            // Sjekker om alle er gjettet
+            if(keys.length === 0) {
+                antallfeil = antallgjetninger - antallinstrumenter;
+                if(antallfeil === highscore) {
+                    alert("Det er tangering av gammel highscore");
+                }
+                if(antallfeil < highscore) {
+                    alert("Det er ny highscore!");
+                    localStorage.highscore = antallfeil;
+                    hs.innerHTML = antallfeil;
+                }
+                instr.style.padding = "30px";
+                instr.innerHTML =
+                        `<h3>Du gjettet ${antallfeil} feil!</h3>
+                        <button class="button" onclick="restart()">START PÅ NYTT</button>`;
+            }
+        } else {
+            lydFeil.play();
+            console.log("FEIL");
+        }
+        spanAntallGjetninger.innerHTML = antallgjetninger;
+        skalfinnenylyd = true;
+    }
+    function init() {
+        for(let [key, instrument] of instrumenter) {
+            instr.innerHTML += `
+                    <article id="${key}" onclick="gjett('${key}')">
+                        <img src="instrumenter/${instrument.bilde}">
+                        <p>${instrument.navn}</p>
+                    </article>
+                `;
+        }
+    }
+    init();
+</script>
+
+</body>
+</html>

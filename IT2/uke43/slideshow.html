@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <title>Title</title>
+    <style>
+
+        body {
+            text-align: center;
+            margin: auto;
+            background-color: black;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 35px;
+            font-family: "Times New Roman", Helvetica, Thonburi, sans-serif;
+            color: red;
+            margin: auto;
+        }
+
+        #bilder {
+            display: block;
+            margin: auto;
+        }
+
+        button:hover {
+            color: white;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+<h1>INSPIRATION</h1>
+
+<img id="bilder" src="bilder/bilde1.jpg" width="50%" height="50%">
+<button class="w3-button w3-red w3-small w3-border w3-border-white" id="forrige">Forrige</button>
+<button class="w3-button w3-red w3-small w3-border w3-border-white" id="random">Tilfeldig bilde</button>
+<button class="w3-button w3-red w3-small w3-border w3-border-white" id="neste">Neste</button>
+
+
+
+
+
+<script>
+    const neste = document.getElementById("neste");
+    const forrige = document.getElementById("forrige");
+    const bilder = document.getElementById("bilder");
+    const random = document.getElementById("random");
+
+    let bildeListe = ["bilder/bilde1.jpg", "bilder/bilde2.jpg", "bilder/bilde3.jpg", "bilder/bilde4.jpg", "bilder/bilde5.jpg"];
+
+
+    random.onclick = function () {
+        // bilder.src = bildeListe[];
+        bilder.src = bildeListe[Math.floor(Math.random()*4)];
+    }
+
+    let n = 0;
+
+    neste.onclick = function () {
+        n++;
+        if (n > 4){
+            n = 0;
+        }
+        bilder.src = bildeListe[n];
+    }
+
+    forrige.onclick = function () {
+        n--;
+        if (n < 0){
+            n = 4;
+        }
+        bilder.src = bildeListe[n];
+    }
+
+
+</script>
+</body>
+</html>
