@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stein, Saks, Papir</title>
+</head>
+<body>
+
+
+<script>
+
+    var pcVinn = 0;
+    var brukerVinn = 0;
+    var totalWins=0;
+
+    while(totalWins!=5){
+
+        var userChoice = parseInt(prompt("Skriv 1 for stein, 2 for papir, 3 for saks"));
+        var pcNummer = Math.random();
+
+        if (pcNummer <= (1/3)){
+            pcChoice = "Stein";
+        }
+        else if (pcNummer  <=(2/3)){
+            pcChoice = "Papir";
+        }
+        else{
+            pcChoice= "Saks";
+        }
+
+
+
+
+        if (userChoice===1){
+            if (pcChoice==="Saks"){
+                brukerVinn++;
+            }
+            else if(pcChoice==="Papir"){
+                pcVinn++;
+            }
+            else{
+                alert("Det ble uavgjort");
+            }
+        }
+
+
+        else if(userChoice===2){
+            if (pcChoice==="Stein"){
+                brukerVinn++;
+            }
+            else if (pcChoice ==="Saks"){
+                pcVinn++;
+            }
+            else{
+                alert("Det ble uavgjort");
+            }
+        }
+
+        else{
+            if (pcChoice==="Papir"){
+                brukerVinn++;
+            }
+            else if(pcChoice==="Stein"){
+                pcVinn++;
+            }
+            else{
+                alert("Det ble uavgjort");
+            }
+        }
+
+        totalWins++
+    }
+
+</script>
+
+
+</body>
+</html>

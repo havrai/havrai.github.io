@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+
+    <pre id="out"></pre>
+
+<script>
+    var valgene = ['stein', 'saks', 'papir'];
+    var pcValg = valgene[Math.floor(Math.random() * 3)];
+    var valg;
+
+        do {
+            valg = prompt('Skriv inn valget ditt med små bokstaver:' + valgene);
+        } while (valgene.indexOf(valg) < 0);
+
+        var resultat = 'Du: "' + valg + '", PC-en: "' + pcValg + '". ';
+
+        if (valg === pcValg) {
+        resultat += 'Uavgjort!';
+        } else {
+
+        var vinn = "Du vinner!";
+
+        if (valg === "stein" && pcValg === "saks") {
+            resultat += vinn;
+        } else if (valg === "papir" && pcValg === "stein") {
+            resultat += vinn;
+        } else if (valg === "saks" && pcValg === "papir") {
+            resultat += vinn;
+        } else {
+            resultat += 'Du har dessverre tapt.';
+        }}
+
+        document.getElementById('out').textContent = resultat + '\n';
+        console.log(resultat);
+
+</script>
+
+    <a href="vers2.html">Spill igjen!</a>
+</body>
+</html>

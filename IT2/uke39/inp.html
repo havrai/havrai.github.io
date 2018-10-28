@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>if løkker</title>
+</head>
+<body>
+
+    <script>
+        var pcVinn = 0;
+        var brukerVinn = 0;
+        var totalVinn=0;
+
+        while(totalVinn!=5){
+
+            var userChoice = parseInt(prompt("Enter 1 for Rock, 2 for Paper, 3 for Scissors"));
+            var pcNumber = Math.random();
+
+            if (pcNumber <= (1/3)){
+                psValg = "Rock";
+            }
+            else if (cpuNumber  <=(2/3)){
+                psValg = "Paper";
+            }
+            else{
+                psValg= "Scissors";
+            }
+
+
+            if (userChoice===1){
+                if (cpuChoice==="Scissors"){
+                    userWins++;
+                }
+                else if(cpuChoice==="Paper"){
+                    cpuWins++;
+                }
+                else{
+                    alert("It was a tie");
+                }
+            }
+
+
+            if else(userChoice===2){
+                if (cpuChoice==="Rock"){
+                    userWins++;
+                }
+                else if{
+                    cpuWins++;
+            }
+            else{
+                    alert("It was a tie");
+                }
+            }
+
+        else{
+                if (cpuChoice==="Paper"){
+                    userWins++;
+                }
+                else if(cpuChoice==="Rock"){
+                    cpuWins++;
+                }
+                else{
+                    alert("It was a tie");
+                }
+            }
+
+            totalWins++
+        }
+
+    </script>
+
+</body>
+</html>
