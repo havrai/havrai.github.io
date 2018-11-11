@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css?family=Asap:400,700');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background-color: darkgrey;
+}
+
+header {
+    padding: 20px;
+
+}
+
+header > h1 {
+    color: white;
+    text-align: center;
+    font-family: Asap, sans-serif;
+    font-size: 50px;
+}
+
+.container {
+    position: absolute;
+    height: 12vh;
+    width: 14005px;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+
+}
+
+.stillingen {
+    margin: 20px auto;
+    border: 3px solid white;
+    border-radius: 4px;
+    text-align: center;
+    width: 200px;
+    color: white;
+    font-size: 40px;
+    padding: 15px 20px;
+    font-family: Asap, sans-serif;
+    position: relative;
+}
+
+.symbol {
+    background-color: #E2584D;
+    color: white;
+    font-size: 14px;
+    padding: 2px 10px;
+    font-family: Asap, sans-serif;
+}
+
+#user-symbol {
+    position: absolute;
+    top: 30px;
+    left: -25px;
+}
+
+#computer-symbol {
+    position: absolute;
+    top: 30px;
+    right: -25px;
+}
+
+.result {
+    font-size: 40px;
+    color: white;
+}
+
+.result > p {
+    text-align: center;
+    font-weight: bold;
+    font-family: Asap, sans-serif;
+}
+
+.valgene {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.valg {
+    border: 4px solid white;
+    border-radius: 50%;
+    margin: 0 15px;
+    display: inline-block;
+    padding: 20px;
+    transition: all 0.5s ease;
+}
+
+.valg:hover {
+    cursor: pointer;
+    background: gray;
+}
+
+#actionmelding {
+    text-align: center;
+    color: white;
+    font-family: Asap, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+}
