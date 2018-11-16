@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>mike for the weeeeed</title>
     <link rel="stylesheet" href="Stilen.css">
 
 </head>
@@ -11,20 +11,18 @@
         <h1> Rock Paper Scissors</h1>
 
         <div class="container">
-            <video autoplay muted loop src="Media/Distortion.mp4" id="myVideo" type="video/mp4"></video>
+            <video autoplay muted loop src="Media/prov.mp4" id="myVideo" type="video/mp4"></video>
         </div>
     </header>
 
-
-
-    <div class="stillingen">
+    <div class="score-board">
         <div id="user-symbol" class="symbol">User</div>
         <div id="computer-symbol" class="symbol">Comp</div>
         <span id="user-score">0</span>:<span id="computer-score">0</span>
     </div>
 
     <div class="result">
-        <p>Paper smashes rock. You win!</p>
+        <p>Press a button to start playing.</p>
     </div>
 
     <div class="valgene">
@@ -41,7 +39,13 @@
 
     <p id="actionmelding">Make a move!</p>
 
+    <button id="reset-game">Start over!</button>
+    <a href="startsite.html"><button id="start-site">Go to home page.</a>
+
+
     <script src="Javascripten.js" charset="utf-8"></script>
 
+    <audio id="wrong" src="Media/Wrong.mp3"></audio>
+    <audio id="right" src="Media/Correct.mp3"></audio>
 </body>
 </html>
