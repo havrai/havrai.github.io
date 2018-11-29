@@ -26,12 +26,12 @@ header > h1 {
 .container {
     position: absolute;
     height: 14vh;
-    width: 14005px;
     top: 0;
     left: 0;
     overflow: hidden;
     z-index: -1;
-
+    -webkit-transform: scaleX(2);
+    -moz-transform: scaleX(2);
 }
 
 .score-board {
