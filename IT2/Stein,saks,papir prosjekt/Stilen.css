@@ -1,5 +1,7 @@
+/*  Legger til Asap som font for å bruke til alt. */
 @import url('https://fonts.googleapis.com/css?family=Asap:400,700');
 
+/* Denne css-en gjelder for hele siden */
 * {
     margin: 0;
     padding: 0;
@@ -23,6 +25,8 @@ header > h1 {
     font-size: 50px;
 }
 
+/* Her måtte jeg legge inn z-indeks og scale for at videoen skulle strekke seg helt fra start til slutt i headeren.
+Overflow hidden gjør at alt som skjer på siden skjer over videon. */
 .container {
     position: absolute;
     height: 14vh;

@@ -10,12 +10,12 @@
     <header>
         <h1> Rock Paper Scissors</h1>
 
-        <div class="container">
+        <div class="container"> <!-- La video for bakgrunnen i header i en container for å style enklere i css-delen. -->
             <video autoplay muted loop src="Media/Distortion.mp4" width="1372" id="myVideo" type="video/mp4"></video>
         </div>
     </header>
 
-    <div class="score-board">
+    <div class="score-board"> <!-- Her er resultatene. Begynner scorene med 0:0. -->
         <div id="user-symbol" class="symbol">User</div>
         <div id="computer-symbol" class="symbol">Comp</div>
         <span id="user-score">0</span>:<span id="computer-score">0</span>
@@ -25,7 +25,7 @@
         <p>Press a button to start playing.</p>
     </div>
 
-    <div class="valgene">
+    <div class="valgene"> <!-- Legger inn bilder for valgene, for at det skal se bedre ut. -->
         <div id="r" class="valg">
             <img src="Media/Steinn.png" alt="">
         </div>
@@ -37,15 +37,13 @@
         </div>
     </div>
 
-    <p id="actionmelding">Make a move!</p>
+    <p id="actionmelding">Make a move!</p> <!-- står på forsiden uansett for å få spiller til å starte. -->
 
-    <button id="reset-game">Start over!</button>
+    <button id="reset-game">Start over!</button> <!-- Reset knapp. -->
     <a href="startsite.html"><button id="start-site">Go to home page.</a>
 
 
-    <script src="Javascripten.js" charset="utf-8"></script>
+    <script src="Javascripten.js" charset="utf-8"></script> <!-- Linker til Javascripten.js for at det skal være mer organisert og ikke rotete -->
 
-    <audio id="wrong" src="Media/Wrong.mp3"></audio>
-    <audio id="right" src="Media/Correct.mp3"></audio>
 </body>
 </html>
