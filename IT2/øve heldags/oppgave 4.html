@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <title>Title</title>
+    <style>
+
+        body {
+            text-align: center;
+            margin: auto;
+            background-color: black;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 35px;
+            font-family: "Times New Roman", Helvetica, Thonburi, sans-serif;
+            color: red;
+            margin: auto;
+        }
+
+        #bilder {
+            display: block;
+            margin: auto;
+        }
+
+        button:hover {
+            color: white;
+        }
+
+        .flip-box {
+            display: inline-grid;
+            background-color: transparent;
+            width: 300px;
+            height: 200px;
+            border: 1px solid #f1f1f1;
+            perspective: 1000px;
+        }
+
+        .flip-box-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-box:hover .flip-box-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-box-front, .flip-box-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        .flip-box-front {
+            background-color: #bbb;
+            color: black;
+        }
+
+        .flip-box-back {
+            background-color: #555;
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>GRAMMY's - ALBUM OF THE YEAR 2018</h1>
+
+
+<div class="flip-box">
+    <div class="flip-box-inner">
+        <div class="flip-box-front">
+            <img id="bilder" src="artister/brunomars.png" width=300px height=200px>
+        </div>
+        <div class="flip-box-back">
+            <h2>Bruno Mars</h2>
+            <p>24K magic is the third studio album by American singer and songwriter Bruno Mars.</p>
+        </div>
+    </div>
+</div>
+
+<div class="flip-box">
+    <div class="flip-box-inner">
+        <div class="flip-box-front">
+            <img id="bilder" src="artister/kendrick.png" width=300px height=200px>
+        </div>
+        <div class="flip-box-back">
+            <h2>Kendrick Lamar</h2>
+            <p>Damn is the fourth studio album by American rapper Kendrick Lamar.</p>
+        </div>
+    </div>
+</div>
+
+<div class="flip-box">
+    <div class="flip-box-inner">
+        <div class="flip-box-front">
+            <img id="bilder" src="artister/jayz.png" width=300px height=200px>
+        </div>
+        <div class="flip-box-back">
+            <h2>Jay-Z</h2>
+            <p>4:44 is the thirteenth studio album by American rapper Jay-Z.</p>
+        </div>
+    </div>
+</div>
+
+<div class="flip-box">
+    <div class="flip-box-inner">
+        <div class="flip-box-front">
+            <img id="bilder" src="artister/gambino.png" width=300px height=200px>
+        </div>
+        <div class="flip-box-back">
+            <h2>Gambino</h2>
+            <p>"Awaken, My Love!" is the third studio album by American rapper Donald Glover, under his stage name Childish Gambino.</p>
+        </div>
+    </div>
+</div>
+
+<div class="flip-box">
+    <div class="flip-box-inner">
+        <div class="flip-box-front">
+            <img id="bilder" src="albumcover/24KMagic.jpg" width=300px height=200px>
+        </div>
+        <div class="flip-box-back">
+            <p>Bruno has been nominated for 27 awards, and won 11 of them.</p>
+        </div>
+    </div>
+</div>
+
+<div class="flip-box">
+    <div class="flip-box-inner">
+        <div class="flip-box-front">
+            <img id="bilder" src=albumcover/Kendrick_Lamar_-_Damn.png" width=300px height=200px>
+        </div>
+        <div class="flip-box-back">
+            <p>Kendrick has been nominated for 29 awards, and won 12 of them.</p>
+        </div>
+    </div>
+</div>
+
+<div class="flip-box">
+    <div class="flip-box-inner">
+        <div class="flip-box-front">
+            <img id="bilder" src="albumcover/444.jpg" width=300px height=200px>
+        </div>
+        <div class="flip-box-back">
+            <p>Jay-Z has been nominated for 74 awards, and won 21 of them.</p>
+        </div>
+    </div>
+</div>
+
+<div class="flip-box">
+    <div class="flip-box-inner">
+        <div class="flip-box-front">
+            <img id="bilder" src="albumcover/awaken.jpg" width=300px height=200px>
+        </div>
+        <div class="flip-box-back">
+            <p>Donald has been nominated for 7 awards, and won 1 of them.</p>
+        </div>
+    </div>
+</div>
+
+<!--
+<img id="album" src="albumcover/24KMagic.jpg">
+<button class="w3-button w3-red w3-small w3-border w3-border-white" id="forrige">Forrige</button>
+<button class="w3-button w3-red w3-small w3-border w3-border-white" id="random">Tilfeldig bilde</button>
+<button class="w3-button w3-red w3-small w3-border w3-border-white" id="neste">Neste</button>
+
+<script>
+    const neste = document.getElementById("neste");
+    const forrige = document.getElementById("forrige");
+    const album = document.getElementById("bilder");
+    const random = document.getElementById("random");
+
+    let albumListe = ["albumcover/24KMagic.jpg", "albumcover/damn.jpg", "albumcover/444.jpg", "albumcover/awaken.jpg"];
+
+
+    random.onclick = function () {
+        album.src = albumListe[Math.floor(Math.random()*3)];
+    }
+
+    let n = 0;
+
+    neste.onclick = function () {
+        n++;
+        if (n > 4){
+            n = 0;
+        }
+        album.src = albumListe[n];
+    }
+
+    forrige.onclick = function () {
+        n--;
+        if (n < 0){
+            n = 4;
+        }
+        album.src = albumListe[n];
+    }
+</script>
+-->
+</body>
+</html>
