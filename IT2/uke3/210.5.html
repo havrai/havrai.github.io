@@ -8,6 +8,33 @@
 <body>
 <div><a href="prøv%20selv%20side%20210.html">Tilbake</a></div>
 
+<input type="text" id="inpNavn" placeholder="Navnet ditt">
+<button id="btn">Sett inn</button>
+<p id="txtElever"></p>
+
+<input type="text" id="inpFilm" placeholder="Navn på film">
+<button id="btnn">Sett inn</button>
+<p id="txtFilmer"></p>
+
+
+<script>
+    var inpNavn = document.getElementById("inpNavn");
+    var inpFilm = document.getElementById("inpFilm");
+    var btn = document.getElementById("btn");
+    var txtElever = document.getElementById("txtElever");
+    var elever = [];
+
+    btn.onclick = function () {
+        elever.push(inpNavn.value);
+        txtElever.innerHTML = elever.join("<br>");
+    }
+
+    btnn.onclick = function () {
+        elever.push(inpFilm.value);
+        txtElever.innerHTML = elever.join("<br>");
+    }
+
+</script>
 
 </body>
 </html>
