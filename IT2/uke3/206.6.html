@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+</head>
+<body>
+<div><a href="prøv%20selv%20side%20206.html">Tilbake</a></div>
+
+
+<input type="text" id="inpNavn">
+<button id="btn">Sett inn</button>
+<p id="txtElever"></p>
+
+<select id="velgFarge">
+    <option>Blå</option>
+    <option>Rosa</option>
+    <option>Svart</option>
+    <option>Grå</option>
+    <option>Neon grønn</option>
+    <option>Gul</option>
+    <option>Lilla</option>
+    <option>Rød</option>
+</select>
+
+<button id="btnn">Velg farge</button>
+<p id="txtVis"></p>
+
+<script>
+    var inpNavn = document.getElementById("inpNavn");
+    var btn = document.getElementById("btn");
+    var txtElever = document.getElementById("txtElever");
+    var elever = [];
+
+    var velgFarge = document.getElementById("velgFarge");
+    var btnn = document.getElementById("btnn");
+    var txtVis = document.getElementById("txtVis");
+    var farge = [];
+
+
+    btn.onclick = function () {
+        elever.push(inpNavn.value);
+        txtElever.innerHTML = elever.join("<br>");
+    }
+
+    btnn.onclick = function (){
+        farge.push(velgFarge.value);
+        txtVis.innerHTML = "Du har valgt fargen: " + farge.join(",");
+    }
+
+    document.write(elever);
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+</head>
+<body>
+<div><a href="prøv%20selv%20side%20210.html">Tilbake</a></div>
+
+
+<ol id="handleListe"></ol>
+
+<script>
+
+    var handleListe = document.getElementById("handleListe");
+    var varer = [" ost", " paprika", " brød", " kaviar"];
+
+    for (var vare of varer){
+        handleListe.innerHTML += "<li>" + vare + "</li>";
+    }
+
+    for (var i=0; i<varer.length;i++){
+        var vare = varer[i];
+        document.write(vare);
+    }
+
+    document.write(handleliste);
+
+
+</script>
+</body>
+</html>

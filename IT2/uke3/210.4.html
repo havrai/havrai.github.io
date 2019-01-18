@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+</head>
+<body>
+<div><a href="prøv%20selv%20side%20210.html">Tilbake</a></div>
+
+<script>
+
+    var elevene = [
+        {navn: "Havra", age: 18},
+        {navn: "Emilie", age: 19},
+        {navn: "Diana", age: 16},
+        {navn: "Hadi", age: 20}];
+
+    elevene.sort(function(a, b){
+        return a.age-b.age});
+
+    for (var elev of elevene){
+        document.write("<br><br>" + elev.navn + " er " + elev.age + " år gammel.")
+    }
+
+    elevene.sort(function(a, b){
+        return b.age-a.age});
+
+    for (var elev of elevene){
+        document.write("<br><br>" + elev.navn + " er " + elev.age + " år gammel.")
+    }
+</script>
+</body>
+</html>

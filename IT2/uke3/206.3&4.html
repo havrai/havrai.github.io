@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+</head>
+<body>
+<div><a href="prøv%20selv%20side%20206.html">Tilbake</a></div>
+
+
+<script>
+    mySlides = ["København", " Roma", " Paris"];
+
+    function sammenlign(a,b){
+        a = a.toUpperCase();
+        b = b.toUpperCase();
+
+        return b<a;
+    }
+    mySlides.sort(sammenlign);
+    document.write(mySlides);
+</script>
+
+<div class="w3-content w3-display-container">
+    <img class="mySlides" id="Københavm" src="copen.jpg" width="450px" height="300px">
+    <img class="mySlides" id="Roma" src="roma.jpg" width="450px" height="300px">
+    <img class="mySlides" id="Paris" src="paris.jpg" width="450px" height="300px">
+
+    <button class="w3-button w3-black" onclick="plusDivs(-1)"><</button>
+    <button class="w3-button w3-black " onclick="plusDivs(1)">></button>
+
+</div>
+
+<script>
+
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = x.length}
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex-1].style.display = "block";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div><a href="prøv%20selv%20side%20210.html">Tilbake</a></div>
+
+<div> Antall dager meg tempraturen under 5 grader er <b id="txtTemp"></b></div>
+
+<div><br>Gjennomsnitts tempraturen er <b id="gjennomTemp"></b></div><br>
+
+</body>
+<script>
+    const txtTemp = document.getElementById("txtTemp");
+    const gjennomTemp = document.getElementById("gjennomTemp");
+
+
+    let temp = [3,4,5,6,5,5,6,4,4,5];
+
+    var antallTemp = 0;
+    for (var tempratur of temp){
+        if (tempratur < 5){
+            antallTemp++;
+        }
+    }
+
+    txtTemp.innerHTML=antallTemp;
+
+
+
+    var sum = 0;
+    for ( var i = 0; i < temp.length; i++ ){
+        sum += parseInt(temp[i], 9);
+    }
+    var avg = sum/temp.length;
+
+    gjennomTemp.innerHTML=avg;
+
+    document.write(temp)
+</script>
+</html>

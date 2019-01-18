@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+</head>
+<body>
+<div><a href="prøv%20selv%20side%20210.html">Tilbake</a></div>
+
+<ol id="bokListe"></ol>
+
+<script>
+
+    var bokListe = document.getElementById("bokListe");
+    var boker = [" Sorcerer’s Stone", " Chamber of Secrets ", " Prisoner of Azkaban", " Goblet of Fire", " Order of the Phoenix", "Half-Blood Prince", " Deathly Hallows"];
+
+    for (var bok of boker){
+        bokListe.innerHTML += "<li>" + bok + "</li>";
+    }
+
+    bokListe.sort(function (a,b) {
+        return a.boker - b.boker;
+    });
+
+    bokListe.sort(function (a,b) {
+        return b.boker - a.boker;
+    });
+
+    document.write(bokListe);
+
+
+</script>
+</body>
+</html>
