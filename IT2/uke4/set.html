@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>set</title>
+</head>
+<body>
+
+<script>
+
+    let presidentArray = ["Barack Obama", "Barack Obama", "Barack Obama"];
+
+    let presidenter = new Set(presidentArray);
+    presidenter.add("Barack Obama");
+    presidenter.add("Donald Trump");
+    presidenter.add("Ronald Regan");
+
+    for(let president of presidenter){
+        if(president === "Barack Obama"){
+            alert(true);
+        }
+    }
+
+
+
+</script>
+
+
+</body>
+</html>

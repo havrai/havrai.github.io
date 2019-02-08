@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>map</title>
+</head>
+<body>
+
+<script>
+
+    let klassen = new Map();
+    klassen.set("400 98 628", "Havra Ismailova");
+    klassen.set("456 87 945", "Pelle Kanin");
+    klassen.set("987 23 532", "Hesten Per");
+    klassen.set("452 32 233", "Mike G");
+
+    klassen.delete("452 32 233");
+    klassen.delete("987 23 532");
+
+
+    for(klasse of klassen){
+        document.write(klasse);
+    }
+
+
+</script>
+
+
+</body>
+</html>

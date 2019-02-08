@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Animasjoner i Javascript</title>
+    <style>
+
+        h1 {
+            font-size: 200px;
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+
+<h1 id="hei">Hei på deg!</h1>
+
+</body>
+
+<script>
+    const hei = document.querySelector("#hei");
+
+    let heiCSS = [
+        {
+            opacity:"0",
+        },{
+
+            opacity:"0.3",
+        }, {
+
+            opacity:"0.5",
+        }, {
+
+            opacity:"0.8",
+        }
+    ];
+
+    let heiEgenskaper = {
+        duration: 2000,
+        easing: "ease-in",
+        iterations: 4,
+        direction: "alternate"
+    };
+
+    hei.animate(heiCSS, heiEgenskaper, 2000);
+
+    //bill.animate([{left:"0px", opacity:"1", top:"0px"}, {left:"400px", opacity:"0", top:"400px"}], 2000);
+
+</script>
+
+</html>

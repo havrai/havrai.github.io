@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>INSPO</title>
+    <style>
+        .container {
+            width: 1200px;
+            position: absolute;
+            left: 50%;
+            right: 50%;
+            transform: translate(-50%, -50%);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .container > .Inspo > img {
+            width: 300px;
+            height: 800px;
+            transition: 0.5s;
+        }
+
+        .container > .Inspo {
+            transition: 0.2s 0.2s;
+            position: relative;
+        }
+
+        .container > .Inspo > p {
+            position: absolute;
+            left: 3px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+
+        }
+
+        /* .container > .Inspo:hover {
+            transform: scale(1.4);
+        } */
+
+        .container > .Inspo:hover > p {
+            opacity: 1;
+        }
+
+        .container > .Inspo:hover > img {
+            opacity: 0;
+        }
+
+        p {
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="Inspo">
+            <img src="Bilder/620921be7593d9b284a585cbafb4b612.jpg" alt="Bilde av en vei">
+            <p>Solnedgang ved en vei</p>
+        </div>
+
+        <div class="Inspo">
+            <img src="Bilder/large-7.jpg" alt="Bilde av en motorvei">
+            <p>Solnedgang ved en motorvei</p>
+        </div>
+
+        <div class="Inspo">
+            <img src="Bilder/original-2.jpg"  alt="Bilde av et togspor">
+            <p>Solnedgang ved et togspor</p>
+        </div>
+
+        <div class="Inspo">
+            <img src="Bilder/original.jpg" alt="Bilde av en brygge">
+            <p>Solnedgang ved en brygge</p>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

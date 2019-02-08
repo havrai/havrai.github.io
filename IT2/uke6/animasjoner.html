@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Animasjoner i Javascript</title>
+    <style>
+
+        img {
+            width: 150px;
+            height: auto;
+            position: fixed;
+        }
+
+        button {
+            color: red;
+
+        }
+
+    </style>
+</head>
+<body>
+
+    <img id="bill" src="Bill_Clinton.jpg" alt="Bilde av Bill Clinton">
+    <button id="pause">Pause</button>
+    <button id="play">Play</button>
+    <button id="reverse">Reverse</button>
+
+    <input type="range"min="0.1" max="2" value="1" step="0.1" id="slider">
+
+</body>
+
+<script>
+    const bill = document.querySelector("#bill");
+    const play = document.querySelector("#play");
+    const pause = document.querySelector("#pause");
+    const reverse = document.querySelector("#reverse");
+    const slider = document.querySelector("#slider");
+
+
+    let billCSS = [
+        {
+            left:"0px",
+            opacity:"1",
+            top:"30px",
+            transform: "rotate(0deg)"
+    }, {
+
+            left:"400px",
+            opacity:"0",
+            top:"400px",
+            transform: "rotate(360deg)"
+        }
+    ];
+
+    let billEgenskaper = {
+                duration: 2000,
+                easing: "ease-in-out",
+                iterations: 4,
+                direction: "alternate"
+        };
+
+
+    let billAni = bill.animate(billCSS, billEgenskaper, 2000);
+
+
+    play.onclick = function play () {
+        billAni.play();
+    }
+
+    pause.onclick = function pause () {
+        billAni.pause();
+    }
+
+    reverse.onclick = function reverse () {
+        billAni.reverse();
+    }
+
+    slider.onchange = function () {
+        billAni.playbackRate = slider.value;
+
+    }
+
+
+
+
+
+</script>
+
+</html>

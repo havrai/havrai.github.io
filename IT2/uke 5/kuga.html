@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style>
+        body{
+            font-family: sans-serif;
+            color: darkslateblue;
+        }
+
+        @keyframes rullerBil{
+            0%{top: 400px;}
+            3%{top:  0px;}
+            25%{top: 0px;}
+            28%{top: -400px;}
+            50%{top: -400px;}
+            53%{top: -800px;}
+            75%{top: -800px;}
+            78%{top: -1200px;}
+            100%{top: -1200px;}
+        }
+
+        #ramme{
+            position: relative;
+            left: 100px;
+            top: 50px;
+            width: 950px;
+            height: 400px;
+            border: 1px solid black;
+            overflow:hidden; /*Skjuler innholdet som kommer på utsiden*/
+        }
+
+        #bildene{
+            position: absolute;
+            width: 930px;
+            height:auto;
+            left: 10px;
+            animation: rullerBil 20s infinite;
+        }
+
+        img{
+            height: 230px;
+        }
+
+        #knapp{
+            position: absolute;
+            top: 50px;
+            left: 800px;
+        }
+
+        .tekst{
+            width:930px;
+            height: 150px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="ramme">
+    <div id="bildene">
+        <div id="bil1">
+            <div><img src="kugabil/kuga_front.jpg"></div>
+            <div class="tekst"><h2>HELT NY FORD KUGA</h2>Kraftig, sporty og enda mer elegant både innvendig og utvendig. Vi er stolte over å kunne lansere den helt nye Ford Kuga, vår mest kompetente SUV hittil. Nye Ford Kuga har blitt større og byr på den absolutt nyeste teknologien.</div>
+        </div>
+        <div id="bil2"><div>
+            <img src="kugabil/kuga_bak.jpg"></div>
+            <div class="tekst"><h2>ØKONOMI</h2>Girskiftindikator med mer drivstoffeffektiv giring. Et lys i instrumentpanelet forteller deg når du må skifte gir for å oppnå maksimal drivstoffeffektivitet. Det er en enkel, men effektiv måte å bidra til at bilturene blir mer økonomiske.</div>
+        </div>
+        <div id="bil3"><div>
+            <img src="kugabil/kuga_side.jpg"></div>
+            <div class="tekst"><h2>KJØREEGENSKAPER</h2>Kugas intelligente firehjulsdrift reagerer umiddelbart og justerer seg til skiftende underlag og kjøreforhold. Den sender nøyaktig riktig mengde effekt til det enkelte hjul som trenger mest veigrep. Og siden firehjulsdriften bare kobles inn ved behov, spares det drivstoff når underlaget er mindre krevende. Hvis du ønsker å se hva som skjer under hjulene dine i løpet av turen, vil en informasjonsskjerm for firehjulsdriften kontinuerlig vise - som et søylediagram - hvor mye effekt som sendes til hvert hjul.</div>
+        </div>
+    </div>
+    <div id="knapp"> <button id="btnLyd">Lyd av/på</button></div>
+    <audio id="lyd" src="kugabil/musikk_eksamen_H2014.mp3" loop="" autoplay=""></audio>
+
+</div>
+</body>
+<script>
+
+    var btnLyd = document.getElementById("btnLyd");
+
+    musikk = true;
+    btnLyd.onclick = function(){
+        if(musikk){
+            lyd.volume = 0;//lyd av
+            musikk = false;
+        }
+        else{
+            lyd.volume = 2;//lyd på
+            musikk = true;
+        }
+    }
+</script>
+
+</html>
