@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Medaljeoversikt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-float.min.css">
+    <style>
+        main {
+            max-width: 970px;
+            margin: auto;
+            padding: 10px;
+        }
+        td > img {
+            width: 24px;
+            margin-right: 10px;
+        }
+        th {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+
+<main>
+
+    <table>
+
+        <thead>
+        <tr>
+            <th id="btnLand">Land</th>
+            <th id="btnGull">Gull</th>
+            <th id="btnSolv">Sølv</th>
+            <th id="btnBronse">Bronse</th>
+            <th id="btnTotal">Total</th>
+        </tr>
+        </thead>
+
+        <tbody id="tb">
+
+        </tbody>
+
+    </table>
+
+</main>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyABTuT4s_enQiVszfrQCvmHz78XCcAHPAs",
+        authDomain: "chavra-chevro.firebaseapp.com",
+        databaseURL: "https://chavra-chevro.firebaseio.com",
+        projectId: "chavra-chevro",
+        storageBucket: "chavra-chevro.appspot.com",
+        messagingSenderId: "297697924416"
+    };
+    firebase.initializeApp(config);
+    </script>
+
+<script>
+
+    const db = firebase.database();
+    const landene = db.ref("landene");
+
+    const tb = document.getElementById("tb");
+
+    const btnLand = document.getElementById("btnLand");
+    const btnGull = document.getElementById("btnGull");
+    const btnSolv = document.getElementById("btnSolv");
+    const btnBronse = document.getElementById("btnBronse");
+    const btnTotal = document.getElementById("btnTotal");
+
+    function visLand(snap) {
+
+        const pk = snap.key;
+        const land = snap.val();
+        tb.innerHTML = `
+                <tr>
+                    <td>
+                        <img src="bilder/${pk}.svg">
+                        <span>${land.navn}</span>
+                    </td>
+                    <td>${land.gold}</td>
+                    <td>${land.silver}</td>
+                    <td>${land.bronze}</td>
+                    <td>${land.total}</td>
+                </tr>
+            ` + tb.innerHTML;
+    }
+    function visLandOmvendt(snap) {
+        const pk = snap.key;
+        const land = snap.val();
+        tb.innerHTML += `
+                <tr>
+                    <td>
+                        <img src="bilder/${pk}.svg">
+                        <span>${land.navn}</span>
+                    </td>
+                    <td>${land.gold}</td>
+                    <td>${land.silver}</td>
+                    <td>${land.bronze}</td>
+                    <td>${land.total}</td>
+                </tr>
+            `;
+    }
+
+    btnLand.onclick = function() {
+        tb.innerHTML = "";
+        landene
+            .orderByChild("navn")
+            .on("child_added", visLandOmvendt);
+    };
+
+    btnTotal.onclick = function() {
+        tb.innerHTML = "";
+        landene
+            .orderByChild("total")
+            .on("child_added", visLand);
+    };
+
+    btnGull.onclick = function() {
+        tb.innerHTML = "";
+        landene
+            .orderByChild("gold")
+            .on("child_added", visLand);
+    };
+
+    btnSolv.onclick = function() {
+        tb.innerHTML = "";
+        landene
+            .orderByChild("silver")
+            .on("child_added", visLand);
+    };
+
+    btnBronse.onclick = function() {
+        tb.innerHTML = "";
+        landene
+            .orderByChild("bronze")
+            .on("child_added", visLand);
+    };
+
+    landene
+        .orderByChild("gold")
+        .on("child_added", visLand);
+
+</script>
+
+</body>
+</html>

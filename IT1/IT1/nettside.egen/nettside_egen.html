@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HAVRA</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* body */
+        body {
+            background-color: #eee;
+            font-family: sans-serif;
+        }
+
+        body > header > nav {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        body > header > nav > div {
+            text-align: left;
+            font-size: 30px;
+            text-decoration: none;
+            padding: 25px 10px 10px;
+            font-family: "Times New Roman", Helvetica, Thonburi,sans-serif;
+            display: grid;
+        }
+
+        body > header > nav > div > a {
+            color: white;
+        }
+
+        header {
+            background-color: black;
+        }
+
+        h1 {
+            font-size: 35px;
+            color: white;
+            text-align: center;
+            filter: drop-shadow(0 3px 2px);
+            padding-top: 16px;
+        }
+
+
+        /* main */
+        main {
+            background-color: white;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+            min-height: 481px;
+        }
+
+
+        /* Slideshowet */
+        .ss {
+            width: 480px;
+            height:740px;
+            margin: auto;
+            background: white url("Grid.jpg");
+            background-size: cover;
+            display: grid;
+
+            animation-name: slide;
+            animation-duration: 20s;
+            animation-direction: normal;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes slide {
+            0% {background-position:0 0;}
+            10% {background-position: -480px 0;}
+            20% {background-position: -960px 0;}
+            30% {background-position: -1440px 0;}
+            40% {background-position: -1920px 0;}
+            50% {background-position: -2400px 0;}
+            60% {background-position: -2880px 0;}
+            70% {background-position: -3360px 0;}
+            80% {background-position: -3840px 0;}
+            90% {background-position: -4320px 0;}
+            100% {background-position: 0 0;}
+        }
+
+        /* ikoner */
+        #icons a {
+            float: right;
+            margin-top: -38px;
+            margin-left: 7px;
+            margin-right: 7px;
+        }
+
+        #icons img {
+            height: 40px;
+            width: 40px;
+            margin-top: 0;
+        }
+
+        #icons > div a:hover {
+            background-color: transparent;
+            transition: 2s;
+        }
+
+        .right {
+            position: absolute;
+            right: 0;
+            width: 200px;
+        }
+
+        /* nav */
+        nav {
+            background-color: black;
+            padding-bottom: 5px;
+        }
+
+        nav a:hover {
+            color: white;
+            transition: 1s;
+        }
+
+        /* burgermeny */
+        #cb {
+            display: none;
+        }
+
+        #burger {
+            display: flex;
+            width: 30px;
+            height: 20px;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            z-index: 1;
+        }
+
+        #burger > div {
+            background-color: white;
+            height: 2px;
+            transition: 0.5s;
+        }
+
+        #menu {
+            width: 300px;
+            background-color: black;
+            position: absolute;
+            top: 30px;
+            left: -300px;
+            min-height: calc(100vh - 600px);
+            transition: 0.5s;
+        }
+
+        #cb:checked ~ #menu {
+            left: 0;
+        }
+
+        #cb:checked ~ #burger > div:first-child {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        #cb:checked ~ #burger > div:nth-child(2) {
+            opacity: 0;
+        }
+
+        #cb:checked ~ #burger > div:last-child {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+
+        /* menyen */
+        #menu > nav > ul {
+            font-size: 24px;
+        }
+
+        ul  {
+            padding-left: 35px;
+            color: white;
+            list-style: cjk-ideographic;
+            text-decoration: none;
+        }
+
+        .big {
+            line-height: 350%;
+        }
+
+        .active {
+            color: white;
+        }
+
+
+        /* navn */
+        #kort {
+            display: none;
+        }
+        #lang {
+            display: block;
+        }
+
+        @media (max-width: 620px) {
+
+            #kort {
+                display: block;
+            }
+            #lang {
+                display: none;
+            }
+
+        }
+
+        @media (max-width: 750px) {
+            .toer {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+        <header>
+            <input type="checkbox" id="cb">
+            <label id="burger" for="cb">
+                <div></div>
+                <div></div>
+                <div></div>
+            </label>
+
+            <nav id="menu">
+                <ul class="big">
+                    <li>Hjem</li>
+                    <li><a class="active" href="blogginlegg.html">Blogginnlegg</a></li>
+                    <li>Kontakt</li>
+                    <li><a class="active" href="ommeg.html">Om meg</a></li>
+                </ul>
+            </nav>
+
+
+            <h1 id="lang">HAVRA ISMAILOVA</h1>
+            <h1 id="kort">HAVRA</h1>
+                <nav>
+                    <div id="icons">
+                        <div class="right">
+                        <a href="facebook.direkt.html">
+                            <img src="facebooklogo%20nettside-01.png">
+                        </a>
+                        <a href="instagram.direkt.html">
+                            <img src="instaaa.png">
+                        </a>
+                        <a href="snapchatkode.html">
+                            <img src="znappp.png">
+                        </a>
+                        </div>
+                    </div>
+                </nav>
+        </header>
+
+        <div class="toer">
+            <section1> <div class="ss" id="ss"></div> </section1>
+        </div>
+
+</body>
+</html>

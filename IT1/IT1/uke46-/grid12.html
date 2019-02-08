@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Grid</title>
+    <style>
+
+        main {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-gap: 5px;
+            max-width: 700px;
+        }
+
+        main > article {
+            background-color: darkorange;
+            text-align: center;
+            font-family: sans-serif, Helvetica;
+            padding:10px;
+            border-bottom: 5px solid red;
+        }
+
+        .col1 {grid-column: span 1;}
+        .col2 {grid-column: span 2;}
+        .col3 {grid-column: span 3;}
+        .col4 {grid-column: span 4;}
+        .col5 {grid-column: span 5;}
+        .col6 {grid-column: span 6;}
+        .col7 {grid-column: span 7;}
+        .col8 {grid-column: span 8;}
+        .col9 {grid-column: span 9;}
+        .col10 {grid-column: span 10;}
+        .col11 {grid-column: span 11;}
+        .col12 {grid-column: span 12;}
+
+        .row1 {grid-row: span 1;}
+        .row2 {grid-row: span 2;}
+        .row3 {grid-row: span 3;}
+        .row4 {grid-row: span 4;}
+        .row5 {grid-row: span 5;}
+        .row6 {grid-row: span 6;}
+        .row7 {grid-row: span 7;}
+        .row8 {grid-row: span 8;}
+        .row9 {grid-row: span 9;}
+        .row10 {grid-row: span 10;}
+        .row11 {grid-row: span 11;}
+        .row12 {grid-row: span 12;}
+
+    </style>
+</head>
+<body>
+
+    <main>
+        <article>L</article>
+        <article>Æ</article>
+        <article>R</article>
+        <article class="light row2"></article>
+        <article>D</article>
+        <article>E</article>
+        <article>G</article>
+        <article class="light col2"></article>
+        
+        <article>C</article>
+        <article>S</article>
+        <article>S</article>
+        <article></article>
+        <article>M</article>
+        <article>E</article>
+        <article>D</article>
+
+        <article class="light col4"></article>
+        <article>G</article>
+        <article>R</article>
+        <article>I</article>
+        <article>D</article>
+    </main>
+
+
+</body>
+</html>

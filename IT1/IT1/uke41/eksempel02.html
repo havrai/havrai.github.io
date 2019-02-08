@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rundinger</title>
+    <style>
+
+        @keyframes flyttMeg {
+
+            to {
+                margin-left: 10px;
+                margin-top: 10px;
+            }
+            50% {
+                margin-left: 800px;
+                margin-top: 10px;
+            }
+            100% {
+                margin-left: 800px;
+                margin-top: 150px;
+            }
+        }
+
+        .runding {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: red;
+            animation-name: flyttMeg;
+            animation-duration: 1000ms;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in;
+            animation-delay: 0.5s;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="runding"></div>
+<div class="runding"></div>
+<div class="runding"></div>
+
+</body>
+</html>

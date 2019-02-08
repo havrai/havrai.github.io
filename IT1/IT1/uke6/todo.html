@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>To do list</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation-float.min.css">
+    <style>
+
+        body {
+            background-color: floralwhite;
+        }
+        main {
+            background-color: white;
+            max-width:700px;
+            margin: auto;
+            padding: 10px;
+        }
+        h1 {
+            text-align: center;
+            color: #D60000;
+            font-family: "Times New Roman", sans-serif;
+        }
+        article {
+            font-family: "Times New Roman", sans-serif;
+            color: black;
+        }
+
+        #todolist > article {
+            display: grid;
+            grid-template-columns: 1fr auto;
+        }
+
+        .lblDelete {
+            padding-right: 5px;
+            font-weight: bold;
+            opacity: 0.3;
+        }
+
+        #todolist > article:hover .lblDelete {
+            opacity: 1;
+        }
+
+        #todolist > article > label {
+            /* ganger grunnstørrelsen som er 16px med 1.5*/
+            font-size: 1.5rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <main>
+        <h1>TO DO</h1>
+        <input type="text" id="inpTekst" autocomplete="off"  autofocus placeholder="Hva må du huske å gjøre">
+        <section id="todolist">
+
+        </section>
+    </main>
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyABTuT4s_enQiVszfrQCvmHz78XCcAHPAs",
+            authDomain: "chavra-chevro.firebaseapp.com",
+            databaseURL: "https://chavra-chevro.firebaseio.com",
+            projectId: "chavra-chevro",
+            storageBucket: "chavra-chevro.appspot.com",
+            messagingSenderId: "297697924416"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script>
+        // Referanser til HTML-elementer
+        const inpTekst = document.getElementById("inpTekst");
+        const todolist = document.getElementById("todolist");
+
+        const db = firebase.database();
+        const todo = db.ref("todo");
+
+        function lagreTodo() {
+            todo.push({
+                tekst: inpTekst.value,
+                done: false
+            });
+            inpTekst.value = ""; // Nuller ut input-feltet
+        }
+
+        function visTodo(snap) {
+            const pk = snap.key;
+            const todo = snap.val();
+
+            todolist.innerHTML += `
+                <article id="${pk}">
+                    <label class="lblTodo">${todo.tekst}</label>
+                    <label onclick="fjern('${pk}')" class="lblDelete">X</label>
+                </article>
+            `;
+        }
+
+        function fjern(pk) {
+            // Fjerner todo fra databasen
+            const todo = todo.child(pk);
+            todo.remove();
+        }
+
+        function fjernHTML(fjernet) {
+            const pk = fjernet.key;
+            const htmlElement = document.getElementById(pk);
+            todolist.removeChild(htmlElement);
+        }
+
+        inpTekst.onchange = lagreTodo;
+        todo.on("child_added", visTodo);
+        todo.on("child_removed", fjernHTML);
+    </script>
+
+</body>
+</html>

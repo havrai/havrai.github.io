@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Enkel animasjon med CSS</title>
+    <style>
+        /* definerer en animasjon*/
+
+        @keyframes flyttMeg {
+            from {
+                margin-left: 0;
+            }
+            to {
+                margin-left: 1378px;
+                border-radius: 50%;
+            }
+        }
+
+         #firkant {
+             width: 50px;
+             height: 50px;
+             background-color: peru;
+             animation: flyttMeg 2s infinite alternate;
+         }
+   </style>
+
+</head>
+<body>
+
+        <div id="firkant"></div>
+
+</body>
+</html>

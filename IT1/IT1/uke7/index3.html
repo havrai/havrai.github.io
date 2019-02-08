@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Medaljeoversikt</title>
+</head>
+<body>
+
+
+<main>
+
+    <table>
+
+        <thead>
+        <tr>
+            <th>Land</th>
+            <th>Gull</th>
+            <th>Sølv</th>
+            <th>Bronse</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+
+        <tbody id="tb">
+
+        </tbody>
+
+    </table>
+
+</main>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyABTuT4s_enQiVszfrQCvmHz78XCcAHPAs",
+        authDomain: "chavra-chevro.firebaseapp.com",
+        databaseURL: "https://chavra-chevro.firebaseio.com",
+        projectId: "chavra-chevro",
+        storageBucket: "chavra-chevro.appspot.com",
+        messagingSenderId: "297697924416"
+    };
+    firebase.initializeApp(config);
+</script>
+
+<script>
+    const db = firebase.database();
+    const landene = db.ref("landene");
+
+    const tb = document.getElementById("tb");
+
+    function visLand(snap) {
+        const pk = snap.key;
+        const land = snap.val();
+
+        tb.innerHTML = `
+                <tr>
+                    <td>${land.navn}</td>
+                    <td>${land.gold}</td>
+                    <td>${land.silver}</td>
+                    <td>${land.bronze}</td>
+                    <td>${land.total}</td>
+                </tr>
+            ` + tb.innerHTML;
+    }
+
+    landene.on("child_added", visLand);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Grid</title>
+    <style>
+        body {
+            font-family: sans-serif, "Times New Roman";
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+        }
+        header {
+            background-color: white;
+            filter: drop-shadow(0 5px 5px);
+        }
+        main {
+            background-color: red;
+        }
+        footer {
+            background-color: lightgreen;
+        }
+        body > header > nav {
+            display: grid;
+            grid-auto-flow: column;
+        }
+        body > header > nav > a {
+            text-align: center;
+            padding: 15px;
+            text-decoration: none;
+            color: #333;
+        }
+        a.active {
+            background-color: peru;
+            color: white;
+        }
+        body > footer {
+            display: grid;
+            grid-auto-flow: column;
+            padding: 20px;
+            grid-gap: 20px;
+            text-align: center;
+        }
+
+        body > footer > img {
+            width: 30px;
+        }
+
+        body > main {
+            display: grid;
+            grid-template-rows: 1fr 80px;
+            align-items: center;
+            justify-items: center;
+            text-align: center;
+            background-image: url("../uke45/daft-punk-minimalistic-music-simple-background-2823421-1920x1080.jpg");
+            background-size: cover;
+            background-position: right top;
+        }
+
+        main h1 {
+            color: white;
+            font-size: 92px;
+        }
+         main h2 {
+            color: white;
+        }
+
+        main a {
+            padding: 15px 30px;
+            color: white;
+            text-decoration: none;
+            background-color: red;
+        }
+        
+        @media (max-width: 750px) {
+            body > header > nav {
+                display: grid;
+                grid-auto-flow: row;
+            }
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="active">WEBSITE</a>
+            <a href="#">HOME</a>
+            <a href="#">AWAY</a>
+            <a href="#">MASTER</a>
+            <a href="#">CONTACT</a>
+            <a href="#">ABOUT US</a>
+        </nav>
+    </header>
+
+
+    <main>
+        <section>
+           <h1>Modern web design</h1>
+           <h2>Fresh & Responsive</h2>
+        </section>
+        <footer>
+            <a href="#">JOIN</a>
+        </footer>
+    </main>
+
+
+    <footer>
+        <article>
+            <img src="ok.png">
+            <p> Skriveverktøyet vårt er ualminnelig bra</p>
+        </article>
+
+        <article>
+            <img src="ok1.png">
+            <p> Skriveverktøyet vårt er ualminnelig bra</p>
+        </article>
+
+        <article>
+            <img src="ok2.png">
+            <p> Skriveverktøyet vårt er ualminnelig bra</p>
+        </article>
+    </footer>
+
+</body>
+</html>

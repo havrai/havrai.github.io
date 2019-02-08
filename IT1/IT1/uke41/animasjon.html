@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lemmings</title>
+    <style>
+        @keyframes frame8 {
+            to {
+                background-position: -256px 0;
+            }
+        }
+        @keyframes move128up {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-64px);
+            }
+        }
+        @keyframes move128right {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(128px);
+            }
+        }
+        body {
+            background-color: black;
+            margin: 0;
+        }
+        .hero {
+            position: absolute;
+            bottom: 0;
+            right: 128px;
+            width: 32px;
+            height: 32px;
+            transform: translateX(-10000px);
+            animation: move128right 4s steps(32);
+        }
+        .hero2 {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 32px;
+            height: 32px;
+            transform: translateX(-100000px);
+            animation: move128up 4s 4s steps(32) forwards;
+        }
+        .climber {
+            background-image: url("lemming_climb_r.gif");
+            width: 32px;
+            height: 32px;
+            animation: frame8 1s steps(8) infinite;
+        }
+        .walker {
+            background-image: url("lemming_walk_l.gif");
+            width: 32px;
+            height: 32px;
+            animation: frame8 1s steps(8) infinite;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <div class="walker"></div>
+</div>
+
+<div class="hero2">
+    <div class="climber"></div>
+</div>
+
+
+</body>
+</html>

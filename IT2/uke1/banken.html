@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nettbank</title>
+
+    <style>
+
+        h1 {
+            text-align: center;
+            color: antiquewhite;
+        }
+
+        #overfor {
+            text-align: center;
+            align-items: center;
+            margin-top: 50px;
+            display: block;
+        }
+
+        input {
+            width: 100px;
+            height: 20px;
+        }
+
+        button {
+            height: 20px;
+        }
+
+        #kontoer{
+            display: grid;
+            grid-template-columns:1fr 1fr ;
+            text-align: center;
+            align-items: center;
+
+        }
+
+    </style>
+</head>
+
+<body>
+<header>
+    <h1>BANKEN for DEG</h1>
+</header>
+
+
+<div id="kontoer">
+    <div id="konto">
+        <h3>Saldo på Brukskonto:</h3>
+        <div id="balance">
+
+        </div>
+    </div>
+
+    <div id="sparekonto">
+        <h3>Saldo på Sparekonto</h3>
+        <div id="spar"></div>
+    </div>
+</div>
+
+<div id="overfor">
+    <input type="number" name="" id="inp">
+    <button id="innskudd">Innskudd</button>
+
+    <input type="number" name="" id="input">
+    <button id="uttak">Uttak</button>
+</div>
+
+</body>
+<script>
+
+    var balance = document.getElementById("balance");
+    var inp = document.getElementById("inp");
+    var innskudd = document.getElementById("innskudd");
+    var input = document.getElementById("input");
+    var uttak = document.getElementById("uttak");
+    var spar = document.getElementById("spar");
+    var saldo = 1800;
+    var sparekonto = 130000;
+    spar.innerHTML = sparekonto;
+    balance.innerHTML = saldo;
+
+
+    innskudd.onclick = function (){
+        saldo = saldo + Number(inp.value);
+        balance.innerHTML = saldo;
+    };
+
+    uttak.onclick = function () {
+        if ((saldo - Number(input.value)) < 0 ){
+            alert("Du har ikke nok penger!")}
+        else {
+            saldo = saldo - Number(input.value);
+            balance.innerHTML = saldo; }};
+
+    if (saldo <= 0){
+        alert("Du har ikke nok penger")
+    }
+
+
+
+
+
+</script>
+</html>

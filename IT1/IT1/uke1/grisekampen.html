@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grisekampen</title>
+    <style>
+        #astropig {
+            position: absolute;
+            left: 400px;
+            top: 100px;
+            transition: 1s;
+        }
+    </style>
+    <style type="text/css"></style>
+
+</head>
+<body>
+
+<img id="astropig" src="astropig.png" style="left: 434px; top: 128px;">
+
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyABTuT4s_enQiVszfrQCvmHz78XCcAHPAs",
+        authDomain: "chavra-chevro.firebaseapp.com",
+        databaseURL: "https://chavra-chevro.firebaseio.com",
+        projectId: "chavra-chevro",
+        storageBucket: "chavra-chevro.appspot.com",
+        messagingSenderId: "297697924416"
+    };
+    firebase.initializeApp(config);
+</script>
+
+<script>
+
+    let astropig = document.getElementById("astropig");
+    let db = firebase.database();
+    let grisepos = db.ref("grisepos");
+
+
+    function settPosisjon(klikk) {
+        grisepos.set({
+            x: klikk.clientX,
+            y: klikk.clientY
+        });
+    }
+
+    function flyttGrisen(snap) {
+        let pos = snap.val();
+        astropig.style.left = pos.x + "px";
+        astropig.style.top = pos.y + "px";
+    }
+
+    document.onclick = settPosisjon;
+    grisepos.on("value", flyttGrisen);
+
+</script>
+
+</body>
+</html>

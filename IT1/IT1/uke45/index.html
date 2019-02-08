@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Katt som går</title>
+    <style>
+        @keyframes catwalk {
+            to {
+                background-position: 0 -2280px;
+            }
+        }
+        @keyframes moveRight {
+            to {
+                transform: translateX(800px);
+            }
+        }
+
+
+        .pus {
+            background-image: url("sprite_catwalk.png");
+            width: 400px;
+            height: 190px; /* 1/12 av høyden til bildet*/
+            animation: catwalk 1s steps(12) infinite ;
+        }
+        .right {
+            position: absolute;
+            width: 400px;
+            height: 190px;
+            animation: moveRight 4s steps(48) infinite alternate;
+        }
+
+        #k1 {animation-delay: 0; }
+        #k2 {animation-delay: 0.3s; opacity: 0.2 }
+        #k3 {animation-delay: 0.6s; }
+        #k4 {animation-delay: 1s; opacity: 0.5}
+
+    </style>
+
+
+
+</head>
+<body>
+        <div class="right" id="k1">
+            <div class="pus"></div>
+        </div>
+
+        <div class="right" id="k2">
+            <div class="pus"></div>
+        </div>
+
+        <div class="right" id="k3">
+            <div class="pus"></div>
+        </div>
+
+        <div class="right" id="k4">
+            <div class="pus"></div>
+        </div>
+
+</body>
+</html>

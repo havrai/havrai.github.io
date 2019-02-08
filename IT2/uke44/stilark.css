@@ -1,0 +1,42 @@
+header{
+    text-align: center;
+}
+
+body {
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center;
+    background-size: cover;
+}
+
+
+main {
+    display: flex;
+    font-family: "Apple Color Emoji", Verdana, sans-serif;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-gap: 5px;
+}
+
+.tromme {
+    display: grid;
+    align-items: center;
+    border: 5px solid darkorange;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.bokstav, .tekst {
+    text-align: center;
+}
+
+.spiller {
+    border: solid 5px yellow;
+    transform: scale(1.1);
+}

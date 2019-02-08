@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Miljøpartiet de grønne</title>
+    <style>
+        body {
+            text-align: center;
+            margin: auto;
+            background-color: gray;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 35px;
+            font-family: "Times New Roman", Helvetica, Thonburi, sans-serif;
+            color: red;
+            margin: auto;
+        }
+
+        p {
+            color: white;
+            font-family: "Times New Roman", Helvetica, Thonburi;
+            font-size: 18px;
+        }
+
+        nav {
+            position: fixed;
+            color: white;
+        }
+
+        .mySlides {
+            display:none;
+            margin: auto;
+        }
+    </style>
+
+</head>
+<body>
+
+<nav><a href="Oppgave%205.html">Tilbake</a></nav>
+
+<h1>Miljøpartiet de grønne</h1>
+<p><b>Navn:</b> Miljøpartiet de grønne</p>
+<p><b>Antall representanter på stortinger:</b> 1</p>
+<p><b>Slagord:</b> Ta vare på framtiden</p>
+
+<div class="w3-content w3-display-container">
+    <img class="mySlides" src="bilder/mdg01.jpg" width="300px" height="300px">
+    <img class="mySlides" src="bilder/mdg02.jpg" width="300px" height="300px">
+    <img class="mySlides" src="bilder/mdg03.jpg" width="300px" height="300px">
+
+    <button class="w3-button w3-black" onclick="plusDivs(-1)">&#10094;</button>
+    <button class="w3-button w3-black " onclick="plusDivs(1)">&#10095;</button>
+
+</div>
+
+<script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = x.length}
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex-1].style.display = "block";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Filmside</title>
+    <style>
+        body {
+            background-color: #eee;
+            font-family: sans-serif;
+        }
+        h1 {
+            margin-top: 0;
+        }
+        main {
+            max-width: 970px;
+            margin: auto;
+        }
+        section {
+            display: grid;
+            grid-gap: 30px; /* Mellomrom mellom hver film */
+        }
+        #alleFilmene > article {
+            position: relative;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-gap: 15px;
+            background-color: white;
+            padding: 10px;
+            border-bottom: 2px solid #cacaca;
+        }
+        #alleFilmene img {
+            width: 95px;
+        }
+        .meta {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: blueviolet;
+            color: white;
+            padding: 8px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <main>
+        <section id="alleFilmene">
+        </section>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBHzJSPKNlTgtcg-bB96gdQVapmDuxkymw",
+        authDomain: "filmerrrr.firebaseapp.com",
+        databaseURL: "https://filmerrrr.firebaseio.com",
+        projectId: "filmerrrr",
+        storageBucket: "filmerrrr.appspot.com",
+        messagingSenderId: "493979128299"
+    };
+    firebase.initializeApp(config);
+    </script>
+
+    <script>
+        // HTML-elementer
+        const alleFilmene = document.getElementById("alleFilmene");
+
+        // Firebase-kontakt
+        const db = firebase.database();
+        const filmer = db.ref("imdb/filmer");
+
+        function visFilmOmvendt(filmSnap) {
+            const key = filmSnap.key;
+            const film = filmSnap.val();
+
+            const artikkel = `
+                <article>
+                    <div class="meta">${film.Metascore}</div>
+                    <img src="${film.Poster}">
+                    <div>
+                        <h1>${film.Title}</h1>
+                        <p>${film.Actors}</p>
+                        <p>${film.Genre}</p>
+                        <p>${film.Plot}</p>
+                    </div>
+                </article>
+            `;
+
+            alleFilmene.innerHTML += artikkel;
+        }
+
+        filmer
+            .orderByChild("Title")
+            .limitToLast(10)
+            .on("child_added", visFilmOmvendt);
+    </script>
+
+</body>
+</html>
