@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="no"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            max-width: 700px;
+            margin: auto;
+            padding: 10px;
+        }
+        h1 {
+            font-size: 1.6rem;
+        }
+    </style>
+    <title>Oppgave 2</title>
+
+</head>
+<body>
+
+<br>
+<form id="form1">
+    <label>Hvor mye strøm produserer en vindmølle? (watt per time) <input type="number" id="inpV" placeholder="Vindstyrke (m/s)"></label>
+</form>
+    <button type="button" id="convertButton">Regn ut</button>
+
+<p id="p1"></p>
+
+<p id="output"></p>
+
+<script>
+    const inpV = document.getElementById("inpV");
+    const output = document.getElementById("output");
+
+    convertButton.onclick = () => {
+        if(inpV.value < 10) {
+            p1.innerHTML = "<b>Vindmølla gir " + (inpV.value * 8) + " watt med strøm </b>";
+        } else
+        if(inpV.value > 10) {
+            p1.innerHTML = "<b>Vindmølla gir " + (inpV.value * 14) + " watt med strøm </b>";
+        }else {
+            p1.innerHTML = "Skriv vindstyrke i input feltet."
+        }
+    }
+
+</script>
+
+
+</body></html>
