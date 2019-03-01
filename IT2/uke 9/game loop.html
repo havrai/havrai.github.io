@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Game loop</title>
+</head>
+<body>
+
+<div id="app">
+    <div id="divPoeng"> Poeng: 0 </div>
+    <img id="cookie" src="cookie.png">
+</div>
+
+<script>
+    const cookie = document.querySelector("#cookie");
+    const divPoeng = document.querySelector("#divPoeng");
+
+    // Global variabel
+    let poeng = 0;
+
+    // Set-up
+    merPoeng();
+
+    function merPoeng() {
+        poeng ++;
+        divPoeng.innerHTML = `Poeng: ${poeng}`;
+    }
+
+</script>
+
+</body>
+</html>

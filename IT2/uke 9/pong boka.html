@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style>
+        #minCanvas {
+            border: 20px solid DarkOrange;
+            border-right: none;
+            border-top: none;
+        }
+
+        #divPoeng {
+            width: 580px;
+            background-color: DarkOrange;
+            height: 30px;
+            line-height: 30px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        #hdnPoeng, #hdnRekord {
+            font-size: 20px;
+            color: white;
+            font-family: arial;
+            margin: 0;
+        }
+
+        #hdnPoeng {
+            float: left;
+        }
+
+        #hdnRekord {
+            float: right;
+        }
+
+    </style>
+</head>
+<body>
+
+<canvas width="600" height="400" id="minCanvas"></canvas>
+<div id="divPoeng">
+    <h1 id="hdnPoeng">Poeng: 0</h1>
+    <h1 id="hdnRekord">Rekord: 0</h1>
+</div>
+
+<script>
+
+    var minCanvas = document.querySelectorAll("#minCanvas");
+    var ctx = minCanvas[0].getContext("2d");
+    var theGameIsOn = true; // global variabel
+    var hdnPoeng = document.querySelectorAll("#hdnPoeng");
+    var hdnRekord = document.querySelectorAll("#hdnRekord");
+
+    var poeng = 0;
+
+    if (localStorage.rekord === undefined){
+        localStorage.rekord = 0;
+    }
+    hdnRekord.innerHTML = "Rekord: " + localStorage.rekord;
+
+
+
+
+    var bane = {
+        bredde: minCanvas.width,
+        hoyde: minCanvas.height,
+        gressfarge: "Darkgreen",
+        linjefarge: "White",
+        linjetykkelse: 4
+    };
+
+    function tegnBane() { // funksjonen som farger banen
+        ctx.fillStyle = bane.gressfarge; //farge på gresset
+        ctx.fillRect(0,0,bane.bredde, bane.hoyde); // tegner gresset
+        ctx.fillStyle = bane.linjefarge; // farge på midtlinjen
+        ctx.fillRect(bane.bredde/2 - bane.linjetykkelse/2,0, bane.linjetykkelse, bane.hoyde); // tegner midlinjen
+    }
+
+
+    var ball = {
+        radius: 7,
+        xpos: 100,
+        ypos: 100,
+        farge: "yellow",
+        xretning: -1,
+        yretning: 1,
+        xfart: 0,
+        yfart: 0
+    };
+
+    function tegnBall() {
+        ctx.beginPath(); // starter buen
+        ctx.arc(ball.xpos, ball.ypos, ball.radius, 0, Math.PI*2); //Tegner en sirkel
+        ctx.closePath(); // lukker buen
+        ctx.fillStyle = ball.farge; //setter fargen
+        ctx.fill();
+        ball.xpos = ball.xpos + ball.xfart * ball.xretning; // endrer x-posisjon
+        ball.ypos = ball.ypos + ball.yfart * ball.yretning; // endrer y-posisjon
+    }
+
+    var racket = {
+        "bredde": 10,
+        "hoyde": 50,
+        "farge": "white",
+        "xpos": bane.bredde - 15,
+        "ypos": bane.hoyde/2,
+        "yretning": 0,
+        "yfart": 5
+    };
+
+    function tegnRacket() {
+        ctx.fillStyle = racket.farge;
+        ctx.fillRect(racket.xpos, racket.ypos, racket.bredde, racket.hoyde);
+
+        if (racket.ypos <= 0 && racket.yretning === -1){
+            return;
+        }
+        if (racket.ypos + racket.hoyde >= bane.hoyde&&racket.yretning === 1){
+            return;
+        }
+        racket.ypos = racket.ypos + racket.yfart * racket.yretning;
+    }
+
+    function sjekkOmBallTrefferVegg() {
+        if(ball.xpos <= ball.radius) {
+            ball.xretning = 1; //ballen går til høyre når den har truffet veggen til venstre
+        }
+        if(ball.ypos + ball.radius >= bane.hoyde) {
+            ball.yretning = -1; //ballen går oppover når den har truffet veggen nede
+        }
+        if(ball.ypos <= ball.radius) {
+            ball.yretning = 1; //ballen går til venstre når den har truffet veggen til høyre
+        }
+    }
+
+    function sjekkOmBallTrefferRacket() {
+        var ballenErTilVenstre = ball.xpos + ball.radius < racket.xpos;
+        var ballenErTilHoyre = ball.xpos - ball.radius > racket.xpos + racket.bredde;
+        var ballenErOver = ball.ypos + ball.radius < racket.ypos;
+        var ballenErUnder = ball.ypos - ball.radius > racket.ypos + racket.hoyde;
+
+        if (!ballenErTilVenstre && !ballenErTilHoyre && !ballenErOver && !ballenErUnder) {
+            ball.xretning = -1;
+            poeng = poeng + 1;
+            hdnPoeng.innerHTML = "Poeng: " + poeng;
+
+            if (poeng > localStorage.rekord){
+                localStorage.rekord = poeng;
+                hdnRekord.innerHTML = "Ny rekord: " + poeng;
+                hdnRekord.style.color = "DarkOrange";
+            }
+        }
+    }
+
+    function sjekkOmBallTrefferErUtenforBanen() {
+        if (ball.x > bane.bredde + ball.radius * 2){
+            theGameIsOn = false;
+        }
+    }
+
+
+    function gameLoop() { //Funksjonen kaller opp de andre funksjonene
+        tegnBane();
+        tegnBall();
+        tegnRacket();
+        sjekkOmBallTrefferErUtenforBanen();
+        sjekkOmBallTrefferRacket();
+        sjekkOmBallTrefferVegg();
+        if (theGameIsOn){
+            requestAnimationFrame(gameLoop);
+        }
+    }
+
+    gameLoop();
+
+    document.onkeydown = function (evt) {
+        var tastekode = evt.keyCode;
+        if(tastekode === 38){ // pil opp
+            racket.yretning = -1;
+        }
+        if (tastekode === 40){ // pil ned
+            racket.yretning = 1;
+        }
+    }
+
+    document.onkeyup = function (evt) {
+        var tastekode = evt.keyCode;
+        if(tastekode === 38 && racket.yretning === -1){
+            racket.yretning = 0;
+        }
+        if (tastekode === 40 && racket.yretning === 1){
+            racket.yretning = 0;
+        }
+    }
+
+
+</script>
+</body>
+</html>
