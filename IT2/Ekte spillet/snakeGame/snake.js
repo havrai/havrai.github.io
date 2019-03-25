@@ -1,19 +1,18 @@
+
 const cvs = document.getElementById("snake");
 const ctx = cvs.getContext("2d");
 
-// lager boksen
+// lager rutene/boksen som slangen skal bevege seg innenfor
 const box = 32;
 
 // laster bilder
-
 const ground = new Image();
-ground.src = "img/ground.png";
+ground.src = "img/bakgrunn.png";
 
 const foodImg = new Image();
-foodImg.src = "img/food.png";
+foodImg.src = "img/food2.png";
 
-// laster inn audio filene
-
+// laster inn lyd-filene
 let dead = new Audio();
 let eat = new Audio();
 let up = new Audio();
@@ -22,14 +21,13 @@ let left = new Audio();
 let down = new Audio();
 
 dead.src = "audio/dead.mp3";
-eat.src = "audio/eat.mp3";
+eat.src = "audio/beep-07.mp3";
 up.src = "audio/up.mp3";
 right.src = "audio/right.mp3";
 left.src = "audio/left.mp3";
 down.src = "audio/down.mp3";
 
 // lager slangen
-
 let snake = [];
 
 snake[0] = {
@@ -37,19 +35,16 @@ snake[0] = {
     y : 10 * box
 };
 
-// lager eplet
-
+// plasserer musen på forskjellige steder i spillet
 let food = {
     x : Math.floor(Math.random()*17+1) * box,
     y : Math.floor(Math.random()*15+3) * box
 }
 
-// scoren
-
+// setter scoren
 let score = 0;
 
-//kontrollerer slangen
-
+//Kontroller for å bevege på slangen
 let d;
 
 document.addEventListener("keydown",direction);
@@ -71,7 +66,7 @@ function direction(event){
     }
 }
 
-// kollisjon funksjon
+// kollisjon funksjon, hvis slangen treffer veggen eller seg selv starter spillet på nytt
 
 function collision(head,array){
     for(let i = 0; i < array.length; i++){
@@ -82,9 +77,7 @@ function collision(head,array){
     return false;
 }
 
-// tegner alt
-
-
+// tegner alt, gameloopen setter i gang alle funksjoner og får spillet til å gå
     function gameLoop() {
         ctx.drawImage(ground, 0, 0);
 
@@ -98,7 +91,7 @@ function collision(head,array){
         ctx.drawImage(foodImg, food.x, food.y);
 
 
-        // gamle pos. til hode
+        // gamle posisjonen til slangehodet
         let snakeX = snake[0].x;
         let snakeY = snake[0].y;
 
@@ -108,7 +101,7 @@ function collision(head,array){
         if (d == "RIGHT") snakeX += box;
         if (d == "DOWN") snakeY += box;
 
-        // hvis slangen spiser mat
+        // hvis slangen spiser mat så spiller lyden, hvis ikke så skjer ingenting, spillet fortsetter bare
         if (snakeX == food.x && snakeY == food.y) {
             score++;
             eat.play();
@@ -126,7 +119,7 @@ function collision(head,array){
             y: snakeY
         }
 
-        // game over
+        // game over, lyd spiller og spillet stopper
         if (snakeX < box || snakeX > 17 * box || snakeY < 3 * box || snakeY > 17 * box || collision(newHead, snake)) {
             clearInterval(game);
             dead.play();
@@ -139,10 +132,10 @@ function collision(head,array){
         ctx.fillText(score, 2 * box, 1.6 * box);
     }
 
-
+// gjentar utførelsen av funksjonen kontinuerlig
 let game = setInterval(gameLoop,100);
 
-// start på nytt
+// reset knapp funksjon for å starte spillet på nytt
 document.getElementById("reset").onclick = function() {
     document.location.href = "";
 }
