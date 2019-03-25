@@ -1,5 +1,5 @@
 
-const cvs = document.getElementById("snake");
+const cvs = document.getElementById("slange");
 const ctx = cvs.getContext("2d");
 
 // lager rutene/boksen som slangen skal bevege seg innenfor
@@ -13,24 +13,24 @@ const foodImg = new Image();
 foodImg.src = "img/food2.png";
 
 // laster inn lyd-filene
-let dead = new Audio();
-let eat = new Audio();
-let up = new Audio();
-let right = new Audio();
-let left = new Audio();
-let down = new Audio();
+let dod = new Audio();
+let spis = new Audio();
+let opp = new Audio();
+let hoyre = new Audio();
+let venstre = new Audio();
+let ned = new Audio();
 
-dead.src = "audio/dead.mp3";
-eat.src = "audio/beep-07.mp3";
-up.src = "audio/up.mp3";
-right.src = "audio/right.mp3";
-left.src = "audio/left.mp3";
-down.src = "audio/down.mp3";
+dod.src = "audio/dead.mp3";
+spis.src = "audio/beep-07.mp3";
+opp.src = "audio/up.mp3";
+hoyre.src = "audio/right.mp3";
+venstre.src = "audio/left.mp3";
+ned.src = "audio/down.mp3";
 
 // lager slangen
-let snake = [];
+let slange = [];
 
-snake[0] = {
+slange[0] = {
     x : 9 * box,
     y : 10 * box
 };
@@ -51,18 +51,18 @@ document.addEventListener("keydown",direction);
 
 function direction(event){
     let key = event.keyCode;
-    if( key == 37 && d != "RIGHT"){
-        left.play();
-        d = "LEFT";
-    }else if(key == 38 && d != "DOWN"){
-        d = "UP";
-        up.play();
-    }else if(key == 39 && d != "LEFT"){
-        d = "RIGHT";
-        right.play();
-    }else if(key == 40 && d != "UP"){
-        d = "DOWN";
-        down.play();
+    if( key == 37 && d != "HOYRE"){
+        venstre.play();
+        d = "VENSTRE";
+    }else if(key == 38 && d != "NED"){
+        d = "OPP";
+        opp.play();
+    }else if(key == 39 && d != "VENSTRE"){
+        d = "HOYRE";
+        hoyre.play();
+    }else if(key == 40 && d != "OPP"){
+        d = "NED";
+        ned.play();
     }
 }
 
@@ -81,51 +81,51 @@ function collision(head,array){
     function gameLoop() {
         ctx.drawImage(ground, 0, 0);
 
-        for (let i = 0; i < snake.length; i++) {
+        for (let i = 0; i < slange.length; i++) {
             ctx.fillStyle = (i == 0) ? "green" : "white";
-            ctx.fillRect(snake[i].x, snake[i].y, box, box);
+            ctx.fillRect(slange[i].x, slange[i].y, box, box);
             ctx.strokeStyle = "red";
-            ctx.strokeRect(snake[i].x, snake[i].y, box, box);
+            ctx.strokeRect(slange[i].x, slange[i].y, box, box);
         }
 
         ctx.drawImage(foodImg, food.x, food.y);
 
 
         // gamle posisjonen til slangehodet
-        let snakeX = snake[0].x;
-        let snakeY = snake[0].y;
+        let slangeX = slange[0].x;
+        let slangeY = slange[0].y;
 
         // hvilken retning slangen beveger seg
-        if (d == "LEFT") snakeX -= box;
-        if (d == "UP") snakeY -= box;
-        if (d == "RIGHT") snakeX += box;
-        if (d == "DOWN") snakeY += box;
+        if (d == "VENSTRE") slangeX -= box;
+        if (d == "OPP") slangeY -= box;
+        if (d == "HOYRE") slangeX += box;
+        if (d == "NED") slangeY += box;
 
         // hvis slangen spiser mat så spiller lyden, hvis ikke så skjer ingenting, spillet fortsetter bare
-        if (snakeX == food.x && snakeY == food.y) {
+        if (slangeX == food.x && slangeY == food.y) {
             score++;
-            eat.play();
+            spis.play();
             food = {
                 x: Math.floor(Math.random() * 17 + 1) * box,
                 y: Math.floor(Math.random() * 15 + 3) * box
             }
         } else {
-            snake.pop();
+            slange.pop();
         }
 
         // legger til nytt hode
         let newHead = {
-            x: snakeX,
-            y: snakeY
+            x: slangeX,
+            y: slangeY
         }
 
         // game over, lyd spiller og spillet stopper
-        if (snakeX < box || snakeX > 17 * box || snakeY < 3 * box || snakeY > 17 * box || collision(newHead, snake)) {
+        if (slangeX < box || slangeX > 17 * box || slangeY < 3 * box || slangeY > 17 * box || collision(newHead, slange)) {
             clearInterval(game);
-            dead.play();
+            dod.play();
         }
 
-        snake.unshift(newHead);
+        slange.unshift(newHead);
 
         ctx.fillStyle = "white";
         ctx.font = "45px Changa one";
