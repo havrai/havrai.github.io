@@ -1,0 +1,30 @@
+
+Hensikten med applikasjonen er å vise hvor mye penger en forbruker sparer ved å kjøre en Ford Kuga med
+automatisk start-stopp-funksjon. Brukeren skal kunne velge kjøretype og de skal også kunne taste inn kjørelengde og pris pr. liter.
+Etter å ha trykket på en knapp, skal brukeren få en tilbakemelding basert på verdiene som ble oppgitt.
+
+
+Vi valgte å presentere de to kjøretypene som radiobokser. Det er fordi maks én av alternativene kan være valgt
+til enhver tid og fordi det ser enkelt og bra ut.
+
+Kjørelengde og pris pr. liter er verdier som brukeren fritt kan skrive inn i en tekstboks.
+Dette er den mest praktiske løsningen - hadde vi f.eks. valgt en dropdown-list måtte vi skrevet inn ett og ett tall.
+Merk at her må vi implementere feilhåndtering, i tilfelle brukeren taster inn verdier som programmet ikke kan regne med.
+
+Regn ut-knappen er stor og synlig, fordi den gjør en viktig funksjon. Det er denne knappen som kjører hovedfunksjonen,
+så det er vitkig at den synes.
+
+For ordens skyld er inputtene adskilt fra resultatene, under linja kommer resultatene fra utregningene. Jeg har valgt å
+la tekstene "Normalt forbruk", "Nytt forbruk" og "Besparelse" stå uten verdier før brukeren
+har trykket "Regn ut". Det er for å forberede brukeren på hvilken informasjon dem kan forvente seg.
+
+Implementasjon
+Siden er implementert for hånd. Tegnet på ark, som definerer hvordan siden skal se ut.
+Elementene har fått  ID-er, for å lettere kunne gjenkjenne dem i koden.
+
+
+Testing
+Tastet inn verdier i tekstboksene, og så om utregningene var korrekte
+Brukte samme verdier i tekstboksene, og vekslet mellom de to kjøretypene, for å se om og hvordan resultatene endret seg
+Skrev inn bokstaver og andre tegn i tekstboksene, og lot dem etterpå være tomme, for å se om feilhåndteringen fungerte
+Vekslet mellom å bruke komma og punktum i desimaltall, for å se hva som ble akseptert av koden

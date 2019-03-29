@@ -1,0 +1,62 @@
+<html><head>
+        <meta charset="UTF-8">
+        <title>Eksamensoppgave H2014 Biler Oppgave2</title>
+        <style>
+            body{
+                font-family: sans-serif;
+            }
+
+            #tekst{
+                position: absolute;
+                top: 230px;
+                left: 100px;
+                width: 500px;
+                text-align: justify;
+            }
+
+
+        </style>
+    </head>
+
+    <body>
+
+        <div id="tekst">
+            Mange av Fords modeller har auto start-stop. Når bilen står stille, som ved trafikklys eller i en bilkø, stopper motoren automatisk. Når du er klar til å kjøre videre, restarter bilen automatisk. Det er beregnet at en sparer ca. 10 % drivstoff på bykjøring og 5 % drivstoff på blandet kjøring med denne teknologien. <br><br>
+            Her er en liten kalkulator som viser hvor mye penger brukeren sparer ved bruk av denne
+            teknologien. Vi kan ta utgangspunkt i at bilen normalt bruker 0,65 l/mil.
+            <p></p>
+            Antall km kjøring:  &nbsp;<input id="inpLengde" type="text" size="10" placeholder="lengde"><br>
+            Pris per liter drivstoff: <input id="inpPris" type="text" size="6" placeholder="pris"><br><br>
+
+           <label> <input type="radio" id="rbBy" name="rbgValg" value="by">Bykøyring </label>
+            <label> <input type="radio" id="rbBlanda" name="rbgValg" value="blanda">Blanda køyring </label>
+            <p id="info">Pris: (ikke beregnet)</p>
+        </div>
+
+        <script>
+         var verdier = document.getElementById("verdier");
+         var inpLengde = document.getElementById("inpLengde");
+         var inpPris = document.getElementById("inpPris");
+         var rbBy = document.getElementById("rbBy");
+         var rbBlanda = document.getElementById("rbBlanda");
+
+            function sjekkPris() {
+                var normalforbruk = inpLengde.value * inpPris.value * 0.65;
+                var bybruk = Math.round(normalforbruk * 0.90);
+                var blandabruk = Math.round(normalforbruk * 0.95);
+                var besparelseBy = Math.round(normalforbruk * 0.10);
+                var besparelseBlanding = Math.round(normalforbruk * 0.05);
+                    if (normalforbruk > 0){
+                        if(rbBy.checked){
+                             info.innerHTML = "Pris: " + bybruk + " kr - Reduksjon: " + besparelseBy + " kr";
+                       }
+                        else{
+                            info.innerHTML = "Pris: " + blandabruk + " kr - Reduksjon: " + besparelseBlanding + " kr";
+                        }
+                    }
+            }
+            rbBy.onclick = rbBlanda.onclick = sjekkPris;
+
+        </script>
+
+</body></html>

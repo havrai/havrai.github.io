@@ -1,0 +1,187 @@
+<html><head>
+        <meta charset="UTF-8">
+        <title>V 2016 Feriereiser Oppgave 2 a og b</title>
+
+        <style>
+            body{
+                font-family: sans-serif;
+                color: cadetblue;
+            }
+            #startTekst{
+                position: absolute;
+                left: 100px;
+                top: 50px;
+                height: auto;
+                width: 500px;
+                font-size: 20px;
+
+            }
+            #radioKnappLag{
+                position: absolute;
+                left: 100px;
+                top: 350px;
+                height: auto;
+                width: 500px;
+            }
+             #spraakBilde{
+                height: 150px;
+                border-style: solid;
+                border-width: 2px;
+            }
+            #spm{
+                position: absolute;
+                left: 500px;
+                top: 60px;
+                height: auto;
+                width: 800px;
+            }
+            #svar{
+                position: absolute;
+                left: 100px;
+                top: 450px;
+                height: auto;
+                width: 500px;
+            }
+
+            #h3{
+                color: darkcyan;
+            }
+        </style>
+    </head>
+
+       <body>
+        <div id="startTekst">
+             <br><strong>Språktest</strong> <br>Velg språk og test dine språkferdigheter!<br>
+            (alle språkene har samme spørsmål)<br><br>
+            <img id="spraakBilde" src="bilderlyd/world_trade_center2.jpg"><br>
+        </div>
+
+        <div id="radioKnappLag">
+            <label><input id="inpEngelsk" name="spraak" type="radio" data-bilde="bilderlyd/world_trade_center2.jpg" checked="">Engelsk</label>
+            <label><input id="inpItaliensk" name="spraak" type="radio" data-bilde="bilderlyd/Roma2.jpg">Italiensk</label>
+            <label><input id="inpRussisk" name="spraak" type="radio" data-bilde="bilderlyd/Parken_Sommerpalasset_St_Petersburg.jpg">Russisk</label>
+            <br><br>
+            <button id="btnSjekk" type="button">Sjekk svar!</button>
+        </div>
+
+        <div id="spm"><br><br><strong>Spørsmål nr 1: Hva betyr ordet where?</strong><br><br><input type="checkbox" value="1">Hvor<br><input type="checkbox" value="-1">Vi er<br><input type="checkbox" value="-1">Var<br><input type="checkbox" value="-1">Hvorfor<br><br><br><strong>Spørsmål nr 2: Hvilke ord kan legges til her (2 riktige!)? How are...</strong><br><br><input type="checkbox" value="1">you<br><input type="checkbox" value="-1">John doing?<br><input type="checkbox" value="1">things<br><input type="checkbox" value="-1">the house<br><input type="checkbox" value="-1">the wife<br><br><br><strong>Spørsmål nr 3: Spill av lydfilen «Oversetting.mp3» og velg riktig oversettelse: </strong><button onclick="spillLyd()" type="button">Spill av lydspor</button><br><br><input type="checkbox" value="-1">Hei, mitt navn er Tom<br><input type="checkbox" value="-1">Jeg er Tom<br><input type="checkbox" value="1">Kjenner du Tom?<br><input type="checkbox" value="-1">Når kommer Tom?<br></div>
+        <div id="svar">Du fikk 0 poeng på denne testen.<br>Dette var slett ikke bra!</div>
+
+         <audio id="lyd" src="bilderlyd/Oversetting.mp3"></audio>
+
+        <script>
+            var inpEngelsk = document.getElementById("inpEngelsk");
+            var inpItaliensk = document.getElementById("inpItaliensk");
+            var inpRussisk = document.getElementById("inpRussisk");
+            var startTekst = document.getElementById("startTekst");
+            var spraakBilde = document.getElementById("spraakBilde");
+            var spm = document.getElementById("spm");
+            var lyd = document.getElementById("lyd");
+
+            inpEngelsk.checked = true;
+
+    //------Array for spørsmål---------------------------------------------
+
+            var spmEngelsk= ["Hva betyr ordet where?","Hvilke ord kan legges til her (2 riktige!)? How are...","Spill av lydfilen «Oversetting.mp3» og velg riktig oversettelse: "];
+
+     //----Array for svaralternativ____________________________________________________________________________
+
+            var svarEngelsk = [];
+            svarEngelsk[0] = ["Hvor","Vi er","Var","Hvorfor"];
+            svarEngelsk[1] = ["you","John doing?","things","the house","the wife"];
+            svarEngelsk[2] = ["Hei, mitt navn er Tom","Jeg er Tom","Kjenner du Tom?","Når kommer Tom?"];
+
+   //--- Array med riktig poeng -----------------------------------------------------------------------------
+            var poeng = [];
+            poeng[0] = [1,0,0,0];
+            poeng[1] = [1,0,1,0,0];
+            poeng[2] = [0,0,1,0];
+
+    //---- Funksjon for avspilling av lyd for ---------------------------------------
+            function spillLyd(){
+               lyd.play();
+            }
+            sporsmal(spmEngelsk,svarEngelsk);   //Kaller opp funskjonen sporsmal med parameterverdier for spørsmål/svar på engelsk
+
+    //---Funksjon for å skrive ut spørsmål og svaralternativ fra ARRAY
+            function sporsmal(smpArray,svar){
+                var indeks = 0;
+                spm.innerHTML = "";
+
+    //----En løkke skriver ut alle spørsmålene
+                for (var i=0; i<smpArray.length; i++){
+                    spm.innerHTML +="<br><br><strong>Spørsmål nr " + (i+1) + ": " + smpArray[i] + "</strong>";
+                    if (i === 2){
+                        spm.innerHTML +='<button onclick="spillLyd()" type="button">Spill av lydspor</button>';//Oppretter en knapp for avspilling av lyd
+                    }
+                    spm.innerHTML +="<br><br>";
+
+    //----En løkke skriver ut svaralternativer (checkbox)
+                    for (var j=0;j<svar[indeks].length;j++){
+                        //Sjekker om svarlaternativet har 1 poeng (riktig svar) og gir checkbox riktig value
+                        if (poeng[i][j] == 1){
+                            var verdi = 1;
+                        }
+                        else{
+                            var verdi = -1;
+                        }
+                        spm.innerHTML +='<input type="checkbox" value="' + verdi + '">' + svar[indeks][j] + "<br>";
+                        console.log(j);
+                    }
+                    indeks++;
+                }
+            }
+
+     //----En hendelsesfunskjon for knappen btnSjekk som finner hvilke valg som er gjort----------------------
+            btnSjekk.onclick = function(){
+                var sumPoeng = 0;
+                var svarene = spm.querySelectorAll("input:checked"); // Finner de choxcboxene som er checked i laget spm---
+                svarene = Array.from(svarene); //Lager array av nodene som er checked----------
+
+        //----Summerer poengene som ligger i value---------------------------------------
+                for (var i=0;i<svarene.length;i++){
+                    sumPoeng = sumPoeng + Number(svarene[i].value);
+                }
+
+                svar.innerHTML = "Du fikk " + sumPoeng + " poeng på denne testen.<br>";
+
+        //----Sjekker poengsummen og gir passende kommentar ----------------------------------
+                if (sumPoeng === 4){
+                     svar.innerHTML += "Glimrende språkkunnskaper!";
+                }
+                else if (sumPoeng>0 && sumPoeng<4){
+                      svar.innerHTML += "Kanskje du skal ta et språkkurs hos oss?";
+                }
+                else{
+                       svar.innerHTML += "Dette var slett ikke bra!";
+                }
+            }
+
+    //--Funksjoner gjort klar for utvidelse------------------
+             function spraakTest(spr){
+                if (spr === "inpEngelsk") {
+                    sporsmal(spmEngelsk,svarEngelsk);
+                }
+               if (spr === "inpItaliensk"){
+                   sporsmal(spmEngelsk,svarEngelsk);
+                   //sporsmal(spmItaliensk,svarItaliensk);
+                 }
+                 if (spr === "inpRussisk"){
+                     sporsmal(spmEngelsk,svarEngelsk);
+                   // sporsmal(spmRussisk,svarRussisk);
+                 }
+             }
+         //---Funksjon som finner riktig bilde ved hjelp av getAttribute-----
+            function velgTest(evt){
+                var valgtRadioButton = evt.target;
+                var bildedata = valgtRadioButton.getAttribute("data-bilde");
+                var valgtSpraak = valgtRadioButton.id;
+                spraakBilde.src = bildedata;
+                spraakTest(valgtSpraak);
+            }
+
+            inpEngelsk.onclick = inpItaliensk.onclick = inpRussisk.onclick = velgTest;
+
+        </script>
+
+</body></html>

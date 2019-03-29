@@ -1,0 +1,169 @@
+<html><head>
+        <meta charset="UTF-8">
+        <title>V 2013 Energibehov Oppgave 3</title>
+       <style>
+            body{
+                font-family: sans-serif;
+            }
+            #startTekst{
+                position: absolute;
+                left: 100px;
+                top: 20px;
+                height: auto;
+                width: 1000px;
+            }
+           #inputLag{
+                position: absolute;
+                top: 258px;
+                left: 850px;
+            }
+           #ut1{
+                position: absolute;
+                top: 420px;
+                left: 350px;
+            }
+            #ut2{
+                position: absolute;
+                top: 420px;
+                left: 100px;
+            }
+             #ut3{
+                position: absolute;
+                top: 420px;
+                left: 630px;
+            }
+
+           #ut4 {
+              position: absolute;
+              top: 600px;;
+              width:500px;
+              height: auto;
+              left: 630px;;
+          }
+            #soyler{
+              display:flex;
+              width: 500px;
+              height: 800px;
+              flex-direction: column;
+              align-items: flex-start;
+          }
+            #soyler>div{
+                height: 12px;
+                margin-bottom: 5px;
+                background-color: darkgoldenrod;
+                color: white;
+                padding: 2px;
+                font-size: 9px;
+            }
+           input{
+               width: 50px;
+               text-align: center;
+           }
+           button{cursor:pointer;}
+        </style>
+    </head>
+
+       <body>
+        <div id="startTekst">
+            <img src="FilerV2013Energi/aktiv.jpg" height="150"> <img src="FilerV2013Energi/sove.jpg" height="150">
+            <img src="FilerV2013Energi/hvile.jpg" height="150"> <img src="FilerV2013Energi/skole.jpg" height="150">
+            <p>Legg inn antall for matvarene i tabellen og sett sammen din frokost for i dag!</p>
+            <img id="tabell" src="FilerV2013Energi/tabell.png" height="150">
+            <br><button id="btnBeregn" type="button">Beregn nærings- og energiinnhold</button>
+        </div>
+
+        <div id="inputLag">
+           <input id="melk" type="number" data="0" min="0" value="0" placeholder="0"><br>
+           <input id="egg" type="number" data="1" min="0" value="0"><br>
+           <input id="brod" type="number" data="2" min="0" value="0"><br>
+           <input id="smor" type="number" data="3" min="0" value="0"><br>
+           <input id="ost" type="number" data="4" min="0" value="0"><br>
+           </div>
+
+        <div id="ut1"><strong>Her kommer ditt valg for frokost:</strong><br><br>Lettmelk (1 glass på 2 dl):<strong> 1 stk</strong><br>Egg:<strong> 2 stk</strong><br>Grovbrød (1 skive = 40g):<strong> 0 stk</strong><br>Smør (til 1 skive):<strong> 0 stk</strong><br>Gulost (1 skive):<strong> 0 stk</strong><br></div>
+        <div id="ut2"><strong>Antall gram av<br>hvert næringsstoff:</strong><br><br>Proteiner: <strong>20.4 gram</strong> <br>Fett: <strong>14.0 gram</strong><br>Karbohydrater:<strong> 11.0 gram</strong></div>
+        <div id="ut3"><br><br><div id="soyler"><div style="width:49.2px">92 kcal</div> <div style="width:45.6px">56 kcal</div> <div style="width:40px">0 kcal</div> <div style="width:40px">0 kcal</div> <div style="width:40px">0 kcal</div> </div></div>
+        <div id="ut4"><strong>Totalt: 148 kcal </strong><br><br></div>
+
+
+        <script>
+            var startTekst = document.getElementById("startTekst");
+            var ut1 = document.getElementById("ut1");
+            var ut2 = document.getElementById("ut2");
+            var ut3 = document.getElementById("ut3");
+            var ut4 = document.getElementById("ut4");
+            var soyler = document.getElementById("soyler");
+            var melk = document.getElementById("melk");
+            var egg = document.getElementById("egg");
+            var brod = document.getElementById("brod");
+            var smor = document.getElementById("smor");
+            var ost = document.getElementById("ost");
+            var btnBeregn = document.getElementById("btnBeregn");
+            melk.value=egg.value=brod.value=smor.value=ost.value = 0;
+
+        //---- Array for verdier av tekst og næringsinnhold---------------------------------------
+            var matvarer = ["Lettmelk (1 glass på 2 dl)","Egg","Grovbrød (1 skive = 40g)","Smør (til 1 skive)","Gulost (1 skive)"];
+
+            var kalorier =[92,28,103,36,53];
+
+        //----Todimensjonal Array for verdier av næringsinnholdet til de 5 ulike matvarene-------
+            var naering = [];
+            naering[0] = [6.6,3,9.6];
+            naering[1] = [6.9,5.5,0.7];
+            naering[2] = [3.5,1,19.6];
+            naering[3] = [0.025,4.1,0.025];
+            naering[4] = [4,4.2,0];
+
+         //----Array som tar vare på antall av hver------------------------------------------------
+            var antall = [0,0,0,0,0];
+
+
+            utskrift(); // Kaller opp utskriftsfunksjon slik at "grensesnittet" blir helhetlig
+
+        //-----Funksjon som kalles opp i starten og når beregnknappen klikkes på-----------------
+
+            function utskrift(){
+                var innhold = [0,0,0]; //Nullstiller verdier før ny beregning og utskrift
+                var kal = [0,0,0,0,0];
+                var sumKal = 0;
+
+        //------Finner verdier som er valgt i inputfeltene og legger de i arrayet-----------
+
+                antall[0] = Number(melk.value);
+                antall[1] = Number(egg.value);
+                antall[2] = Number(brod.value);
+                antall[3] = Number(smor.value);
+                antall[4] = Number(ost.value);
+
+         //----Beregner næringsinnhold (prot, fett og karbo) for alle varene ---------------
+
+                for (var i=0;i<innhold.length;i++){
+                    for (var j=0;j<naering.length;j++){
+                        innhold[i] = innhold[i] + naering[j][i]*antall[j];
+
+                    }
+                    kal[i] = kal[i] + kalorier[i]*antall[i];
+                    sumKal = sumKal + kal[i];   //Finner totalsum av kalorier
+                }
+
+               ut1.innerHTML = "<strong> Her kommer ditt valg for frokost:</strong><br><br>";
+               soyler.innerHTML = "";
+
+        //----Skriver ut verdiene og søyler i tekstlag-----------------------------------------------
+
+               for (var i=0;i<matvarer.length;i++){
+                  ut1.innerHTML += matvarer[i] + ":<strong> " + antall[i] + " stk</strong><br>";
+                  soyler.innerHTML +=  "<div style='width:" + (40 + kal[i]/10) + "px'>" + kal[i] + " kcal</div> ";
+               }
+
+               ut4.innerHTML ="<strong>Totalt: " + sumKal + " kcal </strong><br><br>";
+               ut2.innerHTML ="<strong>Antall gram av<br>hvert næringsstoff:</strong><br>";
+               ut2.innerHTML +="<br>Proteiner: <strong>" + innhold[0].toFixed(1) + " gram</strong> ";
+               ut2.innerHTML +="<br>Fett: <strong>" + innhold[1].toFixed(1) + " gram</strong>";
+               ut2.innerHTML +="<br>Karbohydrater:<strong> " + innhold[2].toFixed(1) + " gram</strong>";
+        }
+            btnBeregn.onclick = utskrift;
+
+        </script>
+
+</body></html>
