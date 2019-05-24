@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <title>Title</title>
+    <style>
+
+        body {
+            text-align: center;
+            margin: auto;
+            background-color: white;
+        }
+
+        header {
+            padding: 10px;
+        }
+
+        p1 {
+            color: black;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 30px;
+        }
+
+        p2 {
+            color: black;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 35px;
+            font-family:  'Josefin Sans', sans-serif;
+            color: red;
+            margin: auto;
+        }
+
+
+        .mySlides {
+            display: none;
+            margin: auto;
+        }
+
+        /* tekst caption*/
+        .text {
+            color: red;
+            font-size: 15px;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+<header>
+<h1><b>Om tilløp i spydkast<b></h1>
+<p1>Finn det perfekte spydkastet!</p1> <br>
+<p2>Et spydkast i en konkurranse gjennomføres i 4 faser, <br>der hver fase er en forberedelse til selve kastet når spydet flyr gjennom luften. <br> - Bla gjennom bildene for å se de forskjellige fasene -
+</p2>
+</header>
+
+<div class="mySlides">
+    <img src="Vedlegg/1_vanlig_lop_400.jpg" style="width:30%">
+    <div class="text"><b>Fase 1: Løp<b></b>
+        <br>
+        <br>Først har spydkasteren vanligvis spydet i hvileposisjon før han setter i gang med å løpe. Her er målet å skape energi i form av bevegelse.
+    </div>
+</div>
+
+<div class="mySlides">
+    <img src="Vedlegg/2_tilbakeforing_400.jpg" style="width:30%">
+    <div class="text"><b>Fase 2: Tilbakeføring<b></b>
+        <br>
+        <br>Spydkasteren fører spydet bak kroppen for å gjøre spydet klart til kast. Målet er å gjøre spydet klart for avgang i siste fase.
+    </div>
+</div>
+
+<div class="mySlides">
+    <img src="Vedlegg/3_kryssteg_400.jpg" style="width:30%">
+    <div class="text"><b>Fase 3: Krysstegfasen<b></b>
+        <br>
+        <br>Spydkasteren løper i kryssteg for å få riktig rytme i kastet og komme i posisjon med det som kalles stembeinet (beinet han står på når han kaster i fase 4).
+    </div>
+</div>
+
+<div class="mySlides">
+    <img src="Vedlegg/4_utkast_400.jpg" style="width:30%">
+    <div class="text"><b>Fase 4: Utkast</b>
+        <br>
+        <br>Spydkasteren setter stembeinet i bakken og lar spydet fly gjennom lufta ved å overføre energien fra de foregående bevegelsene til spydet. I denne fasen kan spydet akselerere fra 25 km/t til 110 km/t i løpet av 12/100 sekund hos de beste kasterne i verden. Trykket på stambeinet er ca. ti ganger kroppsvekten.</div>
+</div>
+
+<div>
+    <button class="w3-button w3" onclick="plusSlides(-1)">&#10094;</button>
+    <button class="w3-button w3" onclick="plusSlides(1)">&#10095;</button>
+</div>
+<br>
+
+
+<script>
+
+
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    } // legger til 1, for å bytte bilde for hver gang man trykker på knappen
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides"); //henter bildene
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) { // bytter bilde ved å legge på (+) hver gang man trykker på next knappen
+            slides[i].style.display = "none";
+        }
+
+        slides[slideIndex-1].style.display = "block";
+    }
+</script>
+
+</body>
+</html>

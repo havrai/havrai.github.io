@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Nedtrekksliste</title>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+        tr,td,th{
+            border: 1px solid;
+        }
+        table{
+            width: 400px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<p><b>Nedtrekksliste - array, for-sløyfe og utskrift av flere grønnsaker i et p-element.</b></p>
+
+<p><b>Vitaminer i grønnsaker</b></p>
+
+<select id="lstGronnsaker">
+    <option>Nypotet</option>
+    <option>Gulrot</option>
+    <option>Blomkål</option>
+    <option>Linser</option>
+    <option>Spinat</option>
+</select>
+<p id="overskrift"></p>
+<p id="ut"> </p>
+
+<script>
+    var lstGronnsaker = document.getElementById("lstGronnsaker");
+    var overskrift = document.getElementById("overskrift");
+    var ut = document.getElementById("ut");
+
+    var gronnsaker = ["Nypotet","Gulrot","Blomkål","Linser","Spinat"];  //Oppretter to array, et for grønnsaker og et for vitaminer
+    var vitaminer = ["C-vitamin","A-vitamin","C-vitamin","B-vitamin","K-vitamin"];
+    var valgt = [];
+
+    lstGronnsaker.onchange = function(){
+        var indeks = lstGronnsaker.selectedIndex;
+        var finnes = valgt.indexOf(indeks,0);
+        console.log(finnes);
+        if (finnes === -1){
+            valgt.push(indeks);
+        }
+        // lstGronnsaker.selectedIndex.option = "";
+        ut.innerHTML = "";
+
+        for (var i = 0;i<valgt.length;i++){
+            var plass = valgt[i];
+            ut.innerHTML += gronnsaker[plass] + " inneholder " + vitaminer[plass] + "<br>";
+        }
+    }
+</script>
+</body>
+</html>

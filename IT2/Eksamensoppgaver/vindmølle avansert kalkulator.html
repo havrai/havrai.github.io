@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <style>
+
+        body {
+            font-size: 18px;
+            font-family: sans-serif;
+        }
+        #ramme{
+            margin-left: 10%;
+            margin-top: 5%;
+        }
+        #bilde{
+            position: absolute;
+            height: 300px;
+        }
+        #tekst{
+            position: relative;
+            left: 200px;
+        }
+        #inputLister{
+            position: absolute;
+            width: 400px;
+            height: auto;
+            left: 360px;
+        }
+        #info{
+            position: absolute;
+            margin-top: 170px;
+            left: 360px;
+        }
+        select{
+            width: 350px;
+            height: 30px;
+            margin-bottom: 5px;
+            font-size: 16px;
+            color:darkslategrey;
+        }
+
+    </style>
+    <title>Oppgave 3b</title>
+</head>
+<body>
+<div id="ramme">
+    <img id="bilde" src="vindmolle.png"><br>
+    <div id="tekst">
+        <h3>Beregn effekten av vindmøllen</h3>
+    </div>
+    <!--Et lag med fire nedtrekkslisster som får verdier i script-->
+    <div id="inputLister">
+        <select id="listeEn" value="0"></select><br>
+        <select id="listeTo" value="1"></select><br>
+        <select id="listeTre" value="2"></select><br>
+        <select id="listeFire" value="3"></select><br>
+    </div>
+
+    <div id="info">Totalt produsert energimengde dette døgnet: <b>0</b> Watt/døgn</div>
+</div>
+
+<script>
+    //Lager referanser til html-elementene.
+    var skjema = document.getElementById("skjema");
+    var info = document.getElementById("info");
+    var listeEn = document.getElementById("listeEn");
+    var listeTo = document.getElementById("listeTo");
+    var listeTre = document.getElementById("listeTre");
+    var listeFire = document.getElementById("listeFire");
+
+    //Array med tidsintervallene
+    var tid = ["02-08","08-14","14-20","20-02"];
+
+    //Array med dataene fra tabellen som er oppgitt i oppgaven.
+    var vindintervaller = [];
+    vindintervaller[0] = ["Stille", 0, 0.2, 0];
+    vindintervaller[1] = ["Flau vind", 0.3, 1.5, 0];
+    vindintervaller[2] = ["Svak vind", 1.6, 3.3, 2];
+    vindintervaller[3] = ["Lett bris", 3.4, 5.4, 10];
+    vindintervaller[4] = ["Laber bris", 5.5, 7.9, 60];
+    vindintervaller[5] = ["Frisk bris", 8, 10.7, 150];
+    vindintervaller[6] = ["Liten kuling", 10.8, 13.8, 400];
+    vindintervaller[7] = ["Stiv kuling", 13.9, 17.1, 500];
+
+    var totalWatt = 0;
+    var indeks = 0;
+    var watt = [0,0,0,0];
+
+    //Oppretter innhold i de fire listene ved å kalle opp funksjonen opprettListevalg med selectelementene som parameterverdier
+    opprettListevalg(listeEn);
+    opprettListevalg(listeTo);
+    opprettListevalg(listeTre);
+    opprettListevalg(listeFire);
+
+    function opprettListevalg(liste){
+        liste.innerHTML += '<option> Velg vindstyrke for tidsperioden ' + tid[indeks] + "</option>";
+
+        for(var i=0; i< vindintervaller.length; i++) {
+            liste.innerHTML +='<option>' + vindintervaller[i][0] + " (" + vindintervaller[i][1] + "-" +vindintervaller[i][2] + "m/s)</option>";
+        }
+
+        indeks++;
+    }
+    //Funksjon som henter verdier fra de fire nedtrekkslistene med sine valg. Beregner og skriver ut totalt produsert energimengde.
+    function beregnTotal(evt) {
+        totalWatt = 0;
+        var indeksVind = evt.target.selectedIndex-1;
+        var indeksWatt = evt.target.getAttribute("value");
+
+        watt[indeksWatt] = Number(vindintervaller[indeksVind][3])*6;
+
+        for (var i=0; i<watt.length; i++){
+            totalWatt = totalWatt + watt[i];
+        }
+        // console.log(totalWatt);
+        info.innerHTML = "Totalt produsert energimengde dette døgnet: <b>" + totalWatt + "</b> Watt/døgn";
+    }
+    listeEn.onchange = listeTo.onchange = listeTre.onchange = listeFire.onchange = beregnTotal;
+
+</script>
+</body>
+</html>

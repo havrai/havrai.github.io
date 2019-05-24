@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>V 2018 Museum Oppgave 1</title>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+        #ramme{
+            position: absolute;
+            left: 2%;
+            width: 90%;
+            height: 92%;
+        }
+        h3{
+            position: absolute;
+            left: 0px;
+            width: 100%;
+            text-align: center;
+            color: white;
+        }
+        #bildeLag{
+            position: absolute;
+            width: 90%;
+            height: 100%;
+            left: 14%;
+            text-align: center;
+
+        }
+        #infoLag{
+            position: absolute;
+            top: 30%;
+        }
+        #menyLag{
+            position: absolute;
+            left: 0px;
+            top: 15%;
+        }
+        #menyLag img{
+            height: 60px;
+            padding: 5px;
+            border: solid 2px white;
+        }
+        #menyLag img:hover{
+            border: solid 2px lightsteelblue;
+        }
+        #linkLag{
+            position: absolute;
+            top: 80%;
+        }
+        a{
+            color: lightsteelblue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+<div id="ramme">
+
+    <div id="bildeLag">
+        <h3>RINGVE MUSEUM</h3>
+        <img id="imgForside" height="100%">
+    </div>
+
+    <div id="menyLag">
+        <img id="imgInfo" src="V2018-Museum-filer/informasjon.jpg" value="0"> <img id="imgTid" src="V2018-Museum-filer/aapningstider.jpg" value="1"> <img id="imgPris" src="V2018-Museum-filer/priser.jpg" value="2"><img id="btnNeste" src="V2018-Museum-filer/neste.jpg">
+    </div>
+
+    <div id="infoLag"> <h4>Informasjon:</h4><h5>Besøksadresse:</h5> Lade allé 60, 7041 Trondheim<br><br><b>Telefon:</b> 73 87 02 80<br><b>E-post:</b> post@ringve.no<br><b>Postadresse:</b><br> Postboks 6289 Torgarden, 7489 Trondheim</div>
+
+    <div id="linkLag">Flere sider:<br> <a href="museum.html">AKTIVITETER</a><br><a href="museum">INSTRUMENT - "LYDQUIZ"</a></div>
+</div>
+
+<script>
+    var bildeLag = document.getElementById("bildeLag");
+    var imgForside = document.getElementById("imgForside");
+    var btnNeste = document.getElementById("btnNeste");
+    var infoLag = document.getElementById("infoLag");
+    var imgInfo = document.getElementById("imgInfo");
+    var imgTid = document.getElementById("imgTid");
+    var imgPris = document.getElementById("imgPris");
+
+    var bilde = ["introbilde1.jpg","introbilde2.jpg","introbilde3.jpg","introbilde4.jpg"];
+    var tekst = ["<h4>Informasjon:</h4><h5>Besøksadresse:</h5> Lade allé 60, 7041 Trondheim<br><br><b>Telefon:</b> 73 87 02 80<br><b>E-post:</b> post@ringve.no<br><b>Postadresse:</b><br> Postboks 6289 Torgarden, 7489 Trondheim","<h4>Åpningstider:</h4>Tirsdag – søndag 11.00-16.00","<h4>Billetter:</h4>Voksen: 120 kr<br>Student/honnør: 100 kr<br>Barn (0-15 år): Gratis"]
+    var bildeIndeks = 0;
+
+    visBilde(bildeIndeks);
+
+    function visBilde(indeks){
+        imgForside.src = bilde[indeks];
+        imgForside.style.opacity = 1;
+    }
+
+    btnNeste.onclick = function(){
+        if (bildeIndeks < bilde.length-1){
+            bildeIndeks++;
+        }
+        else {
+            bildeIndeks = 0;
+        }
+        visBilde(bildeIndeks);
+    }
+
+    function visTekst(evt){
+        if (evt == 0){
+            var indeks = 0;
+        }
+        else{
+            var indeks = evt.target.getAttribute("value");
+        }
+        infoLag.innerHTML = tekst[indeks];
+
+    }
+    imgInfo.onmouseover = imgTid.onmouseover = imgPris.onmouseover = visTekst;
+
+    imgInfo.onmouseout = imgTid.onmouseout = imgPris.onmouseout = function(){
+        visTekst(0);
+    }
+
+</script>
+</body>
+</html>

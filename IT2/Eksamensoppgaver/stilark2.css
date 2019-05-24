@@ -1,0 +1,28 @@
+body{
+    font-family: sans-serif;
+}
+
+#ramme{
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    left:100px;
+    top:20px;
+    background-color: aliceblue;
+    border: solid 1px black;
+    padding-left: 40px;
+    padding-right: 40px;
+
+}
+
+
+#bildeHastighet,#bildeHoyde{
+    border: solid 1px black;
+    height: 100px;
+
+}
+#fly{
+    border-width: 0px;
+    height: 110px;
+}
+

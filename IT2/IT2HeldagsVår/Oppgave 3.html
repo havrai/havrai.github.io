@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <title>Spydkast</title>
+    <style>
+
+        body {
+            text-align: center;
+            margin: auto;
+            background-color: black;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 35px;
+            font-family:  'Josefin Sans', sans-serif;
+            color: red;
+            margin: auto;
+        }
+
+        h2{
+            color: white;
+        }
+
+        p {
+            color: white;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 20px;
+        }
+        form {
+            padding-top: 50px;
+        }
+
+        #Div1{
+            width: auto;
+            height: auto;
+            padding:10px;
+            margin-right:5px;
+            margin-bottom:5px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<header>
+     <h1>SPYDKAST</h1>
+</header>
+
+<form action="localStorage.html" id="frmDeltagere">
+    <input id="inpFornavn" type="text" required placeholder="Fornavn">
+    <input id="inpEtternavn" type="text" required placeholder="Etternavn">
+    <input id="inpKast" type="number" required placeholder="Kastelengden">
+    <button class="button" type="submit">Registrer deltager</button>
+</form>
+
+
+<div id="Div1">
+    <h2>Registrer flere kast</h2>
+    <input type="number" class="input" id="kast1" placeholder="40"><br>
+    <input type="number" class="input" id="kast2" placeholder="38"><br>
+    <input type="number" class="input" id="kast3" placeholder="42"><br>
+    <br>
+    <button type="button" class="button2" onclick="add_throw()">Legg til</button>
+    <p id="all"></p>
+</div>
+
+
+<p>Deltagerne:</p>
+<ul id="Deltagerne"></ul>
+
+
+<script>
+
+    var frmDeltagere = document.getElementById("frmDeltagere");
+    var tbodyDeltagere = document.getElementById("tbodyDeltagere");
+    var inpFornavn = document.getElementById("inpFornavn");
+    var inpEtternavn = document.getElementById("inpEtternavn");
+    var inpKast = document.getElementById("inpKast");
+    var kast = document.getElementById("inpKast");
+    var deltagere = new Map(); // definerer en tom map
+
+    class Deltager {
+        constructor(fornavn, etternavn, kast){
+            this.fornavn = fornavn;
+            this.etternavn = etternavn;
+            this.kast = inpKast;
+        }
+
+        get fulltNavn(){
+            return`${this.fornavn} ${this.etternavn}`;
+        }
+
+        get tabellrad() {
+            return`<tr>
+            <td>${this.fulltNavn}</td>
+            <td>${this.kast}</td>
+            </tr>`;
+        }
+    }
+
+    function oppdaterTabell() {
+        tbodyDeltagere.innerHTML = ""; // nuller ut innhold
+        for(var deltager of deltagere.values){ //traverserer verdiene i map
+            tbodyDeltagere.innerHTML += deltager.tabellrad; // får en tabellrad fra get-metoden, men får den ikke til å dukke opp!!!
+        }
+
+        var deltagereSomArray = Array.from(deltagere.values()); // gjør map til array
+        localStorage.mineDeltagere = JSON.stringify(deltagereSomArray); // lagrer som JSON dataer
+    }
+
+    frmDeltagere.onsubmit = function (evt) {
+        evt.preventDefault(); // forhindrer nettsiden fra å hoppe til en annen random side når knappen trykes på
+        var fornavn = inpFornavn.value; // verdier fra input feltene
+        var etternavn = inpEtternavn.value;
+        var kast = inpKast.value;
+        var nyDeltager = new Deltager (fornavn, etternavn, kast); //oppretter et objekt
+        deltagere.set(kast, nyDeltager); // nå er kast key mens nyDeltager er value
+        //oppdaterTabell(); // oppdaterer tabellen
+        inpFornavn.value = inpEtternavn.value = inpKast.value = ""; // skal nulle ut input feltet
+        inpFornavn.focus();
+        document.write(nyDeltager.value);
+        output.innerText();
+    };
+
+    // sjekker om det er noe som er lagret i localStorage
+    if (localStorage.mineDeltagere){
+        var mineLagredeDeltagere = JSON.parse(localStorage.mineDeltagere);
+        for (var d of mineLagredeDeltagere){
+            var nyDeltager = new Deltager(d.fornavn, d.etternavn, d.kast); // lager nytt objekt
+            deltagere.set(nyDeltager.kast, nyDeltager); // legger til objektet i map
+        }
+
+        oppdaterTabell(); // oppdaterer tabellen
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Inputfelt</title>
+    <style>
+        body{
+            font-family: sans-serif;
+    </style>
+</head>
+<body>
+<p><b>Input, array, for-sløyfe og utskrift i div-element</b></p>
+Inputfelt av typen text og number.<br>
+Hendelsen "onchange" er knyttet til inputfeltet for pris,<br>
+og starter en funksjon som vil behandle inntastede verdier.<br><br>
+Inputfeltenes value legges i hver sin array med arrayNavn.push(verdi).<br>
+En for-sløyfe skriver ut innholdet i arrayene med vare og pris.<br>
+I løkken med utskrift legges alle prisene sammen, og skrives ut etter at <br>
+handlelisten er skrevet ut i et div-element.<br>
+Nummerering opprettes av å skrive ut arrayets indexverdi +1 (index starter på 0).<br>
+<h3>Utskrft med div-element:</h3>
+Vare:<br>
+<input id="inpVare" type="text" placeholder="skriv inn vare"><br>
+Pris:<br>
+<input id="inpPris" type="number" placeholder="skriv inn pris">
+<br><br>
+
+<div id="ut"></div>
+<script>
+    var inpVare = document.getElementById("inpVare");
+    var inpPris = document.getElementById("inpPris");
+    var ut = document.getElementById("ut");
+
+    var sum = 0;
+    var vare = [];  //Oppretter to array, et for varer og et for pris
+    var pris = [];
+
+    inpPris.onchange = function(){
+        sum = 0;
+        vare.push(inpVare.value);   //Legger ny vare sist i arrayet
+        pris.push(Number(inpPris.value));   //Legger pris sist i array
+
+        ut.innerHTML = "Handleliste:<br>";
+
+        for (var i=0;i<vare.length;i++){
+            ut.innerHTML += (i+1) + ". " +  vare[i] + " - kr " + pris[i] + "<br>";
+            sum = sum + pris[i];
+        }
+
+        ut.innerHTML += "<br>Sum: kr " + sum;
+    }
+
+</script>
+</body>
+</html>

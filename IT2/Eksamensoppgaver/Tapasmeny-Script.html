@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Checkbox</title>
+    <style>
+        body{
+            font-family: sans-serif;
+    </style>
+</head>
+<body>
+<p><b>Checbox med array og script, getElementsByName</b></p>
+
+<h3>Meny</h3>
+
+<div id="cbxLag"></div>
+
+<br><br>
+<button id="btnSjekkPris" type="button">Sjekk pris!</button>
+<br><br>
+<div id="ut"></div>
+<script>
+    var meny = document.getElementById("meny");
+    var btnSjekkPris = document.getElementById("btnSjekkPris");
+    var ut = document.getElementById("ut");
+
+    var sum = 0;
+
+    var mat = ["Focaccia og alioli","Manchego med chiliolje","Sobrasada","Jamón Ibérico","Fuet Ibérico","Gazpacho og gordal-oliven"];
+    var pris = [37,58,58,46,68,35];
+
+    //Opprettet checkboxer vha array og innerHTML--------------------------
+    for (var i = 0;i<mat.length;i++){
+        cbxLag.innerHTML += '<input  type="checkbox" name="meny" value="' + mat[i] + '">' + mat[i] + "<br>";
+    }
+    btnSjekkPris.onclick = function(){
+        ut.innerHTML = "<h3>Ditt menyvalg:<h3>";
+        var menyValg = document.getElementsByName("meny"); //Finner alle checkboxene som er valgt og legger de i arrayet menyValg
+
+        for (var i=0;i<pris.length;i++){
+            if (menyValg[i].checked){   //Finner om checboxen er valgt
+                sum = sum + pris[i];   //Summerer prisene
+                ut.innerHTML += menyValg[i].value + " - kr " + pris[i] + "<br>";
+            }
+        }
+        ut.innerHTML += "<br>Sum: kr " + sum;
+    }
+
+</script>
+</body>
+</html>

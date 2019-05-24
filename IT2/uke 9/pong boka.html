@@ -47,8 +47,8 @@
 
 <script>
 
-    var minCanvas = document.querySelectorAll("#minCanvas");
-    var ctx = minCanvas[0].getContext("2d");
+    var minCanvas = document.getElementById("minCanvas");
+    var ctx = minCanvas.getContext("2d");
     var theGameIsOn = true; // global variabel
     var hdnPoeng = document.querySelectorAll("#hdnPoeng");
     var hdnRekord = document.querySelectorAll("#hdnRekord");
@@ -61,12 +61,10 @@
     hdnRekord.innerHTML = "Rekord: " + localStorage.rekord;
 
 
-
-
     var bane = {
         bredde: minCanvas.width,
         hoyde: minCanvas.height,
-        gressfarge: "Darkgreen",
+        gressfarge: "DarkGreen",
         linjefarge: "White",
         linjetykkelse: 4
     };

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>V 2013 Energibehod Oppgave 2 a og b</title>
+    <link href="stilark-energi.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="startTekst">
+    <img src="aktiv.jpg" height="150"> <img src="sove.jpg" height="150"><br>
+
+    <br><strong>BMR</strong> viser den energimengden som kreves for at organene våre skal fungere, og er avhengig av kjønn, alder, høyde og vekt.
+    <br><br><strong>PAL</strong> er et uttrykk for ulike typer aktivitet, som for eksempel å sitte stille eller å gå en tur.
+    <br><br><strong>Beregningene gjelder for gutt, 18 år og 180 cm høy.</strong><br><br>
+    <br>Tast inn vekten: <input type="text" size="3" id="inpVekt" pattern="[0-9]"> kg <br>
+    (trykk enter eller velg knapp for en PAL - verdi)
+</div>
+<p id="bmrTekst">
+
+</p>
+<div id="knappLag">
+    <button id="btnBevegelse">PAL Bevegelse</button><br>
+    <button id="btnStille">PAL Sitte stille</button><br><br></div>
+<p id="tekst">
+
+</p>
+
+<script>
+    var inpVekt = document.getElementById("inpVekt");
+    var tekst = document.getElementById("tekst");
+    var startTekst = document.getElementById("startTekst");
+    var knappLag = document.getElementById("knappLag");
+    var bmrTekst = document.getElementById("bmrTekst");
+    var btnBevegelse = document.getElementById("btnBevegelse");
+    var btnStille = document.getElementById("btnStille");
+
+    //---Nullstiller variable før start------------------------------------
+    var valgtStille = false;
+    var valgtBevegelse = false;
+    var bmr = 0;
+    var riktig = false;
+
+    inpVekt.onfocus = function() {
+        inpVekt.value ="";
+    }
+
+    inpVekt.onchange = function() {
+        valgtStille = false;
+        valgtBevegelse = false;
+        var vekt = inpVekt.value;   //Finner inntastet verdi
+
+        //Sjekker "sannsynlig" vekt
+        if (vekt > 30 && vekt < 230){
+            bmr = 35.27 + (0.588 * vekt);
+            tekst.innerHTML ="";
+            bmrTekst.innerHTML = "<br><strong> BMR </strong>  for en gutt på " + vekt + " kg = " + Math.round(bmr)  ;
+            riktig = true;
+        }
+        else{
+            bmrTekst.innerHTML = "<br>Er inntastet vekt korrekt?";
+        }
+
+    }
+
+    function ut(verdi,aktivitet,valgt){
+        if (!valgt){
+            tekst.innerHTML += "<br><strong>PAL </strong>verdi for å være " + aktivitet + ": " + Math.round(verdi*bmr);
+        }
+    }
+
+    btnStille.onclick = function(){
+        if (riktig){
+            ut(1.2,"stille",valgtStille);
+            valgtStille = true;
+        }
+    }
+
+    btnBevegelse.onclick = function(){
+        if (riktig){
+            ut(1.4,"i bevegelse",valgtBevegelse);
+            valgtBevegelse = true;
+        }
+    }
+
+</script>
+</body>
+</html>

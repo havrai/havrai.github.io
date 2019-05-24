@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Deltagere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/css/foundation-flex.css">
+    <style>
+        body {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<form id="frmDeltagere">
+    <input id="inpFornavn" type="text" required placeholder="Fornavn">
+    <input id="inpEtternavn" type="text" required placeholder="Etternavn">
+    <input id="inpKastelengde" type="number" required placeholder="Kastelengden">
+    <button class="button" type="submit">Registrer</button>
+</form>
+
+<table>
+    <thead>
+    <tr><th>Navn</th><th>Kastelengde</th><th>Slett</th></tr>
+    </thead>
+    <tbody id="tbodyDeltagere"></tbody>
+</table>
+
+<script>
+
+    class Deltager {
+        constructor(fornavn, etternavn, kast){
+            this.fornavn = fornavn;
+            this.etternavn = etternavn;
+            this.kast = inpKastelengde;
+        }
+
+        get fulltNavn(){
+            return`${this.fornavn} ${this.etternavn}`;
+        }
+
+        get tabellrad() {
+            return`<tr>
+        <td>${this.fulltNavn}</td>
+        <td>${this.kast}</td>
+        <td>
+            <button class="button" onclick="slettDeltager('${this.kast}')">X
+        </button>
+        </td>
+        </tr>`;
+        }
+    }
+
+    var frmDeltagere = document.getElementById("frmDeltagere");
+    var tbodyDeltagere = document.getElementById("tbodyDeltagere");
+    var inpFornavn = document.getElementById("inpFornavn");
+    var inpEtternavn = document.getElementById("inpEtternavn");
+    var inpKast = document.getElementById("inpKast");
+    var deltagere = new Map();
+
+    function oppdaterTabell() {
+        tbodyDeltagere.innerHTML = "";
+        for(var deltager of deltagere.values){
+            tbodyDeltagere.innerHTML += deltager.tabellrad;
+        }
+
+        var deltagereSomArray = Array.from(deltagere.values());
+        localStorage.mineDeltagere = JSON.stringify(deltagereSomArray);
+    }
+
+    function slettDeltager() {
+        deltagere.delete(kast);
+        oppdaterTabell();
+    }
+
+    frmDeltagere.onsubmit = function (evt) {
+        evt.preventDefault();
+        var fornavn = inpFornavn.value;
+        var etternavn = inpEtternavn.value;
+        var kast = inpKast.value;
+        var nyDeltager = new Deltager (fornavn, etternavn, kast);
+        deltagere.set(kast, nyDeltager);
+        oppdaterTabell();
+        inpFornavn.value = inpEtternavn.value = inpKast.value = "";
+        inpFornavn.focus();
+    };
+
+    if (localStorage.mineDeltagere){
+        var mineLagredeDeltagere = JSON.parse(localStorage.mineDeltagere);
+        for (var d of mineLagredeDeltagere){
+            var nyDeltager = new Deltager(d.fornavn, d.etternavn, d.kast);
+            deltagere.set(nyDeltager.kast, nyDeltager);
+        }
+
+        oppdaterTabell();
+        document.write(deltagere);
+    }
+
+</script>
+
+</body>
+</html>

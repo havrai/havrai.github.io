@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Nedtrekksliste</title>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+        tr,td,th{
+            border: 1px solid;
+        }
+        table{
+            width: 400px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<p><b>Nedtrekksliste - map, og utskrift av en grønnsak i et p-element.</b></p>
+
+<p><b>Vitaminer i grønnsaker</b></p>
+
+<select id="lstGronnsaker">
+    <option>Nypotet</option>
+    <option>Gulrot</option>
+    <option>Blomkål</option>
+    <option>Linser</option>
+    <option>Spinat</option>
+</select>
+<p id="overskrift"></p>
+<p id="ut"> </p>
+
+<script>
+    var lstGronnsaker = document.getElementById("lstGronnsaker");
+    var overskrift = document.getElementById("overskrift");
+    var ut = document.getElementById("ut");
+
+
+    var potet = {nr:0,navn:"Nypotet",vitamin:"C-vitamin"};
+    var gulrot = {nr:1,navn:"Gulrot",vitamin:"A-vitamin"};
+    var blomkal = {nr:2,navn:"Blomkål",vitamin:"C-vitamin"};
+    var linser = {nr:3,navn:"Linser",vitamin:"B-vitamin"};
+    var spinat = {nr:4,navn:"Spinat",vitamin:"K-vitamin"};
+
+    gronnsak = new Map;
+
+    gronnsak.set(potet.nr,potet);
+    gronnsak.set(gulrot.nr,gulrot);
+    gronnsak.set(blomkal.nr,blomkal);
+    gronnsak.set(linser.nr,linser);
+    gronnsak.set(spinat.nr,spinat);
+
+    lstGronnsaker.onchange = function(){
+        var indeks = lstGronnsaker.selectedIndex;
+        if (gronnsak.has(indeks)){
+            var grsak = gronnsak.get(indeks);
+            ut.innerHTML = grsak.navn + " inneholder " + grsak.vitamin;
+        }
+    }
+</script>
+</body>
+</html>

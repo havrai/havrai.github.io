@@ -1,0 +1,80 @@
+<html><head>
+    <meta charset="UTF-8">
+    <title>Knapp og bilder</title>
+    <style>
+        body{
+            font-family: sans-serif;
+            color: white;
+        }
+        @keyframes flyttFly{
+            0%{
+                left:-200px;
+                top: 200px;
+            }
+            100%{
+                left:1200px;
+                top: -200px;
+            }
+        }
+
+        #fly{
+            background-image: url(FilerV2010Fly/fly.png);
+            width: 240px;
+            height: 73px;
+            position: absolute;
+            left: -200px;
+            top:200px;
+            animation: flyttFly 6s infinite;
+        }
+        #ramme{
+            position: absolute;
+            width: 900px;
+            height: 200px;
+            left: 30px;
+            top: 50px;
+            background-color: lightblue;
+            overflow:hidden;
+            border: 1px solid darkblue;
+        }
+        #liteFly{
+            position: absolute;
+            top: 220px;
+            left: 40px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div id="ramme">
+    <h1> AIR2010</h1>
+    <div id="fly"></div>
+
+</div>
+<div id="liteFly">
+    <img src="FilerV2010Fly/fly.jpg" height="30"> (klikk for lyd av/på)
+</div>
+<audio id="flyLyd" src="FilerV2010Fly/Flylyd.mp3" loop=""></audio>
+
+<script>
+    var flyLyd = document.getElementById("flyLyd");
+    var liteFly = document.getElementById("liteFly");
+
+    lydPaa = true;
+    flyLyd.play();
+
+    liteFly.onclick = function(){
+        if  (lydPaa){
+            flyLyd.pause();
+            lydPaa = false;
+        }
+        else{
+            flyLyd.play();
+            lydPaa = true;
+        }
+    }
+
+</script>
+
+</body></html>

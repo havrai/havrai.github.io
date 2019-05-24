@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>V 2018 Museum Oppgave 2</title>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+        #ramme{
+            position: absolute;
+            left: 15%;
+            width: 700px;
+            height: auto;
+            top: 50px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        h3{
+            color: darkgray;
+        }
+        input {
+            width: 50px;
+            text-align: right;
+        }
+        #lstValg{
+            width: 100%;
+            height: 25px;
+            font-size: 15px;
+        }
+        button, object{
+            width: 100%;;
+            background-color: darkgray;
+            border: 0;
+            height: 30px;
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+<div id="ramme">
+
+    <h3>Våre arrangementer våren 2018</h3>
+    <img id="spraakBilde" src="V2018-Museum-filer/tabell.JPG" width="700"><br>
+    <p>Pris voksen: 100 kr - Pris barn: 50 kr</p>
+
+    <select id="lstValg">
+        <option>Velg arrangement</option>
+    </select>
+    <p></p>
+
+    Antall billetter: <input id="inpVoksen" type="number" min="0" max="10" value="0"> Voksen
+    <input id="inpBarn" type="number" min="0" max="10" value="0"> Barn<p></p>
+    <button id="btnPris">Vis bestilling</button>
+
+    <p id="ut">Velg arrangement/billetter.</p>
+
+</div>
+
+<script>
+    var lstValg = document.getElementById("lstValg");
+    var inpVoksen = document.getElementById("inpVoksen");
+    var inpBarn = document.getElementById("inpBarn");
+    var btnPris = document.getElementById("btnPris");
+
+    var arrangement = ["Trondheim kammermusikkfestival - 1. juni", " Spill opp! - 4. juni", "Onsdagskonsert - 6. juni", "Juiogat: Joik for folk - 9. juni"];
+    for (var i=0; i<arrangement.length; i++){
+        lstValg.innerHTML += "<option>" + arrangement[i] + "</option>";
+    }
+
+
+    btnPris.onclick = function(){
+        var indeks = lstValg.selectedIndex;
+        var antVoksen = Number(inpVoksen.value);
+        var antBarn = Number(inpBarn.value);
+
+        var prosent = 0;
+        var melding = ".";
+        var antBilletter = antVoksen + antBarn;
+        var sumPris = antVoksen*100 + antBarn*50;
+
+
+        if(antVoksen > 0 || antBarn > 0){
+            ut.innerHTML = "Du har bestillt " + antBilletter + " billetter til " + arrangement[indeks-1] + ".<br>";
+            if (antVoksen > 0 && antBarn > 0){
+                ut.innerHTML += antVoksen + " voksne og " + antBarn + " barn.<br>";
+            }
+            if (antBilletter >=5 ){
+                sumPris = sumPris * 0.8;
+                melding = ", inklusiv grupperabatt på 20 prosent. <br>";
+            }
+            ut.innerHTML += "Total kr " + sumPris + melding;
+        }
+
+        else{
+            ut.innerHTML = "Velg arrangement/billetter.";
+        }
+
+
+
+    }
+
+
+</script>
+</body>
+</html>

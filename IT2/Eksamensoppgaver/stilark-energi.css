@@ -1,0 +1,42 @@
+body{
+    font-family: sans-serif;
+}
+#startTekst{
+    position: absolute;
+    left: 100px;
+    top: 20px;
+    height: auto;
+    width: 1000px;
+}
+#bmrTekst{
+    position: absolute;
+    left: 100px;
+    top: 365px;
+    height: auto;
+    width: 500px;
+}
+#knappLag{
+    position: absolute;
+    top: 440px;
+    left: 100px;
+    width: 100px;
+    height: auto;
+}
+#tekst{
+    position: absolute;
+    left: 100px;
+    top: 480px;
+    height: auto;
+    width: 500px;
+}
+
+#btnBevegelse{
+    width: 500px;
+}
+#btnStille{
+    width: 500px;
+}
+img{
+    border: solid;
+    border-width: 1px;
+}

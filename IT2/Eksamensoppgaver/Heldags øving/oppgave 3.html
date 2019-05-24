@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 3</title>
+    <style>
+        h {
+            font-size: 25px;
+            color: red;
+            font-family: "Times New Roman", Helvetica, Thonburi;
+        }
+        p1 {
+            font-family: "Times New Roman", Helvetica, Thonburi;
+            font-size: 19px;
+            color: black;
+        }
+
+        p2 {
+            font-family: "Times New Roman", Helvetica, Thonburi;
+            font-size: 19px;
+            color: black;
+        }
+
+        p3 {
+            font-family: "Times New Roman", Helvetica, Thonburi;
+            font-size: 19px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+<h>Øve til heldags - oppgave 3<br<</h>
+
+
+<p1><br><b>A)</b><br><b>1.</b> Det skal stå if(tall < 5). <br> <b>2.</b> Det skal stå else if(tall === 5). <br> <b>3.</b> Det skal stå else(tall > 5) </p1>
+<p2><br><br><b>B)</b></p2>
+
+<script>
+    var alder = prompt("Hvor gammel er du?");
+
+
+    if (alder < 5){
+        document.write("Du reiser gratis!");
+    } else if (alder > 5 && alder < 18){
+        document.write("Barnebillett: 30kr.");
+    } else {
+
+        rabatt = prompt("Skriv 'student' hvis du er student eller 'pensjonist' hvis du er pensjonist.");
+
+        if (rabatt === "student"){
+            document.write("Billetten koster " + 70 * 0.8 + "kr")
+        } else if (rabatt === "pensjonist"){
+            document.write("Billetten koster " + 70 * 0.2 + "kr");
+        } else {
+            document.write("Billetten koster 70kr.");
+        }
+    }
+</script>
+
+<p3><br><br><b>C)</b></p3>
+
+<script>
+
+    // for løkke for de tallene 0 - 10
+    for (var i=1; i<=10; i++){
+    document.write(i);
+    }
+
+// for løkke for de 30 første tallene i 4-gangen.
+    for(var i=1;i<30;i++){
+        document.write("<p>"+ i*4 + "</p>")
+    }
+
+
+</script>
+
+</body>
+</html>

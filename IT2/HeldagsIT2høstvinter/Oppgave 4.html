@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 4 - HD</title>
+    <style>
+    </style>
+</head>
+<body>
+
+<button id="random">Ny tilfeldig person</button>
+<img id="bilder">
+
+<script>
+
+    const random = document.getElementById("random");
+    const bilder = document.getElementById("bilder");
+    let i = Math.floor(Math.random() * 70) + 1;
+
+    random.onclick = function () {
+        if (i < 15) {
+            document.write("Du er " + i + " år gammel. <br><br>" + " Ikke for smårollinger, minst 15 år!");
+            bilder.src = "bilder/ung.jpg";
+        } else if (i > 60) {
+            document.write("Du er " + i + " år gammel. <br><br>" + " Ikke for gamlinger, minst 60 år!");
+            bilder.src = "bilder/gammel.jpg";
+        } else {
+            document.write("Du er " + i + " år.  <br><br> Gratulerer! Du er akkurat passe gammel!");
+            bilder.src = "bilder/passe.jpg";
+        }
+    }
+
+
+
+
+</script>
+
+</body>
+</html>

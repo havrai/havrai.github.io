@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Oppgave 2</title>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+        #ramme{
+            margin-left: 10%;
+            margin-top: 5%;
+        }
+        #bilde{
+            position: absolute;
+            height: 300px;
+        }
+        #tekst{
+            position: relative;
+            left: 200px;
+        }
+    </style>
+</head>
+<body>
+<div id="ramme">
+    <img id="bilde" src="vindmolle.png"><br>
+    <div id="tekst">
+        <h3>Wattproduksjon per time.</h3>
+        Verdiene viser hvor mange watt vindmøller vil produsere i timen.<br>
+        (Av sikkerhetsgrunner vil denne vindmøllen stanse for verdier utenfor 2.5 - 15 m/s).
+        <p><i>Skriv inn verdier for vindstyrke i m/s:</i></p>
+        <p><input id="inpVindstyrke" placeholder="0.0" type="text">
+
+            <button type="button" id="btnVis">Beregn vindstyrke</button></p>
+
+        <p id="ut"></p>
+    </div>
+</div>
+
+<script>
+    var inpVindstyrke = document.getElementById("inpVindstyrke");
+    var btnVis = document.getElementById("btnVis");
+    var ut = document.getElementById("ut");
+
+    var watt = [0, 2, 10, 60, 150, 400, 500];    // Watt for ulike vindhastigheter
+    var grenser = [2.4, 3.3, 5.4, 7.9, 10.7, 13.8, 15]; //Grenser for hastighet
+    var verdi = 0;
+
+    finnWatt(0);    // Kaller opp funksjonen finnWatt for å ha oppstartverdier
+
+    inpVindstyrke.onfocus = function(){ // Fjerner forrige inputverdi
+        inpVindstyrke.value = "  ";
+    }
+
+    //---------funksjon som sjekker verdiene på vindstyrke----------------------------
+    function finnWatt(vind){
+        var forste =-1;
+
+        for (var i=0;i<grenser.length;i++){ // Forsløyfen går gjennom hele arrayet watt
+
+            if (vind > forste && vind <= grenser[i]){   //Sjekker om verdien ligger mellom "første" og neste verdi i arrayet
+                ut.innerHTML = "Ved " + vind + " m/s gir vindmølla " + watt[i] + " watt i timen.";
+                return; //Går ut av sløyfa dersom verdien er blitt funnet
+            }
+            else{
+                forste = grenser[i];    //Legger grenseverdi fra array inn i forste
+            }
+        }
+        if (vind > 15){
+            ut.innerHTML = "Vindmølla er ikke aktiv ved denne vindstyrken.";
+        }
+
+        /*ELLER erstatte linje 57 - 67 med dette og dropper array:
+
+          // Vindmøllen starter først ved 2.5 og stenges ved 15
+
+              if( vind < 2.5) {verdi = 0;} // Vindmølle er ikke i gang
+              if (vind > 1.6) {verdi = 2;} // Svak vind
+              if (vind > 3.4) {verdi = 10;} // Lett bris
+              if (vind > 5.5) {verdi = 60;} // Laber bris
+              if (vind > 8.0) {verdi = 150;} // Frisk bris
+              if (vind > 10.8) {verdi = 400;} // Liten kuling
+              if (vind > 13.8) {verdi = 500;} // Stiv kuling
+
+          ut.innerHTML = "Ved " + vind + " m/s gir vindmølla " + verdi + " watt i timen.";
+
+          if (vind > 15){
+              ut.innerHTML = "Vindmølla er ikke aktiv ved denne vindstyrken.";
+          }
+
+          */
+    }
+    //------funksjonen knyttet til knapp, finner inputvalue og sender den som parameter til funksjonen finnWatt
+    btnVis.onclick = function(){
+        var vindstyrke = Number(inpVindstyrke.value);
+        finnWatt(vindstyrke);
+    }
+
+</script>
+</body>
+</html>
+
+

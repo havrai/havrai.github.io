@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Inputfelt</title>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+        tr,td,th{
+            border: 1px solid;
+        }
+        table{
+            width: 400px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<p><b>Input - array - for-sløyfe og utskrift med tabell.</b></p>
+
+Vare:<br>
+<input id="inpVare" type="text" placeholder="skriv inn vare"><br>
+
+Pris:<br>
+<input id="inpPris" type="number" placeholder="skriv inn pris">
+<br><br>
+
+<p id="overskrift"></p>
+<table id="tabell"></table>
+<p id="ut"> </p>
+
+<script>
+    var inpVare = document.getElementById("inpVare");
+    var inpPris = document.getElementById("inpPris");
+    var overskrift = document.getElementById("overskrift");
+    var ut = document.getElementById("ut");
+    var tabell = document.getElementById("tabell");
+
+    var sum = 0;
+    var vare = [];  //Oppretter to array, et for varer og et for pris
+    var pris = [];
+
+    inpPris.onchange = function(){
+        var sum = 0;
+        vare.push(inpVare.value);   //Legger ny vare sist i arrayet
+        pris.push(Number(inpPris.value));   //Legger pris sist i array
+
+        overskrift.innerHTML = "Handleliste";
+        tabell.innerHTML = "<tr><th>Vare</th><th>Pris</th></tr>";//Fjerner tidligere rader (pga =) og legger til header på nytt
+
+        for (var i=0;i<vare.length;i++){
+            tabell.innerHTML += "<tr><td>" + vare[i] + " </td><td>kr " + pris[i] + "</td></tr>"; //Legger til en rad
+            sum = sum + pris[i];
+        }
+
+        ut.innerHTML = "<br>Sum: kr " + sum;
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Spydkast</title>
+    <style>
+
+        p {
+            color: red;
+            font-size: large;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 20px;
+        }
+
+        #inpSvar{
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 15px;
+        }
+
+        #btnSvar {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 15px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<video width="320" height="240" controls>
+    <source src="Vedlegg/thorkildsen.mp4" type="video/mp4">
+</video>
+
+<p>Se på videoen! <br> Hvor langt er spydkastet til Andreas Thorkildsen? <br></p>
+<input type="text" id="inpSvar" placeholder="Skriv inn svaret her">
+<button id="btnSvar">Send inn</button>
+<div id="divSvar"></div>
+
+
+<script>
+
+    // henter opp elementer
+    var inpSvar = document.getElementById("inpSvar");
+    var divSvar = document.getElementById("divSvar");
+    var btnSvar = document.getElementById("btnSvar");
+
+    btnSvar.onclick = function () {
+        if (inpSvar.value === "90.57"){ // hvis svaret er 90.57 så er det helt riktig, derfor ===
+            divSvar.innerHTML = "<br> Helt rett! Dette kan du!";
+        } else if( 90.57 - 5 < inpSvar.value || inpSvar.value > 5 + 90.57 ){ // hvis svaret ikke er riktig, men høyere enn 85 og lavere enn 95 så blir det nesten riktig.
+            divSvar.innerHTML = "<br>Meget godt tippet!"
+        }else  { // svaret er helt feil, da får man feil.
+            divSvar.innerHTML = "<br> Dette er feil. Prøv på nytt.";
+        }
+    };
+
+
+</script>
+
+</body>
+</html>

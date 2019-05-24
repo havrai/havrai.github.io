@@ -1,0 +1,128 @@
+<html>
+<head>
+    <title></title>
+    <script src="/ext/jquery.js" type="text/javascript"></script>
+
+
+</head>
+<body>
+<canvas width="450" height="450" id="canvas"></canvas>
+
+
+<script>
+
+
+        var canvas = document.getElementById("Canvas")[0];
+        var ctx = canvas.getContext("2d");
+
+        //canas width and height
+        var width= canvas.width();
+        var height= canvas.height();
+
+        // background
+        var bakgrunn = {
+            bredde: canvas.width,
+            hoyde: canvas.height,
+            bakfarge: "Black",
+        };
+
+        function tegnBakgrunn(){
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, width, height);
+            ctx.strokeStyle = "black";
+            ctx.strokeRect(0, 0, width, height);
+        }
+
+
+        // squares
+        var size = 10; // size of squares
+
+        // draw a green square on the canvas
+        // at position (x,y) with a width and height of size
+        function drawSquare(x, y) {
+            ctx.fillStyle = "red";
+            ctx.fillRect(x*size, y*size, size, size);
+            ctx.strokeStyle = "black";
+            ctx.strokeRect(x*size, y*size, size, size);
+        }
+
+        // food
+        var food;
+
+        function createFood(){
+            food = {
+                x:Math.round(Math.random()*(width-size)/size),
+                y:Math.round(Math.random()*(height-size)/size),
+            }
+        }
+
+        // snake
+
+        var snakeArray;
+
+        function createSnake(){
+            var length=5;
+
+            snakeArray=[];
+            // create snake with 5 sqaures
+
+            var segment;
+            for (var i = length - 1; i >= 0; i--) {
+                // save x and y position of snake body
+                segment = {x: i, y = 0};
+                snakeArray[length - 1 - i] = segment;
+
+            }
+        }
+
+        var direction;
+        //keyboard control
+        // snake does not come back on itself
+
+        $(document).keydown(function(e){
+            var key=e.which;
+
+            if(key == "37" && direction !="right") {
+                direction="left";
+            }else if(key=="38" && direction !="down"){
+                direction="up";
+            }else if (key=="39" && direction !="left"){
+                direction="right" ;
+            }else if (key="40" && direction !="up"){
+                direction="down";
+            }
+
+        });
+
+        // game loop
+
+        function gameLoop(){
+            //position
+            var nx = snakeArray[0].x;
+            var ny = snakeArray[0].y;
+
+            //get next position of snake depending direction
+
+            if(direction =="left"){
+                nx--;
+            }else if(direction=="right"){
+                nx++;;
+            }else if(direction=="up"){
+                ny++;
+            }else if(direction=="down" ){
+                ny--;
+            }
+
+            // touching edge = game over
+            if(nx== -1 || nx== width/size || ny == -1|| ny = height/size){
+            });
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+

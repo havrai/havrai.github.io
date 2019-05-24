@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>V 2016 Feriereiser Oppgave 3 a og b</title>
+    <!--<link href="stilark-ferie.css" rel="stylesheet" type="text/css">-->
+    <style>
+        body{
+            font-family: sans-serif;
+
+        }
+        #ramme{
+            position: absolute;
+            left: 50px;
+            width: 900px;
+            height: 700px;
+        }
+        #startTekst{
+            position: absolute;
+            left: 100px;
+            top: 10px;
+            height: auto;
+            width: 500px;
+            font-size: 20px;
+            color: darkcyan
+
+        }
+        #input1{
+            position: absolute;
+            left: 300px;
+            top: 100px;
+            height: auto;
+            width: 500px;
+        }
+        #input2{
+            position: absolute;
+            left: 450px;
+            top: 140px;
+            height: auto;
+            width: 500px;
+        }
+        #input3{
+            position: absolute;
+            left: 300px;
+            top: 200px;
+            height: auto;
+            width: 500px;
+        }
+        #spraakBilde{
+            height: 150px;
+            border-style: solid;
+            border-width: 2px;
+        }
+        #ut{
+            position: absolute;
+            left: 100px;
+            top: 300px;
+            height: auto;
+            width: 800px;
+        }
+        #pris{
+            position: absolute;
+            left: 400px;
+            top: 395px;
+            height: auto;
+            width: 500px;
+        }
+
+        #h3{
+            color: darkcyan;
+        }
+        .inp {
+            width: 30px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div id="ramme">
+    <div id="startTekst">
+        <br><strong> Bestill en språk- og kulturreise!</strong> <br>Velg mellom våre mange spennende destinasjoner.<br><br>
+        <img id="spraakBilde" src="bilderlyd/World_Trade_Center.jpg"><br>
+    </div>
+
+    <!-- Lag med nedtrekkslister for valg av byer-------------------------------- -->
+    <div id="input1">
+        Velg periode:
+        <label><input id="rbSommer" name="perioden" type="radio" value="Sommer" checked>Sommer</label>
+        <label><input id="rbVinter" name="perioden" type="radio" value="Vinter">Vinter</label>
+        <br><br>
+        <label>By<br>
+            <select id="inpBy" required>
+                <option value="0">Velg by</option>
+                <option value="1">St. Petersburg</option>
+                <option value="2">Amsterdam</option>
+                <option value="3">New York</option>
+                <option value="4">Roma</option>
+            </select>
+        </label>
+
+
+    </div>
+
+    <!-- Lag med nedtrekkslister for valg av hotell-------------------------------- -->
+    <div id="input2">
+        <label>Hotell<br>
+            <select id="inpHotell" required>
+                <option value="0">Velg Hotell</option>
+                <option value="1">Aurora</option>
+                <option value="2">Downtown</option>
+                <option value="3">City Hall</option>
+                <option value="4">Wilmont</option>
+                <option value="5">Chelsea</option>
+            </select>
+        </label>
+    </div>
+    <!-- Lag med input for valg av antall hotellrom og checkbox for aktivitet -------------------------------- -->
+    <div id="input3">
+        <label>Dobbeltrom <input id="inpDobbel" type="number" class="inp" min="1" max"=5"></label>
+        <label>Enkeltrom  <input id="inpEnkel" type="number" class="inp" min="1" max"=5"></label>
+        <br><br>
+        <label>Ønsker du kulturpass? JA <input id="inpAktivitet" type="checkbox"> </label>
+    </div>
+
+    <div id="ut"></div>
+    <div id="pris"> </div>
+
+</div>
+
+<script>
+    var startTekst = document.getElementById("startTekst");
+    var input = document.getElementById("input");
+    var inpBy = document.getElementById("inpBy");
+    var rbSommer = document.getElementById("rbSommer");
+    var rbVinter = document.getElementById("rbVinter");
+    var inpDobbel = document.getElementById("inpDobbel");
+    var inpEnkel = document.getElementById("inpEnkel");
+    var inpHotell = document.getElementById("inpHotell");
+    var inpAktivitet = document.getElementById("inpAktivitet");
+    var ut = document.getElementById("ut");
+    var pris = document.getElementById("pris");
+
+    //---- Nullstiller alle startverdier--------------------------------
+    rbSommer.checked = false;
+    inpAktivitet.checked = false;
+    inpDobbel.value = 0;
+    inpEnkel.value = 0;
+    inpBy.value = "0";
+    inpHotell.value = "0"
+    var enkel = 300;
+    var aktivitetsPris = 0;
+    var totalPris = 0;
+    var rompris = [0,0];
+    var byer = ["","St. Petersburg","Amsterdam","New York","Roma"];
+    var valg = {by:"Ikke valgt",periode:"Ikke valgt",hotell:"Ikke valgt",dobbeltrom:0,enkeltrom:0,aktivitet:"Ikke valgt"};
+
+    //---- Map med info om hoteller------------------------------------------------
+    var hoteller = new Map();
+
+    hoteller.set(1,{nr:1,navn:"Aurora",sommer:590,vinter:690});
+    hoteller.set(2,{nr:2,navn:"Downtown",sommer:660,vinter:750});
+    hoteller.set(3,{nr:3,navn:"City Hall",sommer:450,vinter:530});
+    hoteller.set(4,{nr:4,navn:"Wilmont",sommer:660,vinter:880});
+    hoteller.set(5,{nr:5,navn:"Chelsea",sommer:450,vinter:560});
+
+    //---- Funksjon som skriver ut reultatet av valgene etter hvert som bruker gjør et valg ----------------------
+    function utskrift(){
+        ut.innerHTML = "";
+        ut.innerHTML +="Periode: <strong>" + valg.periode + "</<strong><br> ";
+        ut.innerHTML +="By: <strong>" + valg.by + "</<strong> <br>";
+
+        ut.innerHTML +="Hotell: <strong>" + valg.hotell + "</<strong><br> ";
+        ut.innerHTML +="Dobbeltrom:<strong> " + valg.dobbeltrom + " stk</<strong><br> ";
+        ut.innerHTML +="Enkelttrom: <strong>" + valg.enkeltrom + " stk</<strong><br> ";
+        ut.innerHTML +="Kulturpass (700 kr):<strong> " + valg.aktivitet + "</<strong><br> ";
+
+        if (valg.periode === "Sommer"){
+            var romprisTot = rompris[0]*Number(valg.dobbeltrom) + ((rompris[0]+ enkel) * Number(valg.enkeltrom));
+            console.log("tot rompris " + romprisTot);
+        }
+        else if (valg.periode === "Vinter"){
+            var romprisTot = rompris[1]*Number(valg.dobbeltrom) + ((rompris[1]+ enkel) * Number(valg.enkeltrom));
+            console.log("tot rompris " + romprisTot);
+        }
+        else{
+            var romprisTot = 0;
+        }
+        totalPris = romprisTot + aktivitetsPris;
+        pris.innerHTML = "Totalpris: " + totalPris + " kr.";
+    }
+
+
+    function sjekkPeriode(){
+        if (rbSommer.checked){
+            valg.periode = rbSommer.value;
+        }
+        else{
+            valg.periode = rbVinter.value;
+        }
+        utskrift();
+    }
+
+    inpBy.onchange = function(){
+        var byNr = Number(inpBy.value);
+        valg.by = byer[byNr];
+        utskrift();
+    }
+
+    inpHotell.onchange = function(){
+        var hotellNr = Number(inpHotell.value);
+        console.log(hotellNr);
+        var hotellet = hoteller.get(hotellNr); //Finner hotellnummer med get----
+        valg.hotell = hotellet.navn;
+        rompris[0] = hotellet.sommer;
+        rompris[1] = hotellet.vinter;
+        console.log(rompris[0] + " " + rompris[1]);
+        utskrift();
+    }
+
+    inpDobbel.onchange = function(){
+        valg.dobbeltrom = Number(inpDobbel.value);
+        utskrift();
+    }
+
+    inpEnkel.onchange = function(){
+        valg.enkeltrom = Number(inpEnkel.value);
+        utskrift();
+    }
+
+    inpAktivitet.onchange = function(){
+        if (inpAktivitet.checked){
+            aktivitetsPris = 700;
+            valg.aktivitet = "Ja";
+        }
+        else{
+            aktivitetsPris = 0;
+            valg.aktivitet = "Nei";
+        }
+        utskrift();
+    }
+
+    utskrift();
+    rbSommer.onchange= sjekkPeriode;
+    rbVinter.onchange = sjekkPeriode;
+
+
+</script>
+</body>
+</html>

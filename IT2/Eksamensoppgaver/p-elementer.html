@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Transformere 4 p - elementer</title>
+    <style>
+        body{
+            padding: 50px;
+            color: white;
+            font-family: sans-serif;
+        }
+
+        h5{
+            color: darkcyan;
+        }
+
+        p,h5{
+            text-align: center;
+            margin-top: 2%;
+            margin-left: 5%;
+            width: 100px;
+            height: 100px;
+            transition: 1s;
+        }
+
+        .p1{
+            background-color: cadetblue;
+            transform: rotate(0deg);
+            transform-origin: 100px 100px; /*Vipper rundt nedre høyre hjørnet*/
+
+        }
+
+        .p1:active{
+            transform: rotate(90deg);
+        }
+
+        .p2{
+            background-color: indianred;
+            transform: rotate(0deg);
+            transform-origin: center center;
+        }
+
+        .p2:active{
+            transform: rotate(60deg);
+        }
+
+        .p3{
+            background-color: lightblue;
+            transform-origin: 0 0;
+        }
+
+        .p3:active{
+            transform: scale(2);
+        }
+
+        .p4{
+            background-color: lightslategrey;
+        }
+
+        .p4:active{
+            margin-left: 80%
+        }
+
+    </style>
+</head>
+<body>
+<h5>"Klikk og hold" på kvadratene</h5>
+<p class="p1">Vipp 90 grader</p>
+<p class="p2">Roter 60 grader</p>
+<p class="p3">Dobbel så stor</p>
+<p class="p4">Flytt til høyre</p>
+</body>
+</html>
+

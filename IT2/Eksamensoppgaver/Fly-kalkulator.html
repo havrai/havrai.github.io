@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <title>V 2010 Fly Oppgave 2 a og b</title>
+    <link href="stilark2.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="ramme">
+    <p></p>
+    <img id="fly" src="FilerV2010Fly/fly.png"><br>
+    <br><strong>Instrumenter</strong> Svingeindikatoren viser at flyet ikke svinger, gyrokompasset viser at flyet flyr mot nord, og stigehastighetsmåleren viser en stigning på 1000 fot per minutt.
+    <br><br><strong>Flytid - </strong> Programmet beregner flytid ved hjelp av avstand og fart. (Fart oppgis i knop, og avstand oppgis i kilometer)Svaret er angitt i timer og minutter.
+    <br><br><strong>Høyde - </strong> Programme beregner også  høyde i meter ved oppgitt høyde i fot (1 fot = 30,48 cm).
+    <br><br>
+    Klikk på hastighetsmåleren for å beregne tid.    <br>
+    Klikk på høydemåleren for å omregne høyder i fot til meter.<br><p></p>
+    <img id="bildeHastighet" src="FilerV2010Fly/hastighetsmaler.png">
+    <img id="bildeHoyde" src="FilerV2010Fly/hoydemaler.png">
+
+
+    <div id="tidsberegninger" style="display: none;">
+        <br><strong>Beregning av tid: </strong>
+        Avstand: <input type="text" size="3" id="inpAvstand"> kilometer<br>
+        Fart: <input type="text" size="3" id="inpFart"> knop
+        <p id="tekst1">Tid: -</p>
+    </div>
+
+    <div id="hoydeberegninger" style="display: inline;">
+        <br><strong>Beregning av høyde: </strong>
+        Høyde: <input type="text" size="3" id="inpHoyde"> fot
+        <p id="tekst2">Høyde i meter: -</p>
+    </div>
+</div>
+<script>
+
+    var ramme = document.getElementById("ramme");
+    var tekst1 = document.getElementById("tekst1");
+    var tekst2 = document.getElementById("tekst2");
+    var inpAvstand = document.getElementById("inpAvstand");
+    var inpFart = document.getElementById("inpFart");
+    var inpHoyde = document.getElementById("inpHoyde");
+    var tidsberegninger = document.getElementById("tidsberegninger");
+    var hoydeberegninger = document.getElementById("hoydeberegninger");
+    var bildeHastighet = document.getElementById("bildeHastighet");
+    var bildeHoyde = document.getElementById("bildeHoyde");
+    console.log(ramme.clientHeight);
+    //---Gjør laget tidsberegninger usynlig fra starten-------------------------
+
+    tidsberegninger.style.display= "none";
+    hoydeberegninger.style.display= "none";
+
+    //--Gjør lagene med de ulike inputfeltene synlig eller usynlig---------------------
+    bildeHastighet.onclick = function(){
+        hoydeberegninger.style.display= "none";
+        tidsberegninger.style.display = "inline"; //Gjør laget tidsberegninger synlig
+    }
+    bildeHoyde.onclick = function(){
+        tidsberegninger.style.display= "none";
+        hoydeberegninger.style.display = "inline";
+    }
+
+    //--Fjerner tidligere verdier i inputfeltet--------------------------------------
+    inpAvstand.onfocus = function(){
+        inpAvstand.value = "";
+    }
+    inpFart.onfocus = function(){
+        inpFart.value = "";
+    }
+    inpHoyde.onfocus = function(){
+        inpHoyde.value = "";
+    }
+
+    //---Hendelsesfunskjon knyttet til inputfeltet for flyhastighet
+    inpFart.onchange = function(){
+        var avstand = inpAvstand.value;
+        var fart = inpFart.value;
+
+        if (fart>0 && avstand>0){
+            var tid = avstand/(fart*1.852);
+            tekst1.innerHTML = "Tid: " + tid.toFixed(2) + " timer";
+        }
+        else{
+            tekst1.innerHTML = "Tid: Tast inn gyldige verdier";
+        }
+    }
+
+    //---Hendelsesfunskjon knyttet til inputfeltet for flyhøyde
+
+    inpHoyde.onchange = function(){
+        var hoydeFot = inpHoyde.value;
+        if (hoydeFot>0){
+            tekst2.innerHTML = "Høyde i meter: " + Math.round(hoydeFot*0.3048) + " m";
+        }
+        else{
+            tekst2.innerHTML = "Tast inn gyldige verdier";
+        }
+    }
+</script>
+
+</body></html>

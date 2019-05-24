@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Eksamensoppgave H2014 Biler Oppgave 3</title>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+        #topp{
+            position: absolute;
+            top: 50px;
+            left: 100px;
+            width: 500px;
+            color: darkblue;
+            font-size: 50px;
+            text-align: right;
+        }
+        #tekst{
+            position: absolute;
+            top: 230px;
+            left: 100px;
+            width: 600px;
+            color: darkblue;
+        }
+
+        #ut{
+            position: absolute;
+            top: 440px;
+            left: 440px;
+            width: 500px;
+            color: darkblue;
+        }
+        #bil{
+            position: absolute;
+            left: 0px;
+        }
+        .listeStil{
+            width: 100px;
+        }
+        th,td{
+            text-align: center;
+            border-style: solid;
+            border-width: 1px;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="topp">
+    <img id="bil" src="FilerH2014Biler/kuga_front.jpg" height="150">
+    bil.no <br><br>
+</div>
+<div id="tekst">
+    Velg bil, type og pakker for din bil i nedtrekksllistene...
+    <br><br>
+    <!--Oppretter tabell og heading for info om bilene -->
+    <table id="bilTabell" width="98%">
+        <tr class="radStil">
+            <th align="left">Bil</th>
+            <th>Trend</th>
+            <th>Titanum</th>
+            <th>Familiepakke</th>
+            <th>Førerassistentpakke</th>
+            <th>Stilpakke</th>
+        </tr>
+        <tr id="rad"></tr>
+    </table>
+
+    <p></p>
+
+    <!--Oppretter en nedtrekkslister med et select-element-->
+    <select id="velgBil" class="listeStil">
+        <option disabled>Velg bil</option>
+        <option>Kuga</option>
+        <option>C-Max</option>
+        <option>Focus</option>
+        <option>Mondeo</option>
+    </select>
+
+    <select id="velgType" class="listeStil">
+        <option disabled>Velg type</option>
+        <option>Trend</option>
+        <option>Titanum</option>
+    </select>
+
+    <select id="velgPakke" class="listeStil">
+        <option disabled>Velg pakke</option>
+        <option>Familiepakke</option>
+        <option>Førerassistentpakke</option>
+        <option>Stilpakke</option>
+    </select>
+
+</div>
+<div id="ut"> <strong>Totalpris for ditt valg: 0 Kr</strong> </div>
+
+<script>
+
+    var ut = document.getElementById("ut");
+    var velgBil = document.getElementById("velgBil");
+    var velgType = document.getElementById("velgType");
+    var velgPakke = document.getElementById("velgPakke");
+    var bilTabell = document.getElementById("bilTabell");
+    var rad = document.getElementById("rad");
+
+    //---Todimensjonal ARRAY------------------------------------------------------
+    var bilMerke = ["Kuga","C-Max","Focus","Mondo"];
+    var bil = [];
+    bil[0] = [401000,320000,255000,281000];
+    bil[1] = [420000,335000,325000,361000];
+    bil[2] = [1000,1000,900,1100];
+    bil[3] = [10200,9400,12500,9900];
+    bil[4] = [9200,3600,9000,7200];
+    valgtPakke = [];
+    start();
+
+    function start(){//Nullstiller alle startverdier og fyller tabellen med bilinfo
+        var sumPris = 0;
+        velgType.disabled = true;
+        velgPakke.disabled = true;
+        velgBil.disabled = false;
+        velgBil.selectedIndex = 0;
+        velgType.selectedIndex = 0;
+        velgPakke.selectedIndex = 0;
+
+        //----Legger til rader i tabellen bilTabell med verdier fra array bil---------------------------------------
+
+        for (var i=0;i<bilMerke.length;i++){
+            var raden = rad.innerHTML;
+            raden += "<td>" + bilMerke[i] + "</td>";
+            for(var j=0;j<bil.length;j++){
+                raden += "<td>" + bil[j][i] + "</td>";
+            }
+            raden +="</tr>";
+            bilTabell.innerHTML += raden;
+        }
+
+    }
+
+    function restart(){
+        location.reload();
+    }
+
+    velgBil.onchange = function(){
+        velgBil.disabled = true;
+        sumPris = 0;
+        indeksBil = velgBil.selectedIndex - 1;
+        velgType.disabled = false;
+        velgType.selectedIndex = 0;
+    }
+
+    velgType.onchange = function(){
+        sumPris = 0;
+        indeksType = velgType.selectedIndex;
+        sumPris = sumPris + bil[indeksBil][indeksType];
+        ut.innerHTML = "<strong>Totalpris for ditt valg: " + sumPris + " Kr</strong>";
+        velgPakke.disabled = false;
+    }
+
+    velgPakke.onchange = function(){
+        velgType.disabled = true;
+        indeksPakke = velgPakke.selectedIndex + 2;
+
+        var valgtFraFor = valgtPakke.indexOf(indeksPakke,0) //Sjekker om pakken er finnes i arrayet valgtPakke
+
+        if (valgtFraFor === -1){
+            valgtPakke.push(indeksPakke);
+            sumPris = sumPris + bil[indeksBil][indeksPakke];
+        }
+        else{
+            return; //returnerer dersom pakket en valgt fra før
+        }
+
+        ut.innerHTML = "<strong>Totalpris for ditt valg: " + sumPris + " Kr</strong>";
+
+        if (valgtPakke.length === 3){
+            velgPakke.disabled = true;
+            ut.innerHTML += '<br><br><button onclick="restart()">Velg modell</button>';
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Inputfelt</title>
+    <style>
+        body{
+            font-family: sans-serif;
+    </style>
+</head>
+<body>
+<p><b>Input - array - for-sløyfe og utskrift ved hjelp av appendChild().</b></p>
+
+<p></p>
+Vare:<br>
+<input id="inpVare" type="text" placeholder="skriv inn vare"><br>
+Pris:<br>
+<input id="inpPris" type="number" placeholder="skriv inn pris">
+<br><br>
+
+<div id="ut"></div>
+<script>
+    var inpVare = document.getElementById("inpVare");
+    var inpPris = document.getElementById("inpPris");
+    var ut = document.getElementById("ut");
+
+    var sum = 0;
+    var vare = [];  //Oppretter to array, et for varer og et for pris
+    var pris = [];
+
+    inpPris.onchange = function(){
+        var sum = 0;
+        vare.push(inpVare.value);   //Legger ny vare sist i arrayet
+        pris.push(Number(inpPris.value));   //Legger pris sist i array
+
+        ut.innerHTML = "Handleliste:<br>";
+        var liste = document.createElement("ol"); //Oppretter en ordered list med createElement
+
+        for (var i=0;i<vare.length;i++){
+            liste.innerHTML += "<li>" + vare[i] + " - kr " + pris[i] + "</li>"; //Legger til listepunkter
+            sum = sum + pris[i];
+        }
+        liste.innerHTML +="</ol>"; // Legger til slutt på ordered list
+
+        ut.appendChild(liste); // Legger ti lhele listeelementet ti laget "ut"
+
+        ut.innerHTML += "<br>Sum: kr " + sum;
+    }
+
+</script>
+</body>
+</html>

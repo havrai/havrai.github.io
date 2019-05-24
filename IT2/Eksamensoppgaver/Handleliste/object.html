@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Inputfelt</title>
+    <style>
+        body{
+            font-family: sans-serif;
+    </style>
+</head>
+<body>
+<p><b>Input - array - objekt- for-sløyfe.</b></p>
+Inputfelt av typen text og number.<br>
+Hendelsen "onchange" er knyttet til inputfeltet for pris<br>
+og en funksjon som vil behandle inntastede verdier.<br>
+Oppretter et objekt og tilordner inputverdiene til objektet.<br>
+Objektene legges i et array.<br>
+En for-sløyfe skriver ut innholdet i arrayet med objektene.<br>
+I løkken med utskrift legges alle prisene sammen og skrives ut etter at <br>
+handlelisten er skrevet ut i et div-element.<br>
+Nummerering opprettes av å skrive ut arrayets indexverdi +1 (index starter på 0).<br>
+<p></p>
+Vare:<br>
+<input id="inpVare" type="text" placeholder="skriv inn vare"><br>
+Pris:<br>
+<input id="inpPris" type="number" placeholder="skriv inn pris">
+<br><br>
+
+<div id="ut"></div>
+<script>
+    var inpVare = document.getElementById("inpVare");
+    var inpPris = document.getElementById("inpPris");
+    var ut = document.getElementById("ut");
+    var sum = 0;
+    var handleliste = [];
+
+    inpPris.onchange = function(){
+        var varene ={};                 //Oppretter et objekt for å legge inputverdier i
+        varene.vare = inpVare.value;    //Oppretter objektet sin vare og legger tilordner verdi(varen)
+        varene.pris = Number(inpPris.value);    //Oppretter objektet sin pris og tilordner verdi(pris)
+
+        handleliste.push(varene);   //Legger til objektet varene bakerst i arrayet,
+
+        ut.innerHTML = "Handleliste:<br>";
+
+        for (var i=0;i<handleliste.length;i++){
+            ut.innerHTML += (i+1) + ". " + handleliste[i].vare + " - kr " + handleliste[i].pris + "<br>";
+            sum = sum + handleliste[i].pris;
+        }
+        ut.innerHTML += "<br>Sum: kr " + sum;
+    }
+
+</script>
+</body>
+</html>

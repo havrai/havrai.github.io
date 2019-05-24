@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" type="text/css" href="flappy.css">
+
+    <script src="flappy.js"></script>
+
+</head>
+
+<body onload="startGame()">
+
+<div id="centeredContainerWrapper">
+
+    <div id="centeredContainer">
+
+        <div id="gameCanvasWrapper">
+
+            <canvas id="gameCanvas" width="512" height="350">
+
+        </div>
+
+        <br>
+
+        <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">ACCELERATE</button>
+
+        <p>Use the button above or hit SPACE to control the red block.</p>
+
+        <p>Avoid the green vertical bars to stay alive.</p>
+
+        <p>Passing through each portal grants 100 points. Each blue block collected, grants 250 points.</p>
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+

@@ -1,0 +1,159 @@
+<html><head>
+    <meta charset="UTF-8">
+    <title>Eksamen H2010 Hoteller</title>
+    <link href="stilark.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="rammeVenstre">
+    <h2>Hoteller i fjellheimen</h2>
+    <select id="hotellListe">
+        <option>Spidsbergseter</option>
+        <option>Rondablikk</option>
+        <option>Rondane SPA</option>
+        <option>Brekkeseter</option>
+        <option>Hjerkinn</option>
+    </select>
+
+    <p></p>
+    <img id="bildet" src="FilerH2010Hoteller/spidsbergseter.jpg" height="200" width="350" border="1">
+    <p></p>
+
+    <p id="telefon"><strong>Tlf: </strong>61 28 40 00</p>
+    <p id="epost"><strong>E-post: </strong>post@sgh.no</p>
+</div>
+<div id="rammeHoyre"><h3>Temperaturer siste døgn</h3>
+    Dagens temperatur: <span id="sjekk"></span><br>
+    <input id="inpTemp" type="text" min="-30" max="40" width="10"><br><br>
+
+    <div id="temperaturer"><h4>Temperatur for de siste<br>7 dager</h4><h4></h4>Dag 1: <br>Dag 2: <br>Dag 3: <br>Dag 4: <br>Dag 5: <br>Dag 6: <br><br>Maks temp: 3<br>Min temp: -5<br>Snitt temp: -1</div>
+    <div id="tall">-5°C<br>-3°C<br>-2°C<br>0°C<br>2°C<br>3°C<br></div>
+
+    <canvas id="canvas" width="500" height="500"></canvas>
+</div>
+<script>
+    //tilordner htmltaggene til variabler og setter stiler
+    var hotellListe = document.getElementById("hotellListe");
+
+    var bildet = document.getElementById("bildet");
+    var telefon = document.getElementById("telefon");
+    var epost = document.getElementById("epost");
+    var temperaturer = document.getElementById("temperaturer");
+    var tall = document.getElementById("tall");
+    var tempSoyler = document.getElementById("tempSoyler");
+    var inpTemp = document.getElementById("inpTemp");
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+
+    var hotell = [];
+    //oppretter hoteller
+    hotell[0] = {hotell:"Spidsbergseter",tlf:"61 28 40 00",epost:"post@sgh.no",bilde:"spidsbergseter.jpg"};
+    hotell[1] = {hotell:"Rondablikk",tlf:"61 28 49 40",epost:"post@rondablikk.no",bilde:"rondablikk.jpg"};
+    hotell[2] = {hotell:"Rondane SPA",tlf:"61 20 90 90",epost:"post@rondane.no",bilde:"rondaneSPA.jpg"};
+    hotell[3] = {hotell:"Brekkeseter",tlf:"61 23 59 90",epost:"post@brekkeseter.no",bilde:"brekkeseter.jpg"};
+    hotell[4] = {hotell:"Rondane SPA",tlf:"61 21 72 90",epost:"fjellstua@hjerkinn.no",bilde:"hjerkinn.jpg"};
+
+    var temp = [];
+    //temperaturer for hvert hotell
+    temp[0] = [-5,-3,-2,0,2,3];
+    temp[1] = [-8,-5,-5,-3,-3,-3];
+    temp[2] = [-10,-8,-8,-5,-5,-4];
+    temp[3] = [-9,-7,-5,-5,-2,0];
+    temp[4] = [-12,-10,-9,-9,-7,-7];
+
+    //Lager et array for antall temperaturer som er lagt inn for hvert hotell
+    var ant = [5,5,5,5,5];
+    //Setter startverdier for utverdier
+    hotellListe.selectedIndex = 0;
+    var indeks = 0;
+    var sum = 0;
+    var X = 170;
+    var Y = 50;
+    var antTemperaturer = 7;
+    //Kaller opp utskriftsfunksjon for å få innhold på siden ved oppstart
+    utskrift(indeks);
+
+    //Funksjon for utverdier
+    function utskrift(valgt){
+        bildet.src = hotell[valgt].bilde;
+        telefon.innerHTML = "<strong>Tlf: </strong>" + hotell[valgt].tlf;
+        epost.innerHTML = "<strong>E-post: </strong>" + hotell[valgt].epost;
+        temperaturer.innerHTML ="";
+        tall.innerHTML ="";
+        inpTemp.value = 0;
+        //Gjør klart for ny grafikk på canvas
+        ctx.clearRect(0,0,500,500);
+        //Kaller opp funksjon for å tegne grafer for temperaturen for valgt hotell
+        tempUtskrift(valgt);
+    }
+
+    function tempUtskrift(valgt){
+        //Sjekker antall innlagte tempverdier for hotellet
+        if(ant[valgt]<antTemperaturer){
+            ant[valgt] = ant[valgt] + 1;
+        }
+        else{
+            //Lar de 7  (antTemperaturer) første verdien i danne tabellen
+            temp[valgt] = temp[valgt].slice(0,antTemperaturer); //Lar de nyeste verdiene danne arrayet
+            ant[valgt]=antTemperaturer;
+        }
+
+        ctx.clearRect(0,0,500,500);
+        var maks = Math.max(...temp[valgt]);
+        var min = Math.min(...temp[valgt]);
+        //Nullstiller verdier før ny beregning
+        X = 170;
+        Y = 50;
+        sum = 0;
+
+        temperaturer.innerHTML = "<h4>Temperatur for de siste<br>" + antTemperaturer + " dager<h4>";
+        ctx.font = "14px Verdana";
+
+        //Sløyfe som skriver ut temperaturer, summerer og tegner graf
+        for (var i =0;i<ant[valgt];i++){
+            var n = temp[valgt][i];
+            temperaturer.innerHTML += "Dag " + (i+1) + ": <br>";
+            tall.innerHTML += n + "°C<br>";
+            sum = sum + Number(n);
+            if (n<0){
+                ctx.fillStyle="darkblue";
+                ctx.fillText(n + "°C", 117-(n*-3),Y+15);
+            }
+            else{
+                ctx.fillStyle = "darkorange";
+                ctx.fillText(n + "°C", 182+n*3,Y+15);
+            }
+            //Skriver ut temperaturen bak søylene
+
+
+            ctx.fillRect(X,Y,n*3,20);
+            ctx.strokeStyle="black";
+            ctx.lineWidth=1;
+            ctx.strokeRect(X,Y,n*3,20);
+            Y += 20;
+        }
+        //Skriver ut maks-, min- og gjennomsnittstemperatur
+        temperaturer.innerHTML += "<br>Maks temp: " + maks + "<br>Min temp: " + min + "<br>Snitt temp: " + Math.round(sum/ant[valgt]);
+    }
+    // Funksjon som legger inn nye inntastede temperaturer
+    inpTemp.onchange = function(){
+        var dagens = inpTemp.value;
+        if (dagens>-30 && dagens<50){
+            temperaturer.innerHTML ="";
+            tall.innerHTML ="";
+            temp[indeks].unshift(dagens); //Legger ny temp førs i arrayet
+            tempUtskrift(indeks);
+            sjekk.innerHTML ="";
+        }
+        else{
+            sjekk.innerHTML = "<br>Bare temperaturer mellom -30 og +40 grader.";
+        }
+
+    }
+    hotellListe.onchange = function() {
+        indeks = hotellListe.selectedIndex; //Indeks til valgt hotell
+        utskrift(indeks);
+    }
+</script>
+
+</body></html>

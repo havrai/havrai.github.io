@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>V 2013 Energibehov Oppgave 1</title>
+    <style>
+        main{
+            width: 530px;
+            margin: 0 auto; /*0 pixler fra toppen og midstiller*/
+            font-family: verdana, sans-serif;
+        }
+        #animasjon{
+            background-image: url(sove.jpg);
+            width: 530px;
+            height: 330px;
+            transition: 1s; /*1 sek på endringen i style, her: endre bakgrunnsbilde*/
+        }
+        #energi{
+            height: 40px;
+            line-height: 40px;
+            background-color: darkorange;
+            text-align: center;
+            color: white;
+            transition: 1s; /*1 sek på endringen i style, her: bredde på laget*/
+        }
+        #ramme{
+            border-style: solid;
+            border-width: 1px;
+            height: 40px;
+            width: 530px;
+            background-color:bisque;
+        }
+        #lyd{
+            width: 530px;/*bredde på lydelement*/
+        }
+    </style>
+</head>
+
+<body>
+<main>
+    <h1>Faser i døgnet</h1>
+    <div id="animasjon"></div>
+    <h2>Energiforbruk</h2>
+    <div id="ramme"> <!-- gir en bakgrunn for energilaget som viser 100%-->
+        <div id="energi">Søvn - 90 kcal</div></div>
+    <audio id="lyd" src="lydeffekter.mp3" autoplay loop controls></audio>
+</main>
+
+
+<script>
+    var animasjon = document.getElementById("animasjon");
+    var energi = document.getElementById("energi");
+    var lyd = document.getElementById("lyd");
+    var sekunder = 0;
+
+    function byttBilde(){
+        if (sekunder===0){
+            lyd.currentTime = 0;
+            animasjon.style.backgroundImage = "url(sove.jpg)";
+            energi.style.width = 90 * 100/130 + "%";
+            energi.innerHTML = "Søvn - 90 kcal";
+        }
+        else if (sekunder === 4){   //Sjekker currentTime for evt skifte bilde
+            lyd.currentTime = 4;
+            animasjon.style.backgroundImage = "url(skole.jpg)";
+            energi.style.width = 110 * 100/130 + "%";
+            energi.innerHTML = "Skole - 110 kcal";
+        }
+        else if (sekunder === 7){
+            lyd.currentTime = 7;
+            animasjon.style.backgroundImage = "url(aktiv.jpg)";
+            energi.style.width = 130 * 100/130 + "%";
+            energi.innerHTML = "Aktiv - 130 kcal";
+        }
+        else if (sekunder === 9){
+            lyd.currentTime = 9;
+            animasjon.style.backgroundImage = "url(hvile.jpg)";
+            energi.style.width = 110 * 100/130 + "%";
+            energi.innerHTML = "Hvile - 110 kcal";
+        }
+        sekunder++;
+        if (sekunder === 12){
+            sekunder = 0;
+        }
+    }
+
+    byttBilde();
+    setInterval(byttBilde, 1000); //Kaller opp funksjonen byttBilde med et tidsintervall (1 sek)
+</script>
+</body>
+</html>

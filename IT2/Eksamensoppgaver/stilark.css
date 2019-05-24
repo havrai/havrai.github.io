@@ -1,0 +1,43 @@
+body{
+    font-family: sans-serif;
+}
+
+h2, h3{
+    color: darkblue;
+}
+#rammeVenstre{
+    position: absolute;
+    top: 80px;
+    left: 200px;
+    width: 400px;
+    text-align: center;
+}
+
+#rammeHoyre{
+    position: absolute;
+    top: 80px;
+    left: 650px;
+    width: 450px;
+    text-align: left;
+}
+#temperaturer{
+    position: absolute;
+    top: 100px;
+    width: 300px;
+    text-align: left;
+    height: auto;
+}
+#canvas{
+    position: absolute;
+    top: 130px;
+    left: 50px;
+}
+
+#tall{
+    position: absolute;
+    top: 183px;
+    left: 50px;
+    width: 50px;
+    height: auto;
+    text-align: right;
+}

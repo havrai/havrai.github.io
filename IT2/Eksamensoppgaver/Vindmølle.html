@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Oppgave 3</title>
+    <style media="screen">
+        body {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: lightblue;
+        }
+
+        #vindmolle {
+            position: absolute;
+            animation-name: snurr;
+            animation-duration: infinite;
+            animation-direction: normal;
+
+            animation: snurr 0.5s infinite normal;
+        }
+
+        .bakgrunnen {
+            background-color: lightblue;
+            text-align: center;
+            box-sizing: border-box;
+            color: lightblue;
+            font-family: sans-serif;
+        }
+
+        .bakgrunnen > #blad {
+            height: 100px;
+            width: 50px;
+        }
+
+        #bjork {
+
+        }
+
+        @keyframes snurr {
+
+            0% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(90deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+<img src="vedlegg/rotere.png" id="vindmolle">
+
+<p><button id="stille">Stille</button></p>
+<p><button id="lettbris">Lett bris</button></p>
+<p><button id="stivkuling">Stiv kuling</button></p>
+
+<div id="vindmolle"></div>
+
+
+<section class="bakgrunnen">
+    <img src="vedlegg/blad.png" id="blad">
+    <img src="vedlegg/Bjork.png" id="bjork">
+
+</section>
+
+</body>
+<script>
+    var vindmolle = document.querySelector("#vindmolle");
+    var stille = document.querySelector("#stille");
+    var lettbris = document.querySelector("#lettbris");
+    var stivkuling = document.querySelector("#stivkuling");
+
+
+    stille.onclick = () => {
+        vindmolle.style.transform = "rotate(0deg)";
+    }
+
+    lettbris.onclick = () => {
+        vindmolle.style.transform = "rotate(50deg)";
+    }
+
+    stivkuling.onclick = () => {
+        vindmolle.style.transform = "rotate(360deg)";
+    }
+
+</script>
+</html>

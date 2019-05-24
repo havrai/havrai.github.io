@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>V 2013 Energibehov Oppgave 3</title>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+        #startTekst{
+            position: absolute;
+            left: 100px;
+            top: 20px;
+            height: auto;
+            width: 1000px;
+        }
+        th,td{
+            text-align: center;
+            border-style: solid;
+            border-width: 1px;
+            cursor: pointer;
+        }
+        .radStil{
+            text-align: left;
+
+        }
+        #ut1{
+            position: absolute;
+            top: 420px;
+            left: 350px;
+        }
+        #ut2{
+            position: absolute;
+            top: 420px;
+            left: 100px;
+        }
+        #ut3{
+            position: absolute;
+            top: 420px;
+            left: 630px;
+        }
+
+        #ut4 {
+            position: absolute;
+            top: 600px;;
+            width:500px;
+            height: auto;
+            left: 630px;;
+        }
+        #soyler{
+            display:flex;
+            width: 500px;
+            height: 800px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        #soyler>div{
+            height: 12px;
+            margin-bottom: 5px;
+            background-color: darkgoldenrod;
+            color: white;
+            padding: 2px;
+            font-size: 9px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="startTekst">
+    <img src="aktiv.jpg" height="150"> <img src="sove.jpg" height="150">
+    <img src="hvile.jpg" height="150"> <img src="skole.jpg" height="150">
+    <p>Klikk på matvarene i tabellen og sett sammen din frokost for i dag!<br>
+        Velg så mange brødskiver du vil, ved å klikke på linja.</p>
+
+    <!-- Tabell med headingrad----------------------- -->
+    <table id="matTabell" width="98%">
+        <tr class="radStil">
+            <th>Matvare</th>
+            <th>kcal</th>
+            <th>Proteiner (i gram)</th>
+            <th>Fett (i gram)</th>
+            <th>Kaarbohydrater (i gram)</th>
+        </tr>
+    </table>
+
+</div>
+
+<div id="ut1"></div>
+<div id="ut2"></div>
+<div id="ut3"><strong>Her får du visuelt se innholdet av kcal:</strong><br><br><div id="soyler"></div></div>
+<div id="ut4"></div>
+
+<script>
+    var startTekst = document.getElementById("startTekst");
+    var ut1 = document.getElementById("ut1");
+    var ut2 = document.getElementById("ut2");
+    var ut3 = document.getElementById("ut3");
+    var ut4 = document.getElementById("ut4");
+    var soyler = document.getElementById("soyler");
+
+    //----Startverdier i Array før beregninger--------------------------------------------------------------
+    var antKlikk = [0,0,0,0,0];
+    var innhold =[0,0,0];
+    var kal =[0,0,0,0,0];
+
+    //----Map med verdier--------------------------------------------------------------------------------------
+    var matvarer = new Map();
+    var melk = {id:0,mat:"Lettmelk (1 glass på 2 dl)",kcal:92,prot:6.6,fett:3,karbo:9.6};
+    var egg = {id:1,mat:"Egg",kcal:80,prot:6.9,fett:5.5,karbo:0.7};
+    var brod = {id:2,mat:"Grovbrød (1 skive = 40g)",kcal:103,prot:3.5,fett:1,karbo:19.6};
+    var ost = {id:3,mat:"Smør (til 1 skive)",kcal:36,prot:0.025,fett:4.1,karbo:0.025};
+    var smor = {id:4,mat:"Gulost (1 skive)",kcal:53,prot:4,fett:4.2,karbo:0};
+
+    matvarer.set(melk.id,melk);
+    matvarer.set(egg.id,egg);
+    matvarer.set(brod.id,brod);
+    matvarer.set(ost.id,ost);
+    matvarer.set(smor.id,smor);
+
+    //----legger til nye rader i tabellen------med onclick="finnId(this)" blir radene klikkbare--------------
+    for (var matvare of matvarer.values()){
+        matTabell.innerHTML +='<tr onclick="finnId(this)"><td style=text-align:left>' + matvare.mat + "</td><td>" + matvare.kcal + "</td><td>" + matvare.prot + "</td><td>" + matvare.fett + "</td><td>" + matvare.karbo + "</td></tr>";
+    }
+    //---Nullstiller variabel og skriver ut startverdier
+    var sum =  0;
+    utskrift(10); //Skriver ut før beregning (kun for utseende). Parameter 10 (radnummer) gir verdier lik 0 i funksjonen utskrift
+
+    function finnId(radNummer){
+        var n = radNummer.rowIndex-1;
+        antKlikk[n] = antKlikk[n] + 1;
+        utskrift(n);
+    }
+
+    function utskrift(m){
+        ut1.innerHTML = "<strong>Her kommer ditt valg for frokost:</strong><br><br>";
+        soyler.innerHTML = "";
+        var antall = 0;
+        var plass = 0;
+
+        //-----Skriver ut innholder i map-----------------------------------------
+        for (var maten of matvarer.values()){
+            if (maten.id === m){
+                kal[m] = kal[m] + maten.kcal;
+                innhold[0] = innhold[0] + maten.prot;
+                innhold[1] = innhold[1] + maten.fett;
+                innhold[2] = innhold[2] + maten.karbo;
+                sum = sum + maten.kcal;
+            }
+            ut1.innerHTML += maten.mat + ": " + antKlikk[antall] + " stk <br>";
+            soyler.innerHTML +=  "<div style='width:" + (40 + kal[plass]/10) + "px'>" + kal[plass] + " kcal</div> ";
+
+            antall++;
+            plass++;
+        }
+
+        ut4.innerHTML ="<strong>Totalt: " + sum.toFixed(0) + " kcal</strong><br><br>";
+        ut2.innerHTML ="<strong>Antall gram av<br>hvert næringsstoff:</strong><br>";
+        ut2.innerHTML +="<br>Proteiner: " + innhold[0].toFixed(1) + " gram";
+        ut2.innerHTML +="<br>Fett: " + innhold[1].toFixed(1) + " gram";
+        ut2.innerHTML +="<br>Karbohydrater: " + innhold[2].toFixed(1) + " gram";
+    }
+    //https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_tr_rowindex
+</script>
+</body>
+</html>

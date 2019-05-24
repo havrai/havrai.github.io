@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Nedtrekksliste</title>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+        tr,td,th{
+            border: 1px solid;
+        }
+        table{
+            width: 400px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<p><b>Nedtrekksliste opprettet i script<br>
+    - array og utskrift av en grønnsak i et p-element.</b></p>
+
+<p><b>Vitaminer i grønnsaker</b></p>
+
+<select id="lstGronnsaker">
+
+</select>
+<p id="overskrift"></p>
+<p id="ut"> </p>
+
+<script>
+    var lstGronnsaker = document.getElementById("lstGronnsaker");
+    var overskrift = document.getElementById("overskrift");
+    var ut = document.getElementById("ut");
+
+    var gronnsak = ["Nypotet","Gulrot","Blomkål","Linser","Spinat"];  //Oppretter to array, et for grønnsaker og et for vitaminer
+    var vitamin = ["C-vitamin","A-vitamin","C-vitamin","B-vitamin","K-vitamin"];
+
+    for (var i=0;i<gronnsak.length;i++){
+        lstGronnsaker.innerHTML += "<option>" + gronnsak[i] + "</option>";
+    }
+
+    lstGronnsaker.onchange = function(){
+        var indeks = lstGronnsaker.selectedIndex;
+        ut.innerHTML = gronnsak[indeks] + " inneholder " + vitamin[indeks];
+    }
+</script>
+</body>
+</html>
